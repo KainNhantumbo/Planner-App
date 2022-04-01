@@ -44,8 +44,19 @@ export const HeaderContainer = styled.section`
 				font-weight: 500;
 			}
 			svg {
+				@keyframes svgSlide {
+					from{
+						transform: translate(0, .5em);
+						opacity: 0;
+					}
+					to{
+						transform: translate(0, 0);
+						opacity: 1;
+					}
+				}
 				width: 20px;
 				height: 20px;
+				animation: svgSlide 500ms ease-out forwards;
 			}
 		}
 	}

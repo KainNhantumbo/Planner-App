@@ -9,7 +9,7 @@ import {
 	BiPlanet,
 	BiSync,
 	BiSave,
-	BiMessage
+	BiMessage,
 } from 'react-icons/bi';
 
 const ContactsForm = () => {
@@ -37,9 +37,13 @@ const ContactsForm = () => {
 				<label htmlFor='website'>{<BiPlanet />}Website</label>
 				<input type='text' name='website' />
 				<label htmlFor='adress'>{<BiMap />}Adress</label>
-				<input type='text' name='adress' id='' />
-				<button type='reset'>{<BiSync />}Reset Values</button>
-				<button type='submit'>{<BiSave />}Save Contact</button>
+				<input type='text' name='adress' />
+				<button type='reset'>
+					<span>{<BiSync />}Reset Values</span>
+				</button>
+				<button type='submit'>
+					<span>{<BiSave />}Save Contact</span>
+				</button>
 			</form>
 		</FormContainer>
 	);

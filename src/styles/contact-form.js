@@ -3,24 +3,24 @@ import { colors } from './colors';
 
 export const FormContainer = styled.section`
 	width: 100%;
-  max-width: 350px;
+	max-width: 350px;
 	display: flex;
 	flex-direction: column;
-  margin: 0 auto;
+	margin: 0 auto;
 
 	div {
 		margin-bottom: 1.2em;
 		padding: 0 0.5em;
 		color: rgb(${colors.primaryColor});
 		span {
-      position: relative;
-      padding: 0 1.2em;
-      font-weight: 500;
+			position: relative;
+			padding: 0 1.2em;
+			font-weight: 500;
 
 			svg {
 				position: absolute;
-        left: 2px;
-        stroke-width: 1px;
+				left: 2px;
+				stroke-width: 1px;
 			}
 		}
 	}
@@ -33,7 +33,15 @@ export const FormContainer = styled.section`
 		label {
 			margin-bottom: 0.2em;
 			font-weight: 500;
-			user-select: none;
+			position: relative;
+			padding-left: 1.2em;
+
+			svg {
+				position: absolute;
+        left: 2px;
+        stroke-width: 0.2px;
+        color: rgb(${colors.primaryColor});
+			}
 		}
 
 		input {
@@ -59,6 +67,7 @@ export const FormContainer = styled.section`
 				transform: scale(1.02);
 				transition: all 200ms ease-out;
 			}
+      
 		}
 	}
 `;

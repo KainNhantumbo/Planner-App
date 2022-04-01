@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { colors } from './colors';
 
 export const FormContainer = styled.section`
+	@keyframes enterAnime {
+		from {
+			transform: translateX(20em);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+	animation: enterAnime 400ms ease-out forwards;
 	width: 100%;
 	max-width: 350px;
 	display: flex;
@@ -38,9 +47,9 @@ export const FormContainer = styled.section`
 
 			svg {
 				position: absolute;
-        left: 2px;
-        stroke-width: 0.2px;
-        color: rgb(${colors.primaryColor});
+				left: 2px;
+				stroke-width: 0.2px;
+				color: rgb(${colors.primaryColor});
 			}
 		}
 
@@ -72,7 +81,7 @@ export const FormContainer = styled.section`
 			span {
 				padding-left: 1em;
 				position: relative;
-				
+
 				svg {
 					position: absolute;
 					width: 20px;
@@ -81,7 +90,6 @@ export const FormContainer = styled.section`
 					left: -10px;
 				}
 			}
-      
 		}
 	}
 `;

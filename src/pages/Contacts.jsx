@@ -1,5 +1,5 @@
 import { ContactsContainer } from '../styles/contacts';
-import { BiCollection, BiPlus } from 'react-icons/bi';
+import { BiCollection, BiPlus, BiSearch } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import { contactsDB } from '../scripts/contactsdb';
 
@@ -11,9 +11,13 @@ const Contacts = () => {
 					{<BiCollection />}
 					Contacts
 				</span>
-				<button >
+				<button className='addBtn'>
 					<a href='/contacts/add'>{<BiPlus />}</a>
 				</button>
+				<section>
+					{<BiSearch className='searchIcon'/>}
+					<input type='search' name='search' placeholder='Search contacts' />
+				</section>
 			</div>
 
 			{contactsDB.map((contact) => {

@@ -3,6 +3,15 @@ import Contacts from '../pages/Contacts';
 import { colors } from './colors';
 
 export const ContactsContainer = styled.section`
+	@keyframes enterAnime {
+		from {
+			transform: scale(0);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+  animation: enterAnime 300ms ease-out forwards;
 	padding: 0.5em;
 	margin: 0 auto;
 	width: 100%;
@@ -27,7 +36,7 @@ export const ContactsContainer = styled.section`
 			}
 		}
 
-		button {
+		.addBtn {
 			@keyframes btnMontion {
 				from {
 					transform: scale(1);
@@ -73,6 +82,36 @@ export const ContactsContainer = styled.section`
 				position: absolute;
 				top: 2px;
 				left: 2.5px;
+			}
+		}
+
+		section {
+			position: relative;
+			display: flex;
+			padding-top: 0.8em;
+
+			input {
+				width: 100%;
+				max-width: 15em;
+				border-style: none;
+				border: none;
+				padding: 5px 8px;
+				border-radius: 5px;
+				box-shadow: 0 0 5px rgba(${colors.darkColor}, 0.3);
+				color: rgb(${colors.textColor});
+				padding-left: 28px;
+
+				:focus {
+					box-shadow: 0 0 5px rgba(${colors.secondaryColor}, 0.9);
+					outline: none;
+				}
+			}
+
+			.searchIcon {
+				position: absolute;
+				left: 8px;
+				top: 20px;
+				color: rgb(${colors.secondaryColor});
 			}
 		}
 	}

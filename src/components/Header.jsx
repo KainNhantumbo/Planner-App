@@ -1,51 +1,56 @@
-import React from 'react';
-import { HeaderContainer } from '../styles/heder';
+import React, { useState } from 'react';
+import { HeaderContainer } from '../styles/header';
+import {
+	BiPaperPlane,
+	BiCategory,
+	BiCog,
+	BiPhone,
+	BiAlarm,
+	BiPencil,
+} from 'react-icons/bi';
 
 const Header = ({ logStatus, logo, appName }) => {
-	const headerData = [
-		{
-			id: 0,
-			logo: '',
-			description: 'Contacts',
-			link: '',
-		},
-		{
-			id: 1,
-			logo: '',
-			description: 'Notes',
-			link: '',
-		},
-		{
-			id: 2,
-			logo: '',
-			description: 'Reminders',
-			link: '',
-		},
-		{
-			id: 3,
-			logo: '',
-			description: 'Preferences',
-			link: 'asdasd/asda',
-		},
-	];
+	const [menuStatus, setMenuStatus] = useState('none');
+
+	const menuShow = () => {
+		if (menuStatus === 'none') {
+			return setMenuStatus(() => 'block');
+		}
+		return setMenuStatus(() => 'none');
+	};
 
 	return (
 		<HeaderContainer>
 			<div className='logoSection'>
-				{logo}
+				<BiPaperPlane className='logo' />
 				<span>{appName}</span>
+				<button onClick={menuShow}>
+					<BiCategory />
+				</button>
 			</div>
-			<nav className='navbar'>
+
+			<nav className='navbar' style={{ display: menuStatus }}>
 				<ul>
-					{headerData.map(({ logo, descripton, link, id }) => {
-						return (
-							<li key={id}>
-								{logo}
-								<a href={link}>{descripton}</a>
-							</li>
-						)
-					})}
-					<li>{logStatus}</li>
+					<li>
+						<BiPencil />
+						<a href=''>Notes</a>
+					</li>
+					<li>
+						<BiAlarm />
+						<a href=''>Tasks</a>
+					</li>
+					<li>
+						<BiPhone />
+						<a href=''>Contacts</a>
+					</li>
+					<li>
+						<BiAlarm />
+						<a href=''>Reminders</a>
+					</li>
+					<li>
+						<BiCog />
+						<a href=''>Preferences</a>
+					</li>
 				</ul>
 			</nav>
 		</HeaderContainer>

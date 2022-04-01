@@ -6,6 +6,8 @@ export const HeaderContainer = styled.section`
 	left: 0;
 	top: 0;
 	width: 100%;
+	z-index: 50;
+	
 	.logoSection {
 		font-size: 1.6rem;
 		font-weight: 500;

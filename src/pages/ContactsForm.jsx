@@ -26,9 +26,11 @@ const ContactsForm = () => {
 				<input type='email' name='email' />
         <label htmlFor="adress">Adress</label>
         <input type="text" name="adress" id="" />
-        <button type='submit'>
+        <button type="reset">Reset Values</button>
+				<button type='submit'>
           Save Contact
         </button>
+
 			</form>
 		</FormContainer>
 	);

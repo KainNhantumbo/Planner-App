@@ -61,11 +61,25 @@ export const FormContainer = styled.section`
 			color: rgb(${colors.whiteColor});
 			font-weight: 500;
 			margin-bottom: 5px;
+			padding: 8px 0;
 
 			:hover {
 				color: rgba(${colors.secondaryColor}, 1);
 				transform: scale(1.02);
 				transition: all 200ms ease-out;
+			}
+
+			span {
+				padding-left: 1em;
+				position: relative;
+				
+				svg {
+					position: absolute;
+					width: 20px;
+					height: 20px;
+					top: 2px;
+					left: -10px;
+				}
 			}
       
 		}

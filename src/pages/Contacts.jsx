@@ -1,5 +1,6 @@
 import { ContactsContainer } from '../styles/contacts';
-import { BiCollection } from 'react-icons/bi';
+import { BiCollection, BiPlus } from 'react-icons/bi';
+import { MdAccountCircle } from 'react-icons/md';
 import { contactsDB } from '../scripts/contactsdb';
 
 const Contacts = () => {
@@ -10,21 +11,21 @@ const Contacts = () => {
 					{<BiCollection />}
 					Contacts
 				</span>
-			</div>
-			<section>
-				{contactsDB.map((contact) => {
-					return (
-						<div key={contact.id}>
-							<span>{contact.name + ' ' + contact.surname}</span>
-              <span>{contact.phone}</span>
-              <span>{contact.email}</span>
-						</div>
-					);
-				})}
-				<button>
-					<a href='/contacts/add'>Add Contact</a>
+				<button >
+					<a href='/contacts/add'>{<BiPlus />}</a>
 				</button>
-			</section>
+			</div>
+
+			{contactsDB.map((contact) => {
+				return (
+					<div key={contact.id} className='contact-section'>
+						<div>{!contact.image ? <MdAccountCircle /> : contact.image}</div>
+						<section>
+							<span>{contact.name + ' ' + contact.surname}</span>
+						</section>
+					</div>
+				);
+			})}
 		</ContactsContainer>
 	);
 };

@@ -40,7 +40,7 @@ const ContactsForm = () => {
 					<span>{<BiSync />}Reset Values</span>
 				</button>
 				<button type='submit'>
-					<span>{<BiSave />}Save Contact</span>
+					<span>{<BiSave />} <a href="/contacts">Save Contact</a> </span>
 				</button>
 			</form>
 		</FormContainer>

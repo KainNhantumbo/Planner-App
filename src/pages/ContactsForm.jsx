@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { BiPlus } from 'react-icons/bi';
 import { FormContainer } from '../styles/contact-form';
+import {
+	BiPlus,
+	BiPhone,
+	BiMobile,
+	BiUser,
+	BiMap,
+	BiPlanet,
+	BiSync,
+	BiSave,
+	BiMessage
+} from 'react-icons/bi';
 
 const ContactsForm = () => {
 	const [title, setTitle] = useState('Add Contact');
@@ -14,23 +24,22 @@ const ContactsForm = () => {
 				</span>
 			</div>
 			<form action='localhost:4500/contacts/add' method='post'>
-				<label htmlFor='name'>Name</label>
+				<label htmlFor='name'>{<BiUser />}Name</label>
 				<input type='text' name='name' />
-				<label htmlFor='surname'>Surname</label>
+				<label htmlFor='surname'>{<BiUser />}Surname</label>
 				<input type='text' name='surname' />
-				<label htmlFor='phoneOne'>Phone Number</label>
-				<input type='number' name='phoneOne' />
-				<label htmlFor='phoneTwo'>Phone Number</label>
-				<input type='number' name='phoneTwo' />
-				<label htmlFor='email'>Email</label>
+				<label htmlFor='phone'>{<BiPhone />}Phone Number</label>
+				<input type='number' name='phone' />
+				<label htmlFor='celular'>{<BiMobile />}Mobile Number</label>
+				<input type='number' name='celular' />
+				<label htmlFor='email'>{<BiMessage />}Email</label>
 				<input type='email' name='email' />
-        <label htmlFor="adress">Adress</label>
-        <input type="text" name="adress" id="" />
-        <button type="reset">Reset Values</button>
-				<button type='submit'>
-          Save Contact
-        </button>
-
+				<label htmlFor='website'>{<BiPlanet />}Website</label>
+				<input type='text' name='website' />
+				<label htmlFor='adress'>{<BiMap />}Adress</label>
+				<input type='text' name='adress' id='' />
+				<button type='reset'>{<BiSync />}Reset Values</button>
+				<button type='submit'>{<BiSave />}Save Contact</button>
 			</form>
 		</FormContainer>
 	);

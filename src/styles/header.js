@@ -14,8 +14,9 @@ export const HeaderContainer = styled.section`
 		position: relative;
 		padding: 0.5em 1em;
 		display: flex;
-		justify-content: space-between;
-
+		justify-content: flex-end;
+		gap: .5em;
+		
 		.logo {
 			transform: rotate(0deg);
 			width: 30px;
@@ -27,6 +28,8 @@ export const HeaderContainer = styled.section`
 		}
 
 		span {
+			position: absolute;
+			left: 1em;
 			color: rgba(${colors.secondaryColor});
 			padding-left: 1em;
 		}
@@ -40,7 +43,7 @@ export const HeaderContainer = styled.section`
 			box-shadow: 0 0 5px rgba(${colors.primaryColor}, 0.3);
 			outline: none;
 			color: rgba(${colors.primaryColor}, 0.8);
-
+			
 			:hover {
 				color: rgba(${colors.darkColor}, 0.3);
 				transition: all 200ms ease-out;

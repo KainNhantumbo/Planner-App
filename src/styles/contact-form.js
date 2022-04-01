@@ -3,9 +3,10 @@ import { colors } from './colors';
 
 export const FormContainer = styled.section`
 	width: 100%;
+  max-width: 350px;
 	display: flex;
-	justify-content: flex-start;
 	flex-direction: column;
+  margin: 0 auto;
 
 	div {
 		margin-bottom: 1.2em;

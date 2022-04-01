@@ -6,11 +6,15 @@ import {
 	BiCog,
 	BiPhone,
 	BiAlarm,
-	BiPencil,
+	BiEdit,
+	BiSpreadsheet,
+	BiSun,
+	BiMoon,
 } from 'react-icons/bi';
 
 const Header = ({ logStatus, logo, appName }) => {
 	const [menuStatus, setMenuStatus] = useState('none');
+	const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
 
 	const menuShow = () => {
 		if (menuStatus === 'none') {
@@ -19,11 +23,18 @@ const Header = ({ logStatus, logo, appName }) => {
 		return setMenuStatus(() => 'none');
 	};
 
+	const modeSwitcher = () => {
+		iconMode.name === 'sun'
+			? setIconMode({ icon: <BiMoon />, name: 'moon' })
+			: setIconMode({ icon: <BiSun />, name: 'sun' });
+	};
+
 	return (
 		<HeaderContainer>
 			<div className='logoSection'>
 				<BiPaperPlane className='logo' />
 				<span>{appName}</span>
+				<button onClick={modeSwitcher}>{iconMode.icon}</button>
 				<button onClick={menuShow}>
 					<BiCategory />
 				</button>
@@ -32,24 +43,34 @@ const Header = ({ logStatus, logo, appName }) => {
 			<nav className='navbar' style={{ display: menuStatus }}>
 				<ul>
 					<li>
-						<BiPencil />
-						<a href=''>Notes</a>
+						<a href=''>
+							<BiEdit />
+							Notes
+						</a>
 					</li>
 					<li>
-						<BiAlarm />
-						<a href=''>Tasks</a>
+						<a href=''>
+							<BiSpreadsheet />
+							Tasks
+						</a>
 					</li>
 					<li>
-						<BiPhone />
-						<a href=''>Contacts</a>
+						<a href=''>
+							<BiPhone />
+							Contacts
+						</a>
 					</li>
 					<li>
-						<BiAlarm />
-						<a href=''>Reminders</a>
+						<a href=''>
+							<BiAlarm />
+							Reminders
+						</a>
 					</li>
 					<li>
-						<BiCog />
-						<a href=''>Preferences</a>
+						<a href=''>
+							<BiCog />
+							Preferences
+						</a>
 					</li>
 				</ul>
 			</nav>

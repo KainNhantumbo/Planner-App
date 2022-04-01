@@ -53,15 +53,16 @@ export const HeaderContainer = styled.section`
 	.navbar {
 		@keyframes identifier {
 			from {
-				transform: translate(-20em, 0);
+				transform: translate(0, -3em);
+				opacity: 0;
 			}
 			to {
 				transform: translate(0, 0);
+				opacity: 1;
 			}
 		}
-
 		animation: identifier 500ms ease forwards;
-
+		transition: 500ms ease;
 
 		ul {
 			display: flex;
@@ -77,18 +78,22 @@ export const HeaderContainer = styled.section`
 				font-weight: 500;
 				text-transform: uppercase;
 				border-radius: 5px;
-				position: relative;
 
 				:hover {
 					background: powderblue;
 					border-bottom: 2px solid powderblue;
 				}
 
-				svg {
-					width: 20px;
-					height: 20px;
-					position: absolute;
-					left: 9em;
+				a {
+					position: relative;
+
+					svg {
+						width: 20px;
+						height: 20px;
+						position: absolute;
+						left: -1.8em;
+						top: 2px;
+					}
 				}
 			}
 		}

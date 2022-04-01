@@ -3,6 +3,7 @@ import { MainContainer } from './styles/mainstyles';
 import Header from './components/Header';
 
 function App() {
+	console.log('tweeks')
 	return (
 		<>
 			<GlobalStyles />

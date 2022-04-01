@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from './colors';
 
 export const HeaderContainer = styled.section`
 	position: fixed;
@@ -17,14 +18,14 @@ export const HeaderContainer = styled.section`
 			transform: rotate(0deg);
 			width: 30px;
 			height: 30px;
-			color: rebeccapurple;
+			color: rgb(${colors.primaryColor});
 			position: absolute;
 			left: 0.5em;
 			top: 0.4em;
 		}
 
 		span {
-			color: royalblue;
+			color: rgba(${colors.secondaryColor});
 			padding-left: 1em;
 		}
 
@@ -34,10 +35,12 @@ export const HeaderContainer = styled.section`
 			background: none;
 			border-radius: 5px;
 			padding: 1px 5px;
-			box-shadow: 0 0 5px powderblue;
+			box-shadow: 0 0 5px rgba(${colors.primaryColor}, 0.3);
+			outline: none;
+			color: rgba(${colors.primaryColor}, 0.8);
 
 			:hover {
-				color: powderblue;
+				color: rgba(${colors.darkColor}, 0.3);
 				transition: all 200ms ease-out;
 			}
 
@@ -78,6 +81,9 @@ export const HeaderContainer = styled.section`
 		}
 		animation: identifier 500ms ease forwards;
 		transition: 500ms ease;
+		background-color: rgba(${colors.secondaryColor}, 0.3);
+		backdrop-filter: blur(10px);
+		padding: 1em;
 
 		ul {
 			display: flex;
@@ -87,7 +93,7 @@ export const HeaderContainer = styled.section`
 			padding: 0 5px;
 
 			li {
-				border: 2px solid powderblue;
+				border: 2px solid transparent;
 				padding: 5px 0;
 				margin-bottom: 8px;
 				font-weight: 500;
@@ -95,8 +101,7 @@ export const HeaderContainer = styled.section`
 				border-radius: 5px;
 
 				:hover {
-					background: powderblue;
-					border-bottom: 2px solid powderblue;
+					background: rgba(${colors.primaryColor}, 0.3);
 				}
 
 				a {

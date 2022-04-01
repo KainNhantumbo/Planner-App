@@ -13,14 +13,12 @@ import {
 } from 'react-icons/bi';
 
 const ContactsForm = () => {
-	const [title, setTitle] = useState('Add Contact');
-
 	return (
 		<FormContainer>
 			<div>
 				<span>
 					{<BiPlus />}
-					{title}
+					Add Contact
 				</span>
 			</div>
 			<form action='localhost:4500/contacts/add' method='post'>

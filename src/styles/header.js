@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.section`
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
 	.logoSection {
 		font-size: 1.6rem;
 		font-weight: 500;
@@ -45,11 +49,11 @@ export const HeaderContainer = styled.section`
 			}
 			svg {
 				@keyframes svgSlide {
-					from{
-						transform: translate(0, .5em);
+					from {
+						transform: translate(0, 0.5em);
 						opacity: 0;
 					}
-					to{
+					to {
 						transform: translate(0, 0);
 						opacity: 1;
 					}

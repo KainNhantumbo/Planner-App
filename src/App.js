@@ -14,6 +14,7 @@ import {
 } from 'react-icons/bi';
 import { HeaderContainer } from './styles/header';
 import Contacts from './pages/Contacts';
+import ContactsForm from './pages/ContactsForm';
 import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
 
@@ -87,6 +88,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/contacts' element={<Contacts />} />
+				<Route path='/contacts/add' element={<ContactsForm />} />
 			</Routes>
 		</>
 	);

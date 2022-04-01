@@ -7,4 +7,8 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-family: Poppins, 'PT Sans', Montserrat;
   }
-`
+
+  body {
+    padding-top: 3.8em;
+  }
+`;

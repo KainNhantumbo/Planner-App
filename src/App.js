@@ -1,14 +1,13 @@
 import { GlobalStyles } from './styles/globalstyles';
-import {MainContainer} from './styles/mainstyles'
+import { MainContainer } from './styles/mainstyles';
+import Header from './components/Header';
 
 function App() {
-	
 	return (
 		<>
 			<GlobalStyles />
-				<MainContainer>
-				sasd
-			</MainContainer>
+			<Header appName={'Planner'} />
+			<MainContainer></MainContainer>
 		</>
 	);
 }

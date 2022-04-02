@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormContainer } from '../styles/contact-form';
 import {
-	BiPlus,
+	BiUserPlus,
 	BiPhone,
 	BiMobile,
 	BiUser,
@@ -17,7 +17,7 @@ const ContactsForm = () => {
 		<FormContainer>
 			<div>
 				<span>
-					{<BiPlus />}
+					{<BiUserPlus />}
 					Add Contact
 				</span>
 			</div>

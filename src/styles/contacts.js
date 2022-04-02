@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Contacts from '../pages/Contacts';
 import { colors } from './colors';
 
 export const ContactsContainer = styled.section`
@@ -92,7 +91,7 @@ export const ContactsContainer = styled.section`
 
 			input {
 				width: 100%;
-				max-width: 15em;
+				max-width: 350px;
 				border-style: none;
 				border: none;
 				padding: 5px 8px;

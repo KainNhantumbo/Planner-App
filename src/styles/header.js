@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from './colors';
 
 export const HeaderContainer = styled.section`
 	position: fixed;
@@ -7,12 +6,14 @@ export const HeaderContainer = styled.section`
 	top: 0;
 	width: 100%;
 	z-index: 50;
+	background: rgb(${({theme})=> theme.backgroundColor});
+	box-shadow: 0 0 5px rgba(${({theme})=> theme.primaryColor}, 0.5);
 	
 	.logoSection {
 		font-size: 1.6rem;
 		font-weight: 500;
 		position: relative;
-		padding: 0.5em 1em;
+		padding: 0.5em .3em;
 		display: flex;
 		justify-content: flex-end;
 		gap: .5em;
@@ -21,7 +22,7 @@ export const HeaderContainer = styled.section`
 			transform: rotate(0deg);
 			width: 30px;
 			height: 30px;
-			color: rgb(${colors.primaryColor});
+			color: rgb(${({theme})=> theme.primaryColor});
 			position: absolute;
 			left: 0.5em;
 			top: 0.4em;
@@ -30,7 +31,7 @@ export const HeaderContainer = styled.section`
 		span {
 			position: absolute;
 			left: 1em;
-			color: rgba(${colors.secondaryColor});
+			color: rgba(${({theme})=> theme.secondaryColor});
 			padding-left: 1em;
 		}
 
@@ -40,12 +41,12 @@ export const HeaderContainer = styled.section`
 			background: none;
 			border-radius: 5px;
 			padding: 1px 5px;
-			box-shadow: 0 0 5px rgba(${colors.primaryColor}, 0.3);
+			box-shadow: 0 0 5px rgba(${({theme})=> theme.primaryColor}, 0.3);
 			outline: none;
-			color: rgba(${colors.primaryColor}, 0.8);
+			color: rgba(${({theme})=> theme.primaryColor}, 0.8);
 			
 			:hover {
-				color: rgba(${colors.darkColor}, 0.3);
+				color: rgba(${({theme})=> theme.darkColor}, 0.3);
 				transition: all 200ms ease-out;
 			}
 
@@ -55,6 +56,7 @@ export const HeaderContainer = styled.section`
 				text-transform: uppercase;
 				font-weight: 500;
 			}
+
 			svg {
 				@keyframes svgSlide {
 					from {
@@ -86,7 +88,7 @@ export const HeaderContainer = styled.section`
 		}
 		animation: identifier 500ms ease forwards;
 		transition: 500ms ease;
-		background-color: rgba(${colors.secondaryColor}, 0.3);
+		background-color: rgba(${({theme})=> theme.secondaryColor}, 0.3);
 		backdrop-filter: blur(10px);
 		padding: 1em;
 
@@ -106,7 +108,7 @@ export const HeaderContainer = styled.section`
 				border-radius: 5px;
 
 				:hover {
-					background: rgba(${colors.primaryColor}, 0.3);
+					background: rgba(${({theme})=> theme.primaryColor}, 0.3);
 				}
 
 				a {

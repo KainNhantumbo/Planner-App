@@ -65,7 +65,7 @@ export const FormContainer = styled.section`
 			border: none;
 			border-style: none;
 			border-radius: 5px;
-			background: rgba(${colors.primaryColor});
+			background: rgba(${({theme}) => theme.primaryColor});
 			padding: 5px;
 			color: rgb(${colors.whiteColor});
 			font-weight: 500;

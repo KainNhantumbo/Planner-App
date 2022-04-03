@@ -62,5 +62,23 @@ export const contactsDB = [
     email: 'marcs@mail.com',
     website: 'jasdf.has.co.jp',
     adress: 'Matola, Sao Damasceno'
+  },{
+    id: 3834679665223434,
+    name: 'Lara',
+    surname: 'Croft',
+    phone: 788513489561,
+    celular: 6511648,
+    email: 'marcs@mail.com',
+    website: 'jasdf.has.co.jp',
+    adress: 'Matola, Sao Damasceno'
+  },{
+    id: 3834567665223434,
+    name: 'Lara',
+    surname: 'Croft',
+    phone: 788513489561,
+    celular: 6511648,
+    email: 'marcs@mail.com',
+    website: 'jasdf.has.co.jp',
+    adress: 'Matola, Sao Damasceno'
   },
 ];

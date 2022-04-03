@@ -21,19 +21,6 @@ export const ContactsContainer = styled.section`
 		padding: 0 0.5em;
 		color: rgb(${({theme}) => theme.primaryColor});
 		position: relative;
-		
-
-		span {
-			position: relative;
-			padding: 0 1.2em;
-			font-weight: 500;
-
-			svg {
-				position: absolute;
-				left: 2px;
-				stroke-width: 1px;
-			}
-		}
 
 		.addBtn {
 			@keyframes btnMontion {
@@ -87,7 +74,6 @@ export const ContactsContainer = styled.section`
 		section {
 			position: relative;
 			display: flex;
-			padding-top: 0.8em;
 
 			input {
 				width: 100%;
@@ -109,7 +95,7 @@ export const ContactsContainer = styled.section`
 			.searchIcon {
 				position: absolute;
 				left: 8px;
-				top: 20px;
+				top: 7px;
 				color: rgb(${({theme}) => theme.secondaryColor});
 			}
 		}

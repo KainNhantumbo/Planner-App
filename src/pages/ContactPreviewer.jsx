@@ -1,5 +1,6 @@
 import { Container } from '../styles/contactPreviewer';
 import { BiGlasses } from 'react-icons/bi';
+import TitleBars from '../components/TitleBars';
 
 const ContactPreviewer = () => {
 	const id = {
@@ -63,12 +64,7 @@ const ContactPreviewer = () => {
 
 	return (
 		<Container>
-			<div className='head'>
-				<span>
-					{<BiGlasses />}
-					Contact Previewer
-				</span>
-			</div>
+			<TitleBars icon={<BiGlasses />} title={'Contact Previewer'} />
 			<section>
 				<ul>
 					<Name />

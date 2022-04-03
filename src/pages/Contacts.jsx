@@ -2,6 +2,7 @@ import { ContactsContainer } from '../styles/contacts';
 import { BiCollection, BiPlus, BiSearch } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import { contactsDB } from '../scripts/contactsdb';
+import TitleBars from '../components/TitleBars';
 
 const Contacts = () => {
 	const onClickHandler = (e) => {
@@ -11,11 +12,8 @@ const Contacts = () => {
 
 	return (
 		<ContactsContainer>
+			<TitleBars icon={<BiCollection />} title={'Contacts'} />
 			<div>
-				<span>
-					{<BiCollection />}
-					Contacts
-				</span>
 				<button className='addBtn'>
 					<a href='/contacts/add'>{<BiPlus />}</a>
 				</button>

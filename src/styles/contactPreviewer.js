@@ -16,27 +16,9 @@ export const Container = styled.article`
 	max-width: 350px;
 	position: relative;
 
-	.head {
-		margin-bottom: 1.2em;
-		padding: 0 0.5em;
-		color: rgb(${({theme}) => theme.primaryColor});
-		position: relative;
-
-		span {
-			position: relative;
-			padding: 0 1.2em;
-			font-weight: 500;
-
-			svg {
-				position: absolute;
-				left: 2px;
-				stroke-width: 1px;
-			}
-		}
-	}
-
 	section {
-		color: rgb(${({theme}) => theme.textColor});
+		color: rgb(${({ theme }) => theme.textColor});
+		margin-top: 15px;
 
 		ul,
 		li {
@@ -48,13 +30,13 @@ export const Container = styled.article`
 			li {
 				border-radius: 10px;
 				gap: 5px;
-				padding: 8px 8px;
-				box-shadow: 0 0 5px rgba(${({theme}) => theme.darkColor}, 0.3);
+				padding: 8px 10px;
+				box-shadow: 0 0 5px rgba(${({ theme }) => theme.darkColor}, 0.3);
 
 				span {
 					font-weight: 500;
 					padding: 5px;
-					background: rgba(${({theme}) => theme.secondaryColor}, 0.3);
+					background: rgba(${({ theme }) => theme.secondaryColor}, 0.3);
 					border-radius: 5px;
 				}
 			}

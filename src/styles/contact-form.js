@@ -16,25 +16,6 @@ export const FormContainer = styled.section`
 	flex-direction: column;
 	margin: 0 auto;
 
-	div {
-		margin-bottom: 1.2em;
-		padding: 0 0.5em;
-		margin-top: 15px;
-		color: rgb(${({ theme }) => theme.primaryColor});
-
-		span {
-			position: relative;
-			padding: 0 1.2em;
-			font-weight: 500;
-
-			svg {
-				position: absolute;
-				left: 2px;
-				stroke-width: 1px;
-			}
-		}
-	}
-
 	form {
 		display: flex;
 		flex-flow: column nowrap;

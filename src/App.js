@@ -15,7 +15,7 @@ import {
 import { HeaderContainer } from './styles/header';
 import Contacts from './pages/Contacts';
 import ContactsForm from './pages/ContactsForm';
-import ContactPreviewer from './pages/ContactPreviwer';
+import ContactPreviewer from './pages/ContactPreviewer';
 import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
 import { colors, darkcolors } from './styles/colors';

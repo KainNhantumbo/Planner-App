@@ -11,16 +11,12 @@ import {
 	BiSave,
 	BiMessage,
 } from 'react-icons/bi';
+import TitleBars from '../components/TitleBars';
 
 const ContactsForm = () => {
 	return (
 		<FormContainer>
-			<div>
-				<span>
-					{<BiUserPlus />}
-					Add Contact
-				</span>
-			</div>
+			<TitleBars icon={<BiUserPlus/>} title={'Add Contact'} />
 			<form action='localhost:4500/contacts/add' method='post'>
 				<label htmlFor='name'>{<BiUser />}Name</label>
 				<input type='text' name='name' />

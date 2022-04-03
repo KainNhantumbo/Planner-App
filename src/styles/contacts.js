@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from './colors';
 
 export const ContactsContainer = styled.section`
 	@keyframes enterAnime {
@@ -20,7 +19,7 @@ export const ContactsContainer = styled.section`
 	div {
 		margin-bottom: 1.2em;
 		padding: 0 0.5em;
-		color: rgb(${colors.primaryColor});
+		color: rgb(${({theme}) => theme.primaryColor});
 		position: relative;
 		
 
@@ -56,15 +55,15 @@ export const ContactsContainer = styled.section`
 			background: none;
 			border-radius: 50%;
 			padding: 1px 5px;
-			box-shadow: 0 0 5px rgba(${colors.primaryColor}, 0.3);
+			box-shadow: 0 0 5px rgba(${({theme}) => theme.primaryColor}, 0.3);
 			outline: none;
-			color: rgba(${colors.primaryColor}, 0.8);
+			color: rgba(${({theme}) => theme.primaryColor}, 0.8);
 			display: grid;
 			place-content: center;
 
 			::before {
 				content: '';
-				background-color: rgba(${colors.secondaryColor}, 0.2);
+				background-color: rgba(${({theme}) => theme.secondaryColor}, 0.2);
 				width: 40px;
 				height: 40px;
 				animation: btnMontion 900ms ease infinite;
@@ -72,7 +71,7 @@ export const ContactsContainer = styled.section`
 			}
 
 			:hover {
-				color: rgba(${colors.darkColor}, 0.3);
+				color: rgba(${({theme}) => theme.darkColor}, 0.3);
 				transition: all 200ms ease-out;
 			}
 
@@ -97,12 +96,12 @@ export const ContactsContainer = styled.section`
 				border: none;
 				padding: 5px 8px;
 				border-radius: 5px;
-				box-shadow: 0 0 5px rgba(${colors.darkColor}, 0.3);
-				color: rgb(${colors.textColor});
+				box-shadow: 0 0 5px rgba(${({theme}) => theme.darkColor}, 0.3);
+				color: rgb(${({theme}) => theme.textColor});
 				padding-left: 28px;
 
 				:focus {
-					box-shadow: 0 0 5px rgba(${colors.secondaryColor}, 0.9);
+					box-shadow: 0 0 5px rgba(${({theme}) => theme.secondaryColor}, 0.9);
 					outline: none;
 				}
 			}
@@ -111,7 +110,7 @@ export const ContactsContainer = styled.section`
 				position: absolute;
 				left: 8px;
 				top: 20px;
-				color: rgb(${colors.secondaryColor});
+				color: rgb(${({theme}) => theme.secondaryColor});
 			}
 		}
 	}
@@ -120,7 +119,7 @@ export const ContactsContainer = styled.section`
 		position: relative;
 		display: flex;
 		border-radius: 5px;
-		box-shadow: 0 0 5px rgba(${colors.darkColor}, 0.3);
+		box-shadow: 0 0 5px rgba(${({theme}) => theme.darkColor}, 0.3);
 		padding: 5px;
 		cursor: pointer;
 		gap: 0.5em;
@@ -142,7 +141,7 @@ export const ContactsContainer = styled.section`
 			span {
 				padding-left: 2em;
 				word-wrap: break-word;
-				color: rgb(${colors.textColor});
+				color: rgb(${({theme}) => theme.textColor});
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-export const colors = {
+export const lightTheme = {
 	primaryColor: '156, 61, 84',
 	secondaryColor: '238, 183, 107',
 	backgroundColor: '255, 255, 255',
@@ -8,7 +8,7 @@ export const colors = {
   shadows: '0, 174, 239'
 };
 
-export const darkcolors = {
+export const darkTheme = {
 	primaryColor: '0,0,0',
 	secondaryColor: '238, 183, 107',
 	backgroundColor: '255, 255, 255',
@@ -17,4 +17,3 @@ export const darkcolors = {
 	whiteColor: '255, 255, 255',
   shadows: '0, 174, 239'
 };
-

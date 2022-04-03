@@ -18,11 +18,12 @@ import ContactsForm from './pages/ContactsForm';
 import ContactPreviewer from './pages/ContactPreviewer';
 import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
-import { colors, darkcolors } from './styles/colors';
+import { lightTheme, darkTheme } from './styles/themes';
 
 function App() {
 	const [menuStatus, setMenuStatus] = useState('none');
 	const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
+	const [colors, setColors] = useState(lightTheme);
 
 	const menuShow = () => {
 		if (menuStatus === 'none') {
@@ -32,9 +33,13 @@ function App() {
 	};
 
 	const modeSwitcher = () => {
-		iconMode.name === 'sun'
-			? setIconMode({ icon: <BiMoon />, name: 'moon' })
-			: setIconMode({ icon: <BiSun />, name: 'sun' });
+		if (iconMode.name == 'sun') {
+			setIconMode({ icon: <BiMoon />, name: 'moon' });
+			setColors(() => darkTheme);
+		} else {
+			setIconMode({ icon: <BiSun />, name: 'sun' });
+			setColors(() => lightTheme);
+		}
 	};
 
 	return (

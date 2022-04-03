@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors } from './colors';
+import { colors } from './themes';
 
 export const GlobalStyles = createGlobalStyle`
   * {    
@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: rgb(${colors.textColor});
+    color: rgb(${({theme})=> theme.textColor});
     padding-top: 3.8em;
     position: relative;
     background: rgb(${({theme})=> theme.backgroundColor});

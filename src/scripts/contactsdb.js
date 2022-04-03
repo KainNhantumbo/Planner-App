@@ -13,10 +13,10 @@ export const contactsDB = [
     name: 'Lester',
     surname: 'Larof',
     phone: 788513489561,
-    celular: 6511648,
+    celular: 844002535,
     email: 'marcs@mail.com',
     website: 'jasdf.has.co.jp',
-    adress: 'Matola, Sao Damasceno'
+    adress: 'Museu, Sao Damasceno'
   },{
     id: 237493234,
     name: 'Odin',

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from './colors';
 
 export const Container = styled.article`
 	@keyframes enterAnime {
@@ -20,7 +19,7 @@ export const Container = styled.article`
 	.head {
 		margin-bottom: 1.2em;
 		padding: 0 0.5em;
-		color: rgb(${colors.primaryColor});
+		color: rgb(${({theme}) => theme.primaryColor});
 		position: relative;
 
 		span {
@@ -37,7 +36,7 @@ export const Container = styled.article`
 	}
 
 	section {
-		color: rgb(${colors.textColor});
+		color: rgb(${({theme}) => theme.textColor});
 
 		ul,
 		li {
@@ -50,12 +49,12 @@ export const Container = styled.article`
 				border-radius: 10px;
 				gap: 5px;
 				padding: 8px 8px;
-				box-shadow: 0 0 5px rgba(${colors.darkColor}, 0.3);
+				box-shadow: 0 0 5px rgba(${({theme}) => theme.darkColor}, 0.3);
 
 				span {
 					font-weight: 500;
 					padding: 5px;
-					background: rgba(${colors.secondaryColor}, 0.3);
+					background: rgba(${({theme}) => theme.secondaryColor}, 0.3);
 					border-radius: 5px;
 				}
 			}

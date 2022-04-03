@@ -1,4 +1,4 @@
-import { Container } from '../styles/contactPreviwer';
+import { Container } from '../styles/contactPreviewer';
 import { BiGlasses } from 'react-icons/bi';
 
 const ContactPreviewer = () => {

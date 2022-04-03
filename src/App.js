@@ -25,6 +25,10 @@ function App() {
 	const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
 	const [colors, setColors] = useState(lightTheme);
 
+	const setThemeToStorage = () => {
+		console.log('tuts');
+	};
+
 	const menuShow = () => {
 		if (menuStatus === 'none') {
 			return setMenuStatus(() => 'block');

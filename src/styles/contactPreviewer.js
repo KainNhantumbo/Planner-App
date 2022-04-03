@@ -31,7 +31,7 @@ export const Container = styled.article`
 				border-radius: 10px;
 				gap: 5px;
 				padding: 8px 10px;
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.darkColor}, 0.3);
+				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
 
 				span {
 					font-weight: 500;

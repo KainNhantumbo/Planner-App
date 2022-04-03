@@ -22,7 +22,7 @@ export const FormContainer = styled.section`
 		padding: 0 0.5em;
 
 		label {
-			margin-bottom: 0.2em;
+			margin-bottom: 0.3em;
 			font-weight: 500;
 			position: relative;
 			padding-left: 1.2em;
@@ -36,20 +36,24 @@ export const FormContainer = styled.section`
 		}
 
 		input {
-			margin-bottom: 0.5em;
+			margin-bottom: 0.8em;
 			border-style: none;
-			border: 2px solid rgba(${({ theme }) => theme.secondaryColor});
+			color: rgb(${({ theme }) => theme.textColor});
+			background: rgb(${({ theme }) => theme.whiteColor});
+			box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
 			border-radius: 5px;
-			padding: 2px 5px;
+			padding: 5px 8px;
+			outline: none;
 		}
 
 		button {
 			border: none;
 			border-style: none;
 			border-radius: 5px;
-			background: rgba(${({ theme }) => theme.primaryColor});
+			background: rgba(${({ theme }) => theme.backgroundColor});
+			box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
 			padding: 5px;
-			color: rgb(${({ theme }) => theme.whiteColor});
+			color: rgb(${({ theme }) => theme.textColor});
 			font-weight: 500;
 			margin-bottom: 5px;
 			padding: 8px 0;

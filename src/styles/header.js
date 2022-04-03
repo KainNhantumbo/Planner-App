@@ -7,7 +7,7 @@ export const HeaderContainer = styled.section`
 	width: 100%;
 	z-index: 50;
 	background: rgb(${({theme})=> theme.backgroundColor});
-	box-shadow: 0 0 5px rgba(${({theme})=> theme.primaryColor}, 0.5);
+	box-shadow: 0 0 8px rgb(${({theme})=> theme.shadows});
 	
 	.logoSection {
 		font-size: 1.6rem;
@@ -41,12 +41,12 @@ export const HeaderContainer = styled.section`
 			background: none;
 			border-radius: 5px;
 			padding: 1px 5px;
-			box-shadow: 0 0 5px rgba(${({theme})=> theme.primaryColor}, 0.3);
+			box-shadow: 0 0 5px rgb(${({theme})=> theme.shadows});
 			outline: none;
 			color: rgba(${({theme})=> theme.primaryColor}, 0.8);
 			
 			:hover {
-				color: rgba(${({theme})=> theme.darkColor}, 0.3);
+				color: rgb(${({theme})=> theme.darkColor});
 				transition: all 200ms ease-out;
 			}
 
@@ -108,7 +108,7 @@ export const HeaderContainer = styled.section`
 				border-radius: 5px;
 
 				:hover {
-					background: rgba(${({theme})=> theme.primaryColor}, 0.3);
+					background: rgba(${({theme})=> theme.shadows}, .5);
 				}
 
 				a {

@@ -39,26 +39,24 @@ export const Container = styled.article`
 	section {
 		color: rgb(${colors.textColor});
 
-		ul, li{
+		ul,
+		li {
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
 			gap: 15px;
-			
+
 			li {
-				border: 2px solid;
 				border-radius: 10px;
-				gap: 2px;
+				gap: 5px;
+				padding: 8px 8px;
+				box-shadow: 0 0 5px rgba(${colors.darkColor}, 0.3);
 
 				span {
-					font-size: 1.2rem;
 					font-weight: 500;
-					text-align: center;
-					border: 1px solid;
 					padding: 5px;
-				}
-
-				div {
+					background: rgba(${colors.secondaryColor}, 0.3);
+					border-radius: 5px;
 				}
 			}
 		}

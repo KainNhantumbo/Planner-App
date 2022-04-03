@@ -4,6 +4,11 @@ import { MdAccountCircle } from 'react-icons/md';
 import { contactsDB } from '../scripts/contactsdb';
 
 const Contacts = () => {
+	const onClickHandler = (e) => {
+		console.log(e.target.id);
+		window.location.assign('/contacts/previewer');
+	};
+
 	return (
 		<ContactsContainer>
 			<div>
@@ -15,14 +20,19 @@ const Contacts = () => {
 					<a href='/contacts/add'>{<BiPlus />}</a>
 				</button>
 				<section>
-					{<BiSearch className='searchIcon'/>}
+					{<BiSearch className='searchIcon' />}
 					<input type='search' name='search' placeholder='Search contacts' />
 				</section>
 			</div>
 
 			{contactsDB.map((contact) => {
 				return (
-					<div key={contact.id} className='contact-section'>
+					<div
+						key={contact.id}
+						id={contact.id}
+						className='contact-section'
+						onClick={onClickHandler}
+					>
 						<div>{!contact.image ? <MdAccountCircle /> : contact.image}</div>
 						<section>
 							<span>{contact.name + ' ' + contact.surname}</span>

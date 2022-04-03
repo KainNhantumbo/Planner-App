@@ -22,6 +22,7 @@ export const ContactsContainer = styled.section`
 		padding: 0 0.5em;
 		color: rgb(${colors.primaryColor});
 		position: relative;
+		
 
 		span {
 			position: relative;

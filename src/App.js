@@ -15,6 +15,7 @@ import {
 import { HeaderContainer } from './styles/header';
 import Contacts from './pages/Contacts';
 import ContactsForm from './pages/ContactsForm';
+import ContactPreviewer from './pages/ContactPreviwer';
 import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
 
@@ -34,7 +35,7 @@ function App() {
 			? setIconMode({ icon: <BiMoon />, name: 'moon' })
 			: setIconMode({ icon: <BiSun />, name: 'sun' });
 	};
-	console.log('the')
+
 
 	return (
 		<>
@@ -89,6 +90,7 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/contacts' element={<Contacts />} />
 				<Route path='/contacts/add' element={<ContactsForm />} />
+				<Route path='/contacts/previewer' element={<ContactPreviewer />} />
 			</Routes>
 		</>
 	);

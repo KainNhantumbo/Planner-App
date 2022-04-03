@@ -6,8 +6,8 @@ import TitleBars from '../components/TitleBars';
 
 const Contacts = () => {
 	const onClickHandler = (e) => {
-		console.log(e.target.id);
-		window.location.assign('/contacts/previewer');
+		const id = e.target.id
+		window.location.assign(`/contacts/previewer/${id}`);
 	};
 
 	return (

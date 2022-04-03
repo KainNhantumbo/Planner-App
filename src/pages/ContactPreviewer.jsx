@@ -1,24 +1,25 @@
 import { Container } from '../styles/contactPreviewer';
 import { BiGlasses } from 'react-icons/bi';
+import { contactsDB } from '../scripts/contactsdb';
 import TitleBars from '../components/TitleBars';
 
 const ContactPreviewer = () => {
-	const id = {
-		id: 237498,
-		name: 'Marcs',
-		surname: 'Lobster',
-		phone: 89432131489,
-		celular: 6511648,
-		email: 'marcs@mail.com',
-		website: 'jasdf.has.co.jp',
-		adress: 'Matola, Sao Damasceno',
-	};
+	// takes the id from url params
+	const hrefID = window.location.pathname.split('/')[3];
+
+	// searches the item data by id
+	const contact = contactsDB.filter((contact) => {
+		if (contact.id === Number(hrefID)) return contact;
+	});
+
+	// extracts data object from new array
+	const id = contact[0];
 
 	const Name = () =>
 		!id.name ? null : (
 			<li key={'name'}>
 				<span>Name</span>
-				<div>{id.name}</div>
+				<div>{id.name + ' ' + id.surname}</div>
 			</li>
 		);
 

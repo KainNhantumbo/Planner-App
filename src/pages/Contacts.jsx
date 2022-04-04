@@ -27,7 +27,6 @@ const Contacts = () => {
 		console.log(searchedContacts);
 		setSearchResults(() => searchedContacts);
 	};
-	console.log(searchData);
 
 	return (
 		<ContactsContainer>

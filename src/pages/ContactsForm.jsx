@@ -15,6 +15,7 @@ import TitleBars from '../components/TitleBars';
 import { contactsDB } from '../scripts/contactsdb';
 
 const ContactsForm = () => {
+	// input fields state values
 	const [name, setName] = useState('');
 	const [surname, setSurname] = useState('');
 	const [phone, setPhone] = useState('');
@@ -24,6 +25,7 @@ const ContactsForm = () => {
 	const [adress, setAdress] = useState('');
 
 	const hrefID = window.location.pathname.split('/')[3];
+
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
 		if (contact.id === Number(hrefID)) return contact;
@@ -59,6 +61,7 @@ const ContactsForm = () => {
 		setAdress(() => '');
 	};
 
+	// saves a new contact, if id exists, it makes a update
 	const saveContact = (e) => {
 		e.preventDefault();
 		if (id) {

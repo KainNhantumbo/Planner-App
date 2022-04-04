@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GlobalStyles } from './styles/globalstyles';
 import {
@@ -21,30 +21,52 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/themes';
 
 function App() {
-	const [menuStatus, setMenuStatus] = useState('none');
-	const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
-	const [colors, setColors] = useState(lightTheme);
+	// menu bar states management
+		const [menuStatus, setMenuStatus] = useState('none');
 
-	const setThemeToStorage = () => {
-		console.log('tuts');
-	};
+	// theme setup
+		const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
 
-	const menuShow = () => {
-		if (menuStatus === 'none') {
-			return setMenuStatus(() => 'block');
-		}
-		return setMenuStatus(() => 'none');
-	};
+		// picks the configuration from localStorage
+			const themeDataPicker = () => {
+				let mode = JSON.parse(localStorage.getItem('theme'));
+				if (!mode || mode === undefined) {
+					mode = 'sun';
+					localStorage.setItem('theme', JSON.stringify(mode));
+				}
+				return mode;
+			};
+			const themeData = themeDataPicker();
 
-	const modeSwitcher = () => {
-		if (iconMode.name == 'sun') {
-			setIconMode({ icon: <BiMoon />, name: 'moon' });
-			setColors(() => darkTheme);
-		} else {
-			setIconMode({ icon: <BiSun />, name: 'sun' });
-			setColors(() => lightTheme);
-		}
-	};
+			const [colors, setColors] = useState(() => {
+				if (themeData === 'sun') {
+					return lightTheme;
+				} else {
+					return darkTheme;
+				}
+			});
+		// switches between dark and light themes
+		// and sets the configuration into localStorage
+			const modeSwitcher = () => {
+				if (colors === lightTheme) {
+					setIconMode({ icon: <BiMoon />, name: 'moon' });
+					setColors(() => darkTheme);
+					localStorage.setItem('theme', JSON.stringify('moon'));
+				} else {
+					setIconMode({ icon: <BiSun />, name: 'sun' });
+					localStorage.setItem('theme', JSON.stringify('sun'));
+					setColors(() => lightTheme);
+				}
+			};
+		// ===================================== //
+	// menu toggler
+		const menuShow = () => {
+			if (menuStatus === 'none') {
+				return setMenuStatus(() => 'block');
+			}
+			return setMenuStatus(() => 'none');
+		};
+	// ======================================== //
 
 	return (
 		<>
@@ -100,7 +122,10 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='/contacts' element={<Contacts />} />
 					<Route path='/contacts/add/:id' element={<ContactsForm />} />
-					<Route path='/contacts/previewer/:id' element={<ContactPreviewer />} />
+					<Route
+						path='/contacts/previewer/:id'
+						element={<ContactPreviewer />}
+					/>
 				</Routes>
 			</ThemeProvider>
 		</>

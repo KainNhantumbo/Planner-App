@@ -33,6 +33,7 @@ const ContactsForm = () => {
 	const id = contact[0];
 
 	// if id object exists, setup the fields
+	const [message, setMessage] = useState('Save Contact');
 	useEffect(() => {
 		if (!id) return;
 		setName(() => id.name);
@@ -42,9 +43,13 @@ const ContactsForm = () => {
 		setEmail(() => id.email);
 		setWebsite(() => id.website);
 		setAdress(() => id.adress);
+
+		setMessage(() => 'Update');
 	}, []);
 
-	const resetForm =()=> {
+	// resets form value fields
+	const resetForm = (e) => {
+		e.preventDefault();
 		setName(() => '');
 		setSurname(() => '');
 		setPhone(() => '');
@@ -52,12 +57,31 @@ const ContactsForm = () => {
 		setEmail(() => '');
 		setWebsite(() => '');
 		setAdress(() => '');
-	}
+	};
+
+	const saveContact = (e) => {
+		e.preventDefault();
+		if (id) {
+			const updatedContactsDB = contactsDB.map((element) => {
+				if (element.id === Number(hrefID)) {
+					element.name = name;
+					element.surname = surname;
+					element.phone = phone;
+					element.celular = celular;
+					element.email = email;
+					element.website = website;
+					element.adress = adress;
+				}
+				return element;
+			});
+			window.location.assign('/contacts');
+		}
+	};
 
 	return (
 		<FormContainer>
 			<TitleBars icon={<BiUserPlus />} title={'Add Contact'} />
-			<form action='localhost:4500/contacts/add' method='post'>
+			<form>
 				<label htmlFor='name'>{<BiUser />}Name</label>
 				<input
 					type='text'
@@ -107,12 +131,12 @@ const ContactsForm = () => {
 					defaultValue={adress}
 					onChange={(e) => setAdress(() => e.target.value)}
 				/>
-				<button type='reset' onClick={resetForm}>
+				<button onClick={resetForm}>
 					<span>{<BiSync />}Reset Values</span>
 				</button>
-				<button >
+				<button onClick={saveContact}>
 					<span>
-						{<BiSave />} <a href='/contacts'>Save Contact</a>{' '}
+						{<BiSave />} {message}
 					</span>
 				</button>
 			</form>

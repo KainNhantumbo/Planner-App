@@ -13,7 +13,6 @@ import {
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
 import { contactsDB } from '../scripts/contactsdb';
-import { set } from 'animejs';
 
 const ContactsForm = () => {
 	const [name, setName] = useState('');
@@ -44,6 +43,16 @@ const ContactsForm = () => {
 		setWebsite(() => id.website);
 		setAdress(() => id.adress);
 	}, []);
+
+	const resetForm =()=> {
+		setName(() => '');
+		setSurname(() => '');
+		setPhone(() => '');
+		setCelular(() => '');
+		setEmail(() => '');
+		setWebsite(() => '');
+		setAdress(() => '');
+	}
 
 	return (
 		<FormContainer>
@@ -98,10 +107,10 @@ const ContactsForm = () => {
 					defaultValue={adress}
 					onChange={(e) => setAdress(() => e.target.value)}
 				/>
-				<button type='reset'>
+				<button type='reset' onClick={resetForm}>
 					<span>{<BiSync />}Reset Values</span>
 				</button>
-				<button type='submit'>
+				<button >
 					<span>
 						{<BiSave />} <a href='/contacts'>Save Contact</a>{' '}
 					</span>

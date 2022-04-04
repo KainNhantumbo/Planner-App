@@ -75,6 +75,19 @@ const ContactsForm = () => {
 				return element;
 			});
 			window.location.assign('/contacts');
+		} else {
+			if (name === '') return;
+			const newContact = {
+				name,
+				surname,
+				phone,
+				celular,
+				email,
+				website,
+				adress
+			}
+			contactsDB.push(newContact);
+			console.log(contactsDB)
 		}
 	};
 

@@ -34,7 +34,7 @@ const Contacts = () => {
 			<TitleBars icon={<BiCollection />} title={'Contacts'} />
 			<div>
 				<button className='addBtn'>
-					<a href='/contacts/add'>{<BiPlus />}</a>
+					<a href='/contacts/add/:id'>{<BiPlus />}</a>
 				</button>
 				<section>
 					{<BiSearch className='searchIcon' />}

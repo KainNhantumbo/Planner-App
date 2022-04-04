@@ -16,6 +16,11 @@ const ContactPreviewer = () => {
 	// extracts data object from new array
 	const id = contact[0];
 
+	// send to edit page 
+	const sendToEdit = () => {
+		window.location.assign(`/contacts/add/${hrefID}`)
+	}
+
 	const Name = () =>
 		!id.name ? null : (
 			<li key={'name'}>
@@ -82,7 +87,7 @@ const ContactPreviewer = () => {
 					{<BiTrash />}
 					<span>Delete</span>
 				</button>
-				<button>
+				<button onClick={sendToEdit}>
 					{<BiEdit />}
 					<span>Edit</span>
 				</button>

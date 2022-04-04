@@ -99,7 +99,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/contacts' element={<Contacts />} />
-					<Route path='/contacts/add' element={<ContactsForm />} />
+					<Route path='/contacts/add/:id' element={<ContactsForm />} />
 					<Route path='/contacts/previewer/:id' element={<ContactPreviewer />} />
 				</Routes>
 			</ThemeProvider>

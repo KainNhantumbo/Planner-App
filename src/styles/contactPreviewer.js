@@ -63,7 +63,6 @@ export const Container = styled.article`
 			:hover {
 				background: rgba(${({ theme }) => theme.secondaryColor}, .2);
 				transition: all 200ms ease-out;
-
 			}
 			
 			span {

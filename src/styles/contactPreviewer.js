@@ -42,4 +42,43 @@ export const Container = styled.article`
 			}
 		}
 	}
+
+	.action-buttons {
+		display: flex;
+		justify-content: flex-start;
+		padding: 20px 0px;
+		gap: 12px;
+
+		button {
+			border: none;
+			border-style: none;
+			background: none;
+			padding: 8px 25px;
+			border-radius: 5px;
+			font-weight: 500;
+			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			color: rgb(${({ theme }) => theme.textColor});
+			position: relative;
+			
+			:hover {
+				background: rgba(${({ theme }) => theme.secondaryColor}, .2);
+				transition: all 200ms ease-out;
+
+			}
+			
+			span {
+				padding-left: 20px;
+			}
+
+			svg {
+				color: rgb(${({ theme }) => theme.primaryColor});
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				left: 15px;
+				top: 7px;
+			}
+
+		}
+	}
 `;

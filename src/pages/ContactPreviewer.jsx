@@ -1,5 +1,6 @@
+import React, { useState } from 'react';
 import { Container } from '../styles/contactPreviewer';
-import { BiGlasses } from 'react-icons/bi';
+import { BiGlasses, BiTrash, BiEdit } from 'react-icons/bi';
 import { contactsDB } from '../scripts/contactsdb';
 import TitleBars from '../components/TitleBars';
 
@@ -76,6 +77,16 @@ const ContactPreviewer = () => {
 					<Adress />
 				</ul>
 			</section>
+			<div className='action-buttons'>
+				<button>
+					{<BiTrash />}
+					<span>Delete</span>
+				</button>
+				<button>
+					{<BiEdit />}
+					<span>Edit</span>
+				</button>
+			</div>
 		</Container>
 	);
 };

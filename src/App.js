@@ -75,6 +75,7 @@ function App() {
 		<>
 			<ThemeProvider theme={colors}>
 				<GlobalStyles />
+
 				<HeaderContainer>
 					<div className='logoSection'>
 						<BiPaperPlane className='logo' />
@@ -119,6 +120,7 @@ function App() {
 						</ul>
 					</nav>
 				</HeaderContainer>
+				<SignIn/>
 
 				{/* routes */}
 				<Routes>

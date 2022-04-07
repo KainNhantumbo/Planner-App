@@ -47,7 +47,7 @@ const SignUp = () => {
 					</form>
 				</section>
 			</main>
-			<footer>&copy: 2022 Nava Planner</footer>
+			<footer>&copy; 2022 Nava Planner</footer>
 		</Container>
 	);
 };

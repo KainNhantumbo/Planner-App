@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BiPaperPlane, BiSkipNextCircle } from 'react-icons/bi';
+import { BiPaperPlane, BiChevronRight } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
 
 const SignIn = () => {
@@ -15,32 +15,32 @@ const SignIn = () => {
 					<BiPaperPlane />
 					Planner
 				</span>
-				<p>Hi, you are welcome to NavaPlanner!</p>
-				<p>Let us help you with daily tasks</p>
-        
+				<p>Hi, you are welcome to Nava Planner!</p>
+				<p>Let us help you with daily tasks.</p>
+
 				<button>
-					<BiSkipNextCircle /> Skip
+					<span>
+						<BiChevronRight /> Skip
+					</span>
 				</button>
 			</header>
 			<main>
-				<span>Get started</span>
-				<section>
-					<form>
-						<label htmlFor='email'>E-mail</label>
-						<input type='email' name='email' id='email' />
-						<span>{emailError}</span>
-						<label htmlFor='password'>Password</label>
-						<input type='password' name='password' id='password' />
-						<span>{passwordError}</span>
-						<button type='submit'>Sign In</button>
-					</form>
-				</section>
+				<span> Get started!</span>
+				<form>
+					<label htmlFor='email'>E-mail</label>
+					<input type='email' name='email' id='email' />
+					<span>{emailError}</span>
+					<label htmlFor='password'>Password</label>
+					<input type='password' name='password' id='password' />
+					<span>{passwordError}</span>
+					<button type='submit'>Sign In</button>
+				</form>
 				<div>
 					<button>Create a new account</button>
 					<button>Forgot the password?</button>
 				</div>
 			</main>
-			<footer>&copy: 2022 Nava Planner</footer>
+			<footer>&copy; 2022 Nava Planner</footer>
 		</Container>
 	);
 };

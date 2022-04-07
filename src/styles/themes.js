@@ -16,6 +16,6 @@ export const darkTheme = {
 	backgroundColor: '57, 62, 70',
 	textColor: '238, 238, 238',
 	darkColor: '75, 93, 103',
-	whiteColor: '65, 65, 65',
+	whiteColor: '41, 42, 46',
   shadows: '34, 40, 49'
 };

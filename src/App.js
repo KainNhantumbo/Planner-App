@@ -16,7 +16,10 @@ import { HeaderContainer } from './styles/header';
 import Contacts from './pages/Contacts';
 import ContactsForm from './pages/ContactsForm';
 import ContactPreviewer from './pages/ContactPreviewer';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Home from './pages/Home';
+
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/themes';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BiPaperPlane } from 'react-icons/bi';
+import { BiPaperPlane, BiSkipNextCircle } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
 
 const SignIn = () => {
@@ -11,9 +11,16 @@ const SignIn = () => {
 	return (
 		<Container>
 			<header>
-				<BiPaperPlane />
-				<span>Planner App</span>
-				<p>A simple app that you can keep track of your dayly sets.</p>
+				<span>
+					<BiPaperPlane />
+					Planner
+				</span>
+				<p>Hi, you are welcome to NavaPlanner!</p>
+				<p>Let us help you with daily tasks</p>
+        
+				<button>
+					<BiSkipNextCircle /> Skip
+				</button>
 			</header>
 			<main>
 				<span>Get started</span>

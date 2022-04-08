@@ -90,25 +90,25 @@ function App() {
 							<li>
 								<a href=''>
 									<BiSpreadsheet />
-									Tasks
+									<span>Tasks</span>
 								</a>
 							</li>
 							<li>
 								<a href='/contacts'>
 									<BiPhone />
-									Contacts
+									<span>Contacts</span>
 								</a>
 							</li>
 							<li>
 								<a href=''>
 									<BiAlarm />
-									Reminders
+									<span>Reminders</span>
 								</a>
 							</li>
 							<li>
 								<a href=''>
 									<BiCog />
-									Preferences
+									<span>Preferences</span>
 								</a>
 							</li>
 						</ul>

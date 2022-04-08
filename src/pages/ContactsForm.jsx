@@ -13,6 +13,7 @@ import {
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
 import { contactsDB } from '../scripts/contactsdb';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const ContactsForm = () => {
 	// input fields state values
@@ -24,11 +25,14 @@ const ContactsForm = () => {
 	const [website, setWebsite] = useState('');
 	const [adress, setAdress] = useState('');
 
-	const hrefID = window.location.pathname.split('/')[3];
+	// params object
+	const params = useParams();
+	const hrefID = params.id;
 
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
-		if (contact.id === Number(hrefID)) return contact;
+		if (hrefID === ':id') return;
+		if (contact.id === hrefID) return contact;
 	});
 
 	// extracts data object from new array
@@ -66,7 +70,8 @@ const ContactsForm = () => {
 		e.preventDefault();
 		if (id) {
 			const updatedContactsDB = contactsDB.map((element) => {
-				if (element.id === Number(hrefID)) {
+				if (hrefID === ':id') return;
+				if (element.id === hrefID) {
 					element.name = name;
 					element.surname = surname;
 					element.phone = phone;
@@ -87,10 +92,10 @@ const ContactsForm = () => {
 				celular,
 				email,
 				website,
-				adress
-			}
+				adress,
+			};
 			contactsDB.push(newContact);
-			console.log(contactsDB)
+			console.log(contactsDB);
 		}
 	};
 

@@ -97,6 +97,8 @@ export const HeaderContainer = styled.section`
 			position: fixed;
 			padding: 0 50px;
 			height: 100vh;
+			background-color: rgb(${({ theme }) => theme.backgroundColor});
+			box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
 		}
 
 		ul {

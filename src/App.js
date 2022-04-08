@@ -18,7 +18,7 @@ import ContactsForm from './pages/ContactsForm';
 import ContactPreviewer from './pages/ContactPreviewer';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import Home from './pages/Home';
+import Tasks from './pages/Tasks';
 
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/themes';
@@ -89,12 +89,6 @@ function App() {
 						<ul>
 							<li>
 								<a href=''>
-									<BiEdit />
-									Notes
-								</a>
-							</li>
-							<li>
-								<a href=''>
 									<BiSpreadsheet />
 									Tasks
 								</a>
@@ -120,11 +114,11 @@ function App() {
 						</ul>
 					</nav>
 				</HeaderContainer>
-				<SignUp/>
+
 
 				{/* routes */}
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path='/' element={<Tasks />} />
 					<Route path='/contacts' element={<Contacts />} />
 					<Route path='/contacts/add/:id' element={<ContactsForm />} />
 					<Route

@@ -41,7 +41,7 @@ const SignUp = () => {
 						id='confirm-password'
 					/>
 
-					<span className='errorMessage'>rg{passwordError}</span>
+					<span className='errorMessage'>{passwordError}</span>
 					<button type='submit'>Get started!</button>
 					<button>I already have account</button>
 				</form>

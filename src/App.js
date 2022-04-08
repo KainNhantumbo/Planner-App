@@ -120,7 +120,7 @@ function App() {
 						</ul>
 					</nav>
 				</HeaderContainer>
-				<SignIn/>
+				<SignUp/>
 
 				{/* routes */}
 				<Routes>

@@ -16,7 +16,7 @@ const SignIn = () => {
 					Planner
 				</span>
 				<p>Hi, you are welcome to Nava Planner!</p>
-				<p>Let us help you with daily tasks.</p>
+				<p>Let us help with your daily tasks.</p>
 
 				<button>
 					<span>
@@ -29,10 +29,10 @@ const SignIn = () => {
 				<form>
 					<label htmlFor='email'>E-mail</label>
 					<input type='email' name='email' id='email' />
-					<span>{emailError}</span>
+					<span className='errorMessage'>{emailError}</span>
 					<label htmlFor='password'>Password</label>
 					<input type='password' name='password' id='password' />
-					<span>{passwordError}</span>
+					<span className='errorMessage'>{passwordError}</span>
 					<button type='submit'>Sign In</button>
 				</form>
 				<div>

@@ -90,6 +90,7 @@ export const Container = styled.div`
 			display: flex;
 			flex-flow: column nowrap;
 			padding: 0 0.5em;
+			gap: 5px;
 
 			label {
 				margin-bottom: 0.3em;
@@ -106,7 +107,6 @@ export const Container = styled.div`
 			}
 
 			input {
-				margin-bottom: 0.8em;
 				border-style: none;
 				color: rgb(${({ theme }) => theme.textColor});
 				background: rgb(${({ theme }) => theme.whiteColor});
@@ -114,6 +114,12 @@ export const Container = styled.div`
 				border-radius: 5px;
 				padding: 8px 10px;
 				outline: none;
+			}
+
+			.errorMessage {
+				color: red;
+				font-size: .9rem;
+				margin: 5px 0;
 			}
 
 			button {

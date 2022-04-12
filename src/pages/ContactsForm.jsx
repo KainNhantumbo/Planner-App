@@ -12,7 +12,7 @@ import {
 	BiMessage,
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const url = 'http://localhost:4500/api/v1/contacts';
@@ -32,21 +32,35 @@ const ContactsForm = () => {
 	const hrefID = params.id;
 
 	// fetch data from server api
-	const [contactsDB, setContactsDB] = useState([]);
-	console.log(contactsDB);
+	const [id, setId] = useState([]);
+	console.log(id);
 
-	const fechData = async () => {
+	// fetch contact data from server api
+	const fechdata = async () => {
 		try {
+			if (hrefID === ':id') return;
+			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
 			const { data } = await axios.get(url);
-			setContactsDB(() => data);
+			setId(() => data);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
 	useEffect(() => {
-		fechData();
+		fechdata();
+		setdata();
 	}, []);
+
+	// sends a patch request to server api
+	const patchData = async (updatedObj) => {
+		try {
+			const patch_url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
+			await axios({ method: 'patch', url: patch_url, data: updatedObj });
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	// sends a post request to server api
 	const postData = async (newContact) => {
@@ -57,22 +71,10 @@ const ContactsForm = () => {
 		}
 	};
 
-	// picks a contact for visualization
-	
-
-	// searches the item data by id
-	const contact = contactsDB.filter((contact) => {
-		if (hrefID === ':id') return;
-		if (contact.id === hrefID) return contact;
-	});
-
-	// extracts data object from new array
-	const id = contact[0];
-
 	// if id object exists, setup the fields
 	const [message, setMessage] = useState('Save Contact');
-	useEffect(() => {
-		if (!id) return;
+	const setdata = () => {
+		if (hrefID === ':id') return;
 		setName(() => id.name);
 		setSurname(() => id.surname);
 		setPhone(() => id.phone);
@@ -82,7 +84,7 @@ const ContactsForm = () => {
 		setAdress(() => id.adress);
 
 		setMessage(() => 'Update');
-	}, []);
+	};
 
 	// resets form value fields
 	const resetForm = (e) => {
@@ -99,36 +101,22 @@ const ContactsForm = () => {
 	// saves a new contact, if id exists, it makes a update
 	const saveContact = (e) => {
 		e.preventDefault();
-		if (id) {
-			const updatedContactsDB = contactsDB.map((element) => {
-				if (hrefID === ':id') return;
-				if (element.id === hrefID) {
-					element.name = name;
-					element.surname = surname;
-					element.phone = phone;
-					element.celular = celular;
-					element.email = email;
-					element.website = website;
-					element.adress = adress;
-				}
-				return element;
-			});
-			window.location.assign('/contacts');
+		const newContact = {
+			name,
+			surname,
+			phone,
+			celular,
+			email,
+			website,
+			adress,
+		};
+		if (message === 'Update') {
+			patchData(newContact);
 		} else {
 			if (name === '') return;
-			const newContact = {
-				name,
-				surname,
-				phone,
-				celular,
-				email,
-				website,
-				adress,
-			};
-
 			postData(newContact);
-			window.location.assign('/contacts');
 		}
+		// window.location.assign('/contacts');
 	};
 
 	return (

@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from '../styles/contactPreviewer';
 import { BiGlasses, BiTrash, BiEdit } from 'react-icons/bi';
-import { contactsDB } from '../scripts/contactsdb';
+import axios from 'axios';
 import TitleBars from '../components/TitleBars';
+
+const url = 'http://localhost:4500/api/v1/contacts';
 
 const ContactPreviewer = () => {
 	// takes the id from url params
 	const hrefID = window.location.pathname.split('/')[3];
 
+	const [contactsDB, setContactsDB] = useState([]);
+	console.log(contactsDB)
+
+	const fechdata = async () => {
+		try {
+			const { data } = await axios.get(url);
+			setContactsDB(() => data);
+			console.log(data)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		fechdata();
+	}, []);
+
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
-		if (contact.id === Number(hrefID)) return contact;
+		if (contact._id === hrefID)
+
+		return contact;
+
 	});
+	console.log(contact)
 
 	// extracts data object from new array
 	const id = contact[0];
@@ -22,7 +45,7 @@ const ContactPreviewer = () => {
 	}
 
 	const Name = () =>
-		!id.name ? null : (
+		!id ? null : (
 			<li key={'name'}>
 				<span>Name</span>
 				<div>{id.name + ' ' + id.surname}</div>
@@ -30,7 +53,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Phone = () =>
-		!id.phone ? null : (
+		!id ? null : (
 			<li key={'phone'}>
 				<span>Phone</span>
 				<div>{id.phone}</div>
@@ -38,7 +61,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Celular = () =>
-		!id.celular ? null : (
+		!id? null : (
 			<li key={'celular'}>
 				<span>Celular</span>
 				<div>{id.celular}</div>
@@ -46,7 +69,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Email = () =>
-		!id.email ? null : (
+		!id ? null : (
 			<li key={'email'}>
 				<span>E-mail</span>
 				<div>{id.email}</div>
@@ -54,7 +77,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Website = () =>
-		!id.website ? null : (
+		!id ? null : (
 			<li key={'website'}>
 				<span>Website</span>
 				<div>{id.website}</div>
@@ -62,7 +85,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Adress = () =>
-		!id.adress ? null : (
+		!id ? null : (
 			<li key={'adress'}>
 				<span>Adress</span>
 				<div>{id.adress}</div>

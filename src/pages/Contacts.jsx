@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { ContactsContainer } from '../styles/contacts';
 import { BiCollection, BiPlus, BiSearch } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
-import { contactsDB } from '../scripts/contactsdb';
 import TitleBars from '../components/TitleBars';
+
+const url = 'http://localhost:4500/api/v1/contacts';
 
 const Contacts = () => {
 	const onClickHandler = (e) => {
 		const id = e.target.id;
 		window.location.assign(`/contacts/previewer/${id}`);
 	};
+
+	const [contactsDB, setContactsDB] = useState([]);
+	console.log(contactsDB)
+
+	const fechdata = async () => {
+		try {
+			const { data } = await axios.get(url);
+			setContactsDB(() => data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		fechdata();
+	}, []);
 
 	const [searchData, setSearchData] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
@@ -21,8 +39,10 @@ const Contacts = () => {
 			if (!element.email.toLowerCase().indexOf(searchData)) return element;
 			if (!element.adress.toLowerCase().indexOf(searchData)) return element;
 			if (!element.website.toLowerCase().indexOf(searchData)) return element;
-			if (!element.celular.toString().toLowerCase().indexOf(searchData)) return element;
-			if (!element.phone.toString().toLowerCase().indexOf(searchData)) return element;
+			if (!element.celular.toString().toLowerCase().indexOf(searchData))
+				return element;
+			if (!element.phone.toString().toLowerCase().indexOf(searchData))
+				return element;
 		});
 		console.log(searchedContacts);
 		setSearchResults(() => searchedContacts);
@@ -50,8 +70,8 @@ const Contacts = () => {
 				? contactsDB.map((contact) => {
 						return (
 							<div
-								key={contact.id}
-								id={contact.id}
+								key={contact._id}
+								id={contact._id}
 								className='contact-section'
 								onClick={onClickHandler}
 							>

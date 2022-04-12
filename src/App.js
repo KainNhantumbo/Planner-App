@@ -30,7 +30,7 @@ function App() {
 	// theme setup
 		const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
 
-		// picks the configuration from localStorage
+		// picks theme configuration from localStorage
 			const themeDataPicker = () => {
 				let mode = JSON.parse(localStorage.getItem('theme'));
 				if (!mode || mode === undefined) {

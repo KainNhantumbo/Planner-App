@@ -49,13 +49,16 @@ const ContactsForm = () => {
 	}, []);
 
 	// sends a post request to server api
-	const postData = async () => {
+	const postData = async (newContact) => {
 		try {
-			await axios({ method: postMessage, url: url, data: contactsDB });
+			await axios({ method: 'post', url: url, data: newContact });
 		} catch (err) {
 			console.log(err);
 		}
 	};
+
+	// picks a contact for visualization
+	
 
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
@@ -122,9 +125,9 @@ const ContactsForm = () => {
 				website,
 				adress,
 			};
-			contactsDB.push(newContact);
-			postData();
-			console.log(contactsDB);
+
+			postData(newContact);
+			window.location.assign('/contacts');
 		}
 	};
 

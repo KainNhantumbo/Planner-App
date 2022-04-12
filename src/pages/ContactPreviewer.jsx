@@ -4,46 +4,60 @@ import { BiGlasses, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
 import TitleBars from '../components/TitleBars';
 
-const url = 'http://localhost:4500/api/v1/contacts';
 
 const ContactPreviewer = () => {
 	// takes the id from url params
 	const hrefID = window.location.pathname.split('/')[3];
-
 	const [contactsDB, setContactsDB] = useState([]);
-	console.log(contactsDB)
+	console.log(hrefID);
+
+	const url = `http://localhost:4500/api/v1/contacts/`;
 
 	// fetch data from server api
 	const fechdata = async () => {
 		try {
 			const { data } = await axios.get(url);
 			setContactsDB(() => data);
-			console.log(data)
+			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
+
 	useEffect(() => {
 		fechdata();
 	}, []);
 
+	// sends a delete request
+	const deleteData = async () => {
+		try {
+			const delete_url = `http://localhost:4500/api/v1/contacts/${hrefID}`
+			await axios({ method: 'delete', url: delete_url, data: hrefID });
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	// delete contact
+	const deleteContact = () => {
+		deleteData();
+		window.location.assign('/contacts');
+	};
+
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
-		if (contact._id === hrefID)
-
-		return contact;
-
+		if (contact._id === hrefID) return contact;
 	});
-	console.log(contact)
+	console.log(contact);
 
 	// extracts data object from new array
 	const id = contact[0];
 
-	// send to edit page 
+	// send to edit page
 	const sendToEdit = () => {
-		window.location.assign(`/contacts/add/${hrefID}`)
-	}
+		window.location.assign(`/contacts/add/${hrefID}`);
+	};
 
 	const Name = () =>
 		!id ? null : (
@@ -62,7 +76,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Celular = () =>
-		!id? null : (
+		!id ? null : (
 			<li key={'celular'}>
 				<span>Celular</span>
 				<div>{id.celular}</div>
@@ -107,7 +121,7 @@ const ContactPreviewer = () => {
 				</ul>
 			</section>
 			<div className='action-buttons'>
-				<button>
+				<button onClick={deleteContact}>
 					{<BiTrash />}
 					<span>Delete</span>
 				</button>

@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Container } from '../styles/contactPreviewer';
 import { BiGlasses, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
 import TitleBars from '../components/TitleBars';
 
-
 const ContactPreviewer = () => {
-	// takes the id from url params
-	const hrefID = window.location.pathname.split('/')[3];
-	const [contactsDB, setContactsDB] = useState([]);
+	// params object
+	const params = useParams();
+	const hrefID = params.id;
+
+	// contact as id
+	const [id, setId] = useState([]);
 	console.log(hrefID);
 
-	const url = `http://localhost:4500/api/v1/contacts/`;
-
-	// fetch data from server api
+	// fetch contact data from server api
 	const fechdata = async () => {
 		try {
+			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
 			const { data } = await axios.get(url);
-			setContactsDB(() => data);
+			setId(() => data);
 			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}
 	};
-
 
 	useEffect(() => {
 		fechdata();
@@ -32,7 +33,7 @@ const ContactPreviewer = () => {
 	// sends a delete request
 	const deleteData = async () => {
 		try {
-			const delete_url = `http://localhost:4500/api/v1/contacts/${hrefID}`
+			const delete_url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
 			await axios({ method: 'delete', url: delete_url, data: hrefID });
 		} catch (err) {
 			console.log(err);
@@ -44,15 +45,6 @@ const ContactPreviewer = () => {
 		deleteData();
 		window.location.assign('/contacts');
 	};
-
-	// searches the item data by id
-	const contact = contactsDB.filter((contact) => {
-		if (contact._id === hrefID) return contact;
-	});
-	console.log(contact);
-
-	// extracts data object from new array
-	const id = contact[0];
 
 	// send to edit page
 	const sendToEdit = () => {

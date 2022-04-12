@@ -12,8 +12,10 @@ import {
 	BiMessage,
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
-import { contactsDB } from '../scripts/contactsdb';
 import { useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+
+const url = 'http://localhost:4500/api/v1/contacts';
 
 const ContactsForm = () => {
 	// input fields state values
@@ -28,6 +30,32 @@ const ContactsForm = () => {
 	// params object
 	const params = useParams();
 	const hrefID = params.id;
+
+	// fetch data from server api
+	const [contactsDB, setContactsDB] = useState([]);
+	console.log(contactsDB);
+
+	const fechData = async () => {
+		try {
+			const { data } = await axios.get(url);
+			setContactsDB(() => data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		fechData();
+	}, []);
+
+	// sends a post request to server api
+	const postData = async () => {
+		try {
+			await axios({ method: postMessage, url: url, data: contactsDB });
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	// searches the item data by id
 	const contact = contactsDB.filter((contact) => {
@@ -95,6 +123,7 @@ const ContactsForm = () => {
 				adress,
 			};
 			contactsDB.push(newContact);
+			postData();
 			console.log(contactsDB);
 		}
 	};

@@ -16,6 +16,7 @@ const Contacts = () => {
 	const [contactsDB, setContactsDB] = useState([]);
 	console.log(contactsDB)
 
+	// fetch data from server api
 	const fechdata = async () => {
 		try {
 			const { data } = await axios.get(url);

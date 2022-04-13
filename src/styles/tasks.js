@@ -17,14 +17,68 @@ export const TasksContainer = styled.div`
 	flex-direction: column;
 	margin: 0 auto;
 
-  .task-container {
-    position: relative;
+	.task-container {
 		display: flex;
 		flex-direction: column;
-		border-radius: 5px;
-		box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
-		padding: 5px;
-		cursor: pointer;
-		gap: 0.5em;
-  }
+		gap: 15px;
+
+		div {
+			position: relative;
+			display: flex;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			padding: 15px 8px;
+			cursor: pointer;
+			gap: 0.5em;
+			position: relative;
+
+			:hover {
+				box-shadow: 0 0 10px 1px rgb(${({ theme }) => theme.shadows});
+				transition: 200ms ease;
+			}
+
+			span {
+				font-weight: 500;
+				margin: auto 0;
+				margin-left: 25px;
+				
+			}
+
+			.task-icon {
+				position: absolute;
+				top: 13px;
+				left: 8px;
+				width: 20px;
+				height: 20px;
+			}
+
+			button {
+				position: absolute;
+				top: 8px;
+				right: 5px;
+				width: 30px;
+				height: 30px;
+				border: none;
+				border-style: node;
+				background: none;
+				border-radius: 5px;
+				padding: 1px 5px;
+				box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+				outline: none;
+				color: rgba(${({ theme }) => theme.primaryColor}, 0.8);
+				display: grid;
+				place-items: center;
+
+				:hover {
+					color: rgb(${({ theme }) => theme.darkColor});
+					transition: all 200ms ease-out;
+				}
+
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+	}
 `;

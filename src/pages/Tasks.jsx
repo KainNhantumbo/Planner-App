@@ -1,4 +1,11 @@
-import { BiCheck, BiCheckbox, BiData, BiStar, BiTask, BiTrash } from 'react-icons/bi';
+import {
+	BiCheck,
+	BiCheckbox,
+	BiData,
+	BiStar,
+	BiTask,
+	BiTrash,
+} from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
 import { TasksContainer } from '../styles/tasks';
 import axios from 'axios';
@@ -20,7 +27,7 @@ const Tasks = () => {
 	useEffect(() => {
 		getTasks();
 	}, []);
-	
+
 	return (
 		<TasksContainer>
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
@@ -29,12 +36,13 @@ const Tasks = () => {
 					{tasksData.map(({ _id, task, completed }) => {
 						return (
 							<div key={_id}>
-								<BiTask/>
-								<label htmlFor='task'>
-									<span id='task'>{task}</span>
-								</label>
-								<input type="checkbox" />
-								<button><BiTrash/></button>
+								<BiTask className='task-icon' />
+
+								<span id='task'>{task}</span>
+
+								<button>
+									<BiTrash />
+								</button>
 							</div>
 						);
 					})}

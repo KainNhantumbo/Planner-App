@@ -35,14 +35,14 @@ export const ContactsContainer = styled.section`
 			}
 
 			position: absolute;
-			bottom: -28em;
-			right: 2em;
+			bottom: -2px;
+			right: 1em;
 			width: 40px;
-			height: 40px;
+			height: 32px;
 			border: none;
 			border-style: node;
 			background: none;
-			border-radius: 50%;
+			border-radius: 5px;
 			padding: 1px 5px;
 			box-shadow: 0 0 5px rgba(${({ theme }) => theme.primaryColor}, 0.3);
 			outline: none;
@@ -56,9 +56,9 @@ export const ContactsContainer = styled.section`
 				content: '';
 				background-color: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
 				width: 40px;
-				height: 40px;
+				height: 32px;
 				animation: btnMontion 1200ms ease infinite;
-				border-radius: 50%;
+				border-radius: 5px;
 			}
 
 			:hover {
@@ -67,11 +67,11 @@ export const ContactsContainer = styled.section`
 			}
 
 			svg {
-				width: 35px;
-				height: 35px;
+				width: 30px;
+				height: 30px;
 				position: absolute;
-				top: 2px;
-				left: 2.5px;
+				top: 1px;
+				left: 5.5px;
 			}
 		}
 
@@ -80,7 +80,7 @@ export const ContactsContainer = styled.section`
 			display: flex;
 
 			input {
-				width: 100%;
+				width: 80%;
 				max-width: 350px;
 				border-style: none;
 				border: none;

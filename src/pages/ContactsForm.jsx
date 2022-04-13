@@ -35,6 +35,20 @@ const ContactsForm = () => {
 	const [id, setId] = useState([]);
 	console.log(id);
 
+	// if :id parameter object exists, setup the fields
+	const [message, setMessage] = useState('Save Contact');
+	const setDefaultInputValues = (data) => {
+		setName(() => data.name);
+		setSurname(() => data.surname);
+		setPhone(() => data.phone);
+		setCelular(() => data.celular);
+		setEmail(() => data.email);
+		setWebsite(() => data.website);
+		setAdress(() => data.adress);
+
+		setMessage(() => 'Update');
+	};
+
 	// fetch contact data from server api
 	const fechdata = async () => {
 		try {
@@ -42,6 +56,7 @@ const ContactsForm = () => {
 			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
 			const { data } = await axios.get(url);
 			setId(() => data);
+			setDefaultInputValues(data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -49,7 +64,6 @@ const ContactsForm = () => {
 
 	useEffect(() => {
 		fechdata();
-		setdata();
 	}, []);
 
 	// sends a patch request to server api
@@ -69,21 +83,6 @@ const ContactsForm = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
-
-	// if id object exists, setup the fields
-	const [message, setMessage] = useState('Save Contact');
-	const setdata = () => {
-		if (hrefID === ':id') return;
-		setName(() => id.name);
-		setSurname(() => id.surname);
-		setPhone(() => id.phone);
-		setCelular(() => id.celular);
-		setEmail(() => id.email);
-		setWebsite(() => id.website);
-		setAdress(() => id.adress);
-
-		setMessage(() => 'Update');
 	};
 
 	// resets form value fields
@@ -116,7 +115,7 @@ const ContactsForm = () => {
 			if (name === '') return;
 			postData(newContact);
 		}
-		// window.location.assign('/contacts');
+		window.location.assign('/contacts');
 	};
 
 	return (

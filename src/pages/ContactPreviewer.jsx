@@ -12,7 +12,6 @@ const ContactPreviewer = () => {
 
 	// contact as id
 	const [id, setId] = useState([]);
-	console.log(hrefID);
 
 	// fetch contact data from server api
 	const fechdata = async () => {
@@ -20,7 +19,6 @@ const ContactPreviewer = () => {
 			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
 			const { data } = await axios.get(url);
 			setId(() => data);
-			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}

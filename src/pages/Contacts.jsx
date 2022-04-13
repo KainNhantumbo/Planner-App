@@ -29,6 +29,25 @@ const Contacts = () => {
 		fechdata();
 	}, []);
 
+	// return each contact html structure
+	const contactElements = (contact) => {
+		return (
+			<div
+				key={contact._id}
+				id={contact._id}
+				className='contact-section'
+				onClick={onClickHandler}
+			>
+				<div>
+					{!contact.image ? <MdAccountCircle /> : contact.image}
+				</div>
+				<section>
+					<span>{contact.name + ' ' + contact.surname}</span>
+				</section>
+			</div>
+		);
+	}
+
 	const [searchData, setSearchData] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const searchContacts = (e) => {
@@ -67,40 +86,8 @@ const Contacts = () => {
 			</div>
 
 			{searchResults.length === 0
-				? contactsDB.map((contact) => {
-						return (
-							<div
-								key={contact._id}
-								id={contact._id}
-								className='contact-section'
-								onClick={onClickHandler}
-							>
-								<div>
-									{!contact.image ? <MdAccountCircle /> : contact.image}
-								</div>
-								<section>
-									<span>{contact.name + ' ' + contact.surname}</span>
-								</section>
-							</div>
-						);
-				  })
-				: searchResults.map((contact) => {
-						return (
-							<div
-								key={contact.id}
-								id={contact.id}
-								className='contact-section'
-								onClick={onClickHandler}
-							>
-								<div>
-									{!contact.image ? <MdAccountCircle /> : contact.image}
-								</div>
-								<section>
-									<span>{contact.name + ' ' + contact.surname}</span>
-								</section>
-							</div>
-						);
-				  })}
+				? contactsDB.map(contactElements)
+				: searchResults.map(contactElements)}
 		</ContactsContainer>
 	);
 };

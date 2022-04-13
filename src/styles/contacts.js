@@ -36,7 +36,7 @@ export const ContactsContainer = styled.section`
 
 			position: absolute;
 			bottom: -2px;
-			right: 1em;
+			right: .5em;
 			width: 40px;
 			height: 32px;
 			border: none;

@@ -4,6 +4,7 @@ import { ContactsContainer } from '../styles/contacts';
 import { BiCollection, BiPlus, BiSearch } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import TitleBars from '../components/TitleBars';
+import Search from '../components/Search';
 
 const url = 'http://localhost:4500/api/v1/contacts';
 
@@ -38,15 +39,13 @@ const Contacts = () => {
 				className='contact-section'
 				onClick={onClickHandler}
 			>
-				<div>
-					{!contact.image ? <MdAccountCircle /> : contact.image}
-				</div>
+				<div>{!contact.image ? <MdAccountCircle /> : contact.image}</div>
 				<section>
 					<span>{contact.name + ' ' + contact.surname}</span>
 				</section>
 			</div>
 		);
-	}
+	};
 
 	const [searchData, setSearchData] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
@@ -71,18 +70,11 @@ const Contacts = () => {
 		<ContactsContainer>
 			<TitleBars icon={<BiCollection />} title={'Contacts'} />
 			<div>
-				<button className='addBtn'>
-					<a href='/contacts/add/:id'>{<BiPlus />}</a>
-				</button>
-				<section>
-					{<BiSearch className='searchIcon' />}
-					<input
-						type='search'
-						name='search'
-						placeholder='Search contacts'
-						onChange={searchContacts}
-					/>
-				</section>
+				<Search
+					searchEvent={searchContacts}
+					btnURL={'/contacts/add/:id'}
+					searchPlaceholder={'Search contacts'}
+				/>
 			</div>
 
 			{searchResults.length === 0

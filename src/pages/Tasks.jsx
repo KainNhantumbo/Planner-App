@@ -6,9 +6,10 @@ import {
 	BiTask,
 	BiTrash,
 } from 'react-icons/bi';
-import TitleBars from '../components/TitleBars';
-import { TasksContainer } from '../styles/tasks';
 import axios from 'axios';
+import TitleBars from '../components/TitleBars';
+import Search from '../components/Search';
+import { TasksContainer } from '../styles/tasks';
 import { useEffect, useState } from 'react';
 
 const Tasks = () => {
@@ -32,6 +33,12 @@ const Tasks = () => {
 		<TasksContainer>
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
 			<section>
+				<div>
+					<Search
+						btnURL={'/tasks/add/:id'}
+						searchPlaceholder={'Search tasks'}
+					/>
+				</div>
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {
 						return (

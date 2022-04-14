@@ -41,6 +41,7 @@ export const TasksContainer = styled.div`
 				font-weight: 500;
 				margin: auto 0;
 				margin-left: 25px;
+				pointer-events: none;
 			}
 
 			.task-icon {

@@ -1,9 +1,9 @@
-import { BiTask, BiTrash } from 'react-icons/bi';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
+import { BiTask, BiTrash } from 'react-icons/bi';
 import { TasksContainer } from '../styles/tasks';
-import { useEffect, useState } from 'react';
 
 const Tasks = () => {
 	const [tasksData, setTasksData] = useState([]);
@@ -22,7 +22,7 @@ const Tasks = () => {
 		getTasks();
 	}, []);
 
-	// delete Task
+	// deletes a selected task
 	const deleteTask = async (e) => {
 		try {
 			e.stopPropagation();
@@ -41,6 +41,15 @@ const Tasks = () => {
 		window.location.assign(`/taskpreviewer/${e.target.id}`);
 	};
 
+	// return a peace of text based on task length
+	const taskSlicer = (task) => {
+		if (task.length >= 28) {
+			return task.slice(0,25) + '...'
+		} else {
+			return task
+		}
+	}
+
 	return (
 		<TasksContainer>
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
@@ -54,7 +63,7 @@ const Tasks = () => {
 							<div key={_id} id={_id} onClick={redirect}>
 								<BiTask className='task-icon' />
 
-								<span id='task'>{task}</span>
+								<span id='task'>{taskSlicer(task)}</span>
 
 								<button onClick={deleteTask}>
 									<BiTrash />

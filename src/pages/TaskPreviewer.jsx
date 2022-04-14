@@ -1,9 +1,9 @@
-import { Container } from '../styles/taskPreviewer';
+import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
+import axios from 'axios';
+import { Container } from '../styles/taskPreviewer';
 import { BiTaskX } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const TaskPreviewer = () => {
 	const [status, setStatus] = useState('Completed');
@@ -33,8 +33,10 @@ const TaskPreviewer = () => {
 		getTask();
 	}, []);
 
+  // redirects to edit and add tasks page
 	const redirectToEdit = () => window.location.assign(`/add/${taskID}`);
 
+  // redirects to tasks page
 	const redirectToTasks = () => window.location.assign('/');
 
 	return (

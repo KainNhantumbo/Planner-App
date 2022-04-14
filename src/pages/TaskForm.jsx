@@ -56,7 +56,6 @@ const TaskForm = () => {
 				setMessage(() => 'Update failed');
 			}
 			setTimeout(() => setMessage(() => 'Update'), 2000);
-			console.log(res);
 		} catch (e) {
 			console.log(e);
 		}

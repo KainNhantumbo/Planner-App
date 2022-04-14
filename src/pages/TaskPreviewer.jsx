@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
 import axios from 'axios';
 import { Container } from '../styles/taskPreviewer';
-import { BiChevronLeft, BiEdit, BiLeftArrow, BiLeftArrowAlt, BiTaskX } from 'react-icons/bi';
+import {  BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 
 const TaskPreviewer = () => {
@@ -23,11 +23,13 @@ const TaskPreviewer = () => {
 		}
 	};
 
+  // shows the status of task, if it's false or true
 	const handleStatus = () => {
 		if (status === true) return 'Completed';
 		return 'Uncompleted';
 	};
 
+  // loads the page with designed task
 	useEffect(() => {
 		getTask();
 	}, []);
@@ -40,7 +42,7 @@ const TaskPreviewer = () => {
 
 	return (
 		<Container>
-			<TitleBars title={'Task Previewer'} icon={<BiTaskX />} />
+			<TitleBars title={'Task Previewer'} icon={<BiTask />} />
 			<section>
 				<ul>
 					<li>

@@ -13,6 +13,13 @@ const Tasks = () => {
 		try {
 			const url = `http://localhost:4500/api/v1/tasks`;
 			const { data } = await axios({ method: 'get', url: url });
+			
+			// sorts data by tasks
+			data.data.sort((a, b) => {
+				if (a.task > b.task)
+				return true
+				return -1
+			});
 			setTasksData(() => data.data);
 		} catch (e) {
 			console.log(e);
@@ -40,6 +47,8 @@ const Tasks = () => {
 		window.location.assign(`/taskpreviewer/${e.target.id}`);
 	};
 
+	// sets completion status and makes a patch request
+	// to server api
 	const setCompletion = async (e, status) => {
 		try {
 			e.stopPropagation();
@@ -53,7 +62,7 @@ const Tasks = () => {
 				statusData = true;
 			}
 
-			const res = await axios({
+			await axios({
 				method: 'patch',
 				url: url,
 				data: { completed: statusData },

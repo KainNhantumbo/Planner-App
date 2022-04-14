@@ -1,7 +1,4 @@
-import {
-	BiTask,
-	BiTrash,
-} from 'react-icons/bi';
+import { BiTask, BiTrash } from 'react-icons/bi';
 import axios from 'axios';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
@@ -25,22 +22,23 @@ const Tasks = () => {
 		getTasks();
 	}, []);
 
-	
+	// redirects to task previewer page within the selected task
+	const redirect = (e) => {
+		e.stopPropagation();
+		window.location.assign(`/taskpreviewer/${e.target.id}`);
+	};
 
 	return (
 		<TasksContainer>
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
 			<section>
 				<div>
-					<Search
-						btnURL={'/add/:id'}
-						searchPlaceholder={'Search tasks'}
-					/>
+					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} />
 				</div>
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {
 						return (
-							<div key={_id}>
+							<div key={_id} id={_id} onClick={redirect}>
 								<BiTask className='task-icon' />
 
 								<span id='task'>{task}</span>

@@ -17,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
     color: rgb(${({theme})=> theme.textColor});
     padding-top: 3.8em;
     position: relative;
+    background-color: black;
     background: rgb(${({theme})=> theme.backgroundColor});
   }
 `;

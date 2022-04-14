@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
 import axios from 'axios';
 import { Container } from '../styles/taskPreviewer';
-import { BiTaskX } from 'react-icons/bi';
+import { BiChevronLeft, BiEdit, BiLeftArrow, BiLeftArrowAlt, BiTaskX } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 
 const TaskPreviewer = () => {
@@ -33,30 +33,35 @@ const TaskPreviewer = () => {
 		getTask();
 	}, []);
 
-  // redirects to edit and add tasks page
+	// redirects to edit and add tasks page
 	const redirectToEdit = () => window.location.assign(`/add/${taskID}`);
 
-  // redirects to tasks page
+	// redirects to tasks page
 	const redirectToTasks = () => window.location.assign('/');
 
 	return (
 		<Container>
 			<TitleBars title={'Task Previewer'} icon={<BiTaskX />} />
 			<section>
-				<label htmlFor='task-content'>
-					<span>Task</span>
-				</label>
-				<div id='task-content'>{task}</div>
-				<label htmlFor='status'>
-					<span>Status</span>
-				</label>
-				<div id='status'>{handleStatus()}</div>
+				<ul>
+					<li>
+						<span>Task</span>
+						<div></div>
+						{task}
+					</li>
+					<li>
+						<span>Status</span>
+						<div>{handleStatus()}</div>
+					</li>
+				</ul>
 			</section>
-			<div className='actions'>
+			<div className='action-buttons'>
 				<button onClick={redirectToEdit}>
+					<BiEdit />
 					<span>Edit Task</span>
 				</button>
 				<button onClick={redirectToTasks}>
+					<BiLeftArrowAlt />
 					<span>Get Back</span>
 				</button>
 			</div>

@@ -44,11 +44,11 @@ const Tasks = () => {
 	// return a peace of text based on task length
 	const taskSlicer = (task) => {
 		if (task.length >= 28) {
-			return task.slice(0,25) + '...'
+			return task.slice(0, 25) + '...';
 		} else {
-			return task
+			return task;
 		}
-	}
+	};
 
 	return (
 		<TasksContainer>

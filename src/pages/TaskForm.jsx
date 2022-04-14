@@ -90,7 +90,7 @@ const TaskForm = () => {
 					onChange={(e) => setStatusInput(() => e.target.checked)}
 				/>
 			</section>
-			<div className='actions'>
+			<div className='action-buttons'>
 				<button onClick={taskHandler}>
 					<span>{message}</span>
 				</button>

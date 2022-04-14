@@ -17,11 +17,16 @@ export const FormContainer = styled.article`
 	position: relative;
 
 	section {
+		display: flex;
+		flex-direction: column;
+		margin-top: 28px;
+
 		label {
 			margin-bottom: 0.3em;
 			font-weight: 500;
 			position: relative;
 			padding-left: 1.2em;
+			margin-bottom: 12px;
 
 			svg {
 				position: absolute;
@@ -39,6 +44,54 @@ export const FormContainer = styled.article`
 			border-radius: 5px;
 			padding: 8px 10px;
 			outline: none;
+		}
+
+		div {
+			display: flex;
+			justify-content: flex-start;
+			margin-top: 28px;
+			gap: 15px;
+			position: relative;
+
+			input[type='checkbox'] {
+				position: absolute;
+				top: -5px;
+				right: 95px;
+				width: 45px;
+				height: 10px;
+				appearance: none;
+				-moz-appearance: none;
+
+				outline: none;
+				border-radius: 15px;
+				box-shadow: inset 0 0 5px rgba(${({ theme }) => theme.shadows}, 0.5);
+				transition: 0.5s ease;
+				margin-top: 0.4em;
+				margin-right: 0.2em;
+
+				:checked {
+					background: rgba(${({ theme }) => theme.textColor});
+				}
+
+				::after {
+					content: '';
+					position: absolute;
+					width: 18px;
+					height: 18px;
+					transform: scale(1.1);
+					border-radius: 50%;
+					top: -1px;
+					left: 0;
+					background: rgba(${({ theme }) => theme.secondaryColor});
+					box-shadow: 0 0 5px rgba(${({ theme }) => theme.primaryColor});
+					transition: all 0.2s ease;
+				}
+
+				:checked::after {
+					transform: scale(1.1) translateX(25px);
+					background: rgba(${({ theme }) => theme.primaryColor});
+				}
+			}
 		}
 	}
 

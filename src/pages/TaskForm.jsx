@@ -1,6 +1,12 @@
 import { FormContainer } from '../styles/taskForm';
 import TitleBars from '../components/TitleBars';
-import { BiTask } from 'react-icons/bi';
+import {
+	BiNote,
+	BiPlus,
+	BiSave,
+	BiStats,
+  BiXCircle,
+} from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -70,9 +76,11 @@ const TaskForm = () => {
 
 	return (
 		<FormContainer>
-			<TitleBars title={'Add Task'} icon={<BiTask />} />
+			<TitleBars title={'Add Task'} icon={<BiPlus />} />
 			<section>
-				<label htmlFor='task'>Add a new task</label>
+				<label htmlFor='task'>
+					<BiNote /> New task
+				</label>
 				<input
 					type='text'
 					name='task'
@@ -81,20 +89,26 @@ const TaskForm = () => {
 					defaultValue={taskInputValue}
 					onChange={(e) => setTaskInputValue(() => e.target.value)}
 				/>
-				<label htmlFor='status'>Status: completed?</label>
-				<input
-					type='checkbox'
-					id='status'
-					name='status'
-					checked={statusInput}
-					onChange={(e) => setStatusInput(() => e.target.checked)}
-				/>
+				<div>
+					<label htmlFor='status'>
+						<BiStats /> Status of completion
+					</label>
+					<input
+						type='checkbox'
+						id='status'
+						name='status'
+						checked={statusInput}
+						onChange={(e) => setStatusInput(() => e.target.checked)}
+					/>
+				</div>
 			</section>
 			<div className='action-buttons'>
 				<button onClick={taskHandler}>
+					<BiSave />
 					<span>{message}</span>
 				</button>
 				<button onClick={discardTask}>
+					<BiXCircle />
 					<span>Discard</span>
 				</button>
 			</div>

@@ -33,6 +33,10 @@ const TaskPreviewer = () => {
 		getTask();
 	}, []);
 
+	const redirectToEdit = () => window.location.assign(`/add/${taskID}`);
+
+	const redirectToTasks = () => window.location.assign('/');
+
 	return (
 		<Container>
 			<TitleBars title={'Task Previewer'} icon={<BiTaskX />} />
@@ -44,13 +48,13 @@ const TaskPreviewer = () => {
 				<label htmlFor='status'>
 					<span>Status</span>
 				</label>
-        <div id='status' >{handleStatus()}</div>
+				<div id='status'>{handleStatus()}</div>
 			</section>
 			<div className='actions'>
-				<button>
+				<button onClick={redirectToEdit}>
 					<span>Edit Task</span>
 				</button>
-				<button>
+				<button onClick={redirectToTasks}>
 					<span>Get Back</span>
 				</button>
 			</div>

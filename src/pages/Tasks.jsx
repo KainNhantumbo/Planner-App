@@ -46,16 +46,6 @@ const Tasks = () => {
 			e.stopPropagation();
 			const taskID = e.target.parentNode.id;
 
-			if (completionVisual === Object) {
-				setCompletionVisual(() => ({
-					textDecoration: 'line-through',
-					fontStyle: 'italic',
-					opacity: 0.3,
-				}));
-			} else {
-				setCompletionVisual(()=> ({}))
-			}
-
 			console.log(taskID);
 		} catch (e) {
 			console.log(e);
@@ -71,6 +61,17 @@ const Tasks = () => {
 		}
 	};
 
+	// sets completed task styles
+	const setTaskAppearence = (status) => {
+		if (status === true)
+			return {
+				textDecoration: 'line-through',
+				fontStyle: 'italic',
+				opacity: 0.3,
+			};
+		return {};
+	};
+
 	return (
 		<TasksContainer>
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
@@ -84,7 +85,7 @@ const Tasks = () => {
 							<div key={_id} id={_id} onClick={redirect}>
 								<BiTask className='task-icon' onClick={setCompletion} />
 
-								<span id='task' style={completionVisual}>
+								<span id='task' style={setTaskAppearence(completed)}>
 									{taskSlicer(task)}
 								</span>
 

@@ -22,6 +22,19 @@ const Tasks = () => {
 		getTasks();
 	}, []);
 
+	// delete Task
+	const deleteTask = async (e) => {
+		try {
+			e.stopPropagation();
+			const url = `http://localhost:4500/api/v1/tasks/${e.target.parentNode.id}`;
+			const res = await axios({ method: 'delete', url: url });
+			console.log(res);
+			getTasks();
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	// redirects to task previewer page within the selected task
 	const redirect = (e) => {
 		e.stopPropagation();
@@ -43,7 +56,7 @@ const Tasks = () => {
 
 								<span id='task'>{task}</span>
 
-								<button>
+								<button onClick={deleteTask}>
 									<BiTrash />
 								</button>
 							</div>

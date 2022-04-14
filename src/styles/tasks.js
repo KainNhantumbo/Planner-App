@@ -76,6 +76,7 @@ export const TasksContainer = styled.div`
 				svg {
 					width: 20px;
 					height: 20px;
+					pointer-events: none;
 				}
 			}
 		}

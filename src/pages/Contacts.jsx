@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ContactsContainer } from '../styles/contacts';
-import { BiCollection, BiPlus, BiSearch } from 'react-icons/bi';
+import { BiCollection } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';

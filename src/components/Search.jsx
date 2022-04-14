@@ -1,5 +1,6 @@
 import { BiPlus, BiSearch } from "react-icons/bi";
 import { SearchContainer } from "../styles/components/search";
+
 const Search = ({searchEvent, btnURL, searchPlaceholder  }) => {
 	return (
 		<SearchContainer>

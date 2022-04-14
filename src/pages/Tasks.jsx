@@ -1,8 +1,4 @@
 import {
-	BiCheck,
-	BiCheckbox,
-	BiData,
-	BiStar,
 	BiTask,
 	BiTrash,
 } from 'react-icons/bi';
@@ -28,6 +24,8 @@ const Tasks = () => {
 	useEffect(() => {
 		getTasks();
 	}, []);
+
+	
 
 	return (
 		<TasksContainer>

@@ -33,7 +33,7 @@ const Tasks = () => {
 			<section>
 				<div>
 					<Search
-						btnURL={'/tasks/add/:id'}
+						btnURL={'/add/:id'}
 						searchPlaceholder={'Search tasks'}
 					/>
 				</div>

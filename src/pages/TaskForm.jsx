@@ -42,11 +42,13 @@ const TaskForm = () => {
 		}
 	};
 
-  // gets a single task by id, if present
+	// gets a single task by id, if present
 	const getTask = async () => {
 		try {
 			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
 			const { data } = await axios({ url });
+			setStatusInput(() => data.completed);
+			setTaskInputValue(() => data.task);
 		} catch (e) {
 			console.log(e);
 		}
@@ -59,7 +61,9 @@ const TaskForm = () => {
 	}, []);
 
 	// saves the task
-	const taskHandler = () => {};
+	const taskHandler = () => {
+		saveTask();
+	};
 
 	// discards the unsaved task
 	const discardTask = () => {};
@@ -82,8 +86,8 @@ const TaskForm = () => {
 					type='checkbox'
 					id='status'
 					name='status'
-					defaultValue={statusInput}
-					onChange={(e) => setStatusInput(() => e.target.value)}
+					checked={statusInput}
+					onChange={(e) => setStatusInput(() => e.target.checked)}
 				/>
 			</section>
 			<div className='actions'>

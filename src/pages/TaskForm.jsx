@@ -1,12 +1,6 @@
 import { FormContainer } from '../styles/taskForm';
 import TitleBars from '../components/TitleBars';
-import {
-	BiNote,
-	BiPlus,
-	BiSave,
-	BiStats,
-  BiXCircle,
-} from 'react-icons/bi';
+import { BiNote, BiPlus, BiSave, BiStats, BiXCircle } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -53,8 +47,9 @@ const TaskForm = () => {
 		try {
 			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
 			const { data } = await axios({ url });
-			setStatusInput(() => data.completed);
-			setTaskInputValue(() => data.task);
+			// setStatusInput(() => data.data.completed);
+			console.log(data.data.task);
+			setTaskInputValue(() => data.data.task);
 		} catch (e) {
 			console.log(e);
 		}
@@ -63,16 +58,22 @@ const TaskForm = () => {
 	useEffect(() => {
 		if (taskID !== ':id') {
 			setMessage(() => 'Update');
+			getTask();
 		}
 	}, []);
 
 	// saves the task
 	const taskHandler = () => {
-		saveTask();
+		if (taskID === ':id') {
+			return saveTask();
+		} else {
+			taskPatcher();
+		}
+		window.location.assign('/');
 	};
 
-	// discards the unsaved task
-	const discardTask = () => {};
+	// discards changes and goes back to previous page
+	const discardTask = () => window.history.back();
 
 	return (
 		<FormContainer>

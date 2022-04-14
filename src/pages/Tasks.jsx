@@ -7,6 +7,7 @@ import { TasksContainer } from '../styles/tasks';
 
 const Tasks = () => {
 	const [tasksData, setTasksData] = useState([]);
+	const [completionVisual, setCompletionVisual] = useState({});
 
 	// get all tasks from the server api
 	const getTasks = async () => {
@@ -41,6 +42,27 @@ const Tasks = () => {
 		window.location.assign(`/taskpreviewer/${e.target.id}`);
 	};
 
+	const setCompletion = async (e) => {
+		try {
+			e.stopPropagation();
+			const taskID = e.target.parentNode.id;
+
+			if (completionVisual === Object) {
+				setCompletionVisual(() => ({
+					textDecoration: 'line-through',
+					fontStyle: 'italic',
+					opacity: 0.3,
+				}));
+			} else {
+				setCompletionVisual(()=> ({}))
+			}
+			
+			console.log(taskID);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	// return a peace of text based on task length
 	const taskSlicer = (task) => {
 		if (task.length >= 28) {
@@ -61,9 +83,11 @@ const Tasks = () => {
 					{tasksData.map(({ _id, task, completed }) => {
 						return (
 							<div key={_id} id={_id} onClick={redirect}>
-								<BiTask className='task-icon' />
+								<BiTask className='task-icon' onClick={setCompletion} />
 
-								<span id='task'>{taskSlicer(task)}</span>
+								<span id='task' style={completionVisual}>
+									{taskSlicer(task)}
+								</span>
 
 								<button onClick={deleteTask}>
 									<BiTrash />

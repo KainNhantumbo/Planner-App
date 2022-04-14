@@ -18,7 +18,6 @@ const TaskPreviewer = () => {
 			const { data } = await axios({ url });
 			setStatus(() => data.data.completed);
 			setTask(() => data.data.task);
-			console.log(data);
 		} catch (e) {
 			console.log(e);
 		}

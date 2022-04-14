@@ -29,7 +29,6 @@ const Tasks = () => {
 			e.stopPropagation();
 			const url = `http://localhost:4500/api/v1/tasks/${e.target.parentNode.id}`;
 			const res = await axios({ method: 'delete', url: url });
-			console.log(res);
 			getTasks();
 		} catch (e) {
 			console.log(e);
@@ -56,7 +55,7 @@ const Tasks = () => {
 			} else {
 				setCompletionVisual(()=> ({}))
 			}
-			
+
 			console.log(taskID);
 		} catch (e) {
 			console.log(e);

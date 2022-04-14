@@ -40,16 +40,25 @@ export const TasksContainer = styled.div`
 			span {
 				font-weight: 500;
 				margin: auto 0;
-				margin-left: 25px;
+				margin-left: 28px;
 				pointer-events: none;
 			}
 
-			.task-icon {
+			.completion-btn {
 				position: absolute;
 				top: 13px;
 				left: 8px;
 				width: 20px;
-				height: 20px;
+				height: 22px;
+				display: grid;
+				place-items: center;
+
+				svg {
+					position: absolute;
+					width: 20px;
+					height: 20px;
+					pointer-events: none;
+				}
 			}
 
 			button {

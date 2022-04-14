@@ -7,7 +7,6 @@ import { TasksContainer } from '../styles/tasks';
 
 const Tasks = () => {
 	const [tasksData, setTasksData] = useState([]);
-	const [completionVisual, setCompletionVisual] = useState({});
 
 	// get all tasks from the server api
 	const getTasks = async () => {
@@ -41,12 +40,26 @@ const Tasks = () => {
 		window.location.assign(`/taskpreviewer/${e.target.id}`);
 	};
 
-	const setCompletion = async (e) => {
+	const setCompletion = async (e, status) => {
 		try {
 			e.stopPropagation();
+			let statusData;
 			const taskID = e.target.parentNode.id;
+			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
 
-			console.log(taskID);
+			if (status === true) {
+				statusData = false;
+			} else {
+				statusData = true;
+			}
+
+			const res = await axios({
+				method: 'patch',
+				url: url,
+				data: { completed: statusData },
+			});
+
+			getTasks();
 		} catch (e) {
 			console.log(e);
 		}
@@ -83,7 +96,12 @@ const Tasks = () => {
 					{tasksData.map(({ _id, task, completed }) => {
 						return (
 							<div key={_id} id={_id} onClick={redirect}>
-								<BiTask className='task-icon' onClick={setCompletion} />
+								<button
+									className='completion-btn'
+									onClick={(e) => setCompletion(e, completed)}
+								>
+									<BiTask />
+								</button>
 
 								<span id='task' style={setTaskAppearence(completed)}>
 									{taskSlicer(task)}

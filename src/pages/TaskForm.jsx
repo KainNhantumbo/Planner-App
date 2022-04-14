@@ -68,7 +68,6 @@ const TaskForm = () => {
 			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
 			const { data } = await axios({ url });
 			// setStatusInput(() => data.data.completed);
-			console.log(data.data.task);
 			setTaskInputValue(() => data.data.task);
 		} catch (e) {
 			console.log(e);

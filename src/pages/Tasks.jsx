@@ -66,7 +66,7 @@ const Tasks = () => {
 									{taskSlicer(task)}
 								</span>
 
-								<button onClick={deleteTask}>
+								<button onClick={e => deleteTask(e, getTasks, setTasksData)}>
 									<BiTrash />
 								</button>
 							</div>

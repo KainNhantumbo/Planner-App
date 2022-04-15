@@ -19,12 +19,14 @@ export const getTasks = async (setData) => {
 };
 
 // deletes a selected task
-export const deleteTask = async (e) => {
+export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 	try {
 		e.stopPropagation();
 		const url = `http://localhost:4500/api/v1/tasks/${e.target.parentNode.id}`;
 		await axios({ method: 'delete', url: url });
-		getTasks();
+		if (reloadTasks instanceof Function) return reloadTasks(...reloadParams);
+			throw new Error('The second parameter must be function.');
+
 	} catch (e) {
 		console.log(e);
 	}
@@ -52,6 +54,7 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 		});
 
 		if (reloadTasks instanceof Function) return reloadTasks(...params);
+		throw new Error('The third parameter must be function.');
 	} catch (e) {
 		console.log(e);
 	}
@@ -74,6 +77,8 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 		} else {
 			setMessage(() => 'Save failed');
 		}
+		console.log(res.status);
+
 		setTimeout(() => setMessage(() => 'Save'), 2000);
 	} catch (e) {
 		console.log(e);

@@ -33,7 +33,7 @@ const TaskForm = () => {
 		} else {
 			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}
-		// window.location.assign('/');
+		window.location.assign('/');
 	};
 
 	// discards changes and goes back to previous page

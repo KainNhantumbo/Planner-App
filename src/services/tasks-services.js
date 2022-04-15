@@ -56,3 +56,68 @@ export const setCompletion = async (e, status) => {
 		console.log(e);
 	}
 };
+
+export const saveTask = async (taskInputValue, statusInput, setMessage) => {
+	try {
+		const url = `http://localhost:4500/api/v1/tasks`;
+		if (!setMessage instanceof Function) return;
+		setMessage(() => 'Loading...');
+		const res = await axios({
+			method: 'post',
+			url: url,
+			data: { task: taskInputValue, completed: statusInput },
+		});
+
+		if (res.status === 201) {
+			setMessage(() => 'Saved');
+		} else {
+			setMessage(() => 'Save failed');
+		}
+		setTimeout(() => setMessage(() => 'Save'), 2000);
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+// gets a single task by id, if present
+export const getTask = async (setData, setStatus, taskID) => {
+	try {
+		const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
+		const { data } = await axios({ url });
+		if (setData instanceof Function)
+			return [
+				setData(() => data.data.task),
+				setStatus(() => data.data.completed),
+			];
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const taskPatcher = async (
+	setMessage,
+	taskInputValue,
+	statusInput,
+	taskID
+) => {
+	try {
+		const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
+		if (!setMessage instanceof Function)
+			throw new Error('Parameter 1 is not a function');
+		setMessage(() => 'Loading...');
+		const res = await axios({
+			method: 'patch',
+			url: url,
+			data: { task: taskInputValue, completed: statusInput },
+		});
+
+		if (res.status === 202) {
+			setMessage(() => 'Updated');
+		} else {
+			setMessage(() => 'Update failed');
+		}
+		setTimeout(() => setMessage(() => 'Update'), 2000);
+	} catch (e) {
+		console.log(e);
+	}
+};

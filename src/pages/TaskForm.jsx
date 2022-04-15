@@ -8,8 +8,8 @@ import {
 	BiStats,
 } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { saveTask, getTask, taskPatcher } from '../services/tasks-services';
 
 const TaskForm = () => {
 	const [message, setMessage] = useState('Save');
@@ -19,73 +19,19 @@ const TaskForm = () => {
 	// takes id parameter
 	const { id: taskID } = useParams();
 
-	const saveTask = async () => {
-		try {
-			const url = `http://localhost:4500/api/v1/tasks`;
-			setMessage(() => 'Loading...');
-			const res = await axios({
-				method: 'post',
-				url: url,
-				data: { task: taskInputValue, completed: statusInput },
-			});
-
-			if (res.status === 201) {
-				setMessage(() => 'Saved');
-			} else {
-				setMessage(() => 'Save failed');
-			}
-			setTimeout(() => setMessage(() => 'Save'), 2000);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
-	const taskPatcher = async () => {
-		try {
-			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
-			setMessage(() => 'Loading...');
-			const res = await axios({
-				method: 'patch',
-				url: url,
-				data: { task: taskInputValue, completed: statusInput },
-			});
-
-			if (res.status === 202) {
-				setMessage(() => 'Updated');
-			} else {
-				setMessage(() => 'Update failed');
-			}
-			setTimeout(() => setMessage(() => 'Update'), 2000);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
-	// gets a single task by id, if present
-	const getTask = async () => {
-		try {
-			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
-			const { data } = await axios({ url });
-			// setStatusInput(() => data.data.completed);
-			setTaskInputValue(() => data.data.task);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
 	useEffect(() => {
 		if (taskID !== ':id') {
 			setMessage(() => 'Update');
-			getTask();
+			getTask(setTaskInputValue, setStatusInput, taskID);
 		}
 	}, []);
 
 	// saves the task
 	const taskHandler = () => {
 		if (taskID === ':id') {
-			return saveTask();
+			return saveTask(taskInputValue, statusInput, setMessage);
 		} else {
-			taskPatcher();
+			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}
 		// window.location.assign('/');
 	};

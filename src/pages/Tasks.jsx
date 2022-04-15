@@ -12,9 +12,8 @@ import {
 const Tasks = () => {
 	const [tasksData, setTasksData] = useState([]);
 
-	getTasks(setTasksData);
 	useEffect(() => {
-		getTasks();
+		getTasks(setTasksData);
 	}, []);
 
 	// redirects to task previewer page within the selected task

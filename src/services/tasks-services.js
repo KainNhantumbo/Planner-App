@@ -32,7 +32,7 @@ export const deleteTask = async (e) => {
 
 // sets completion status and makes a patch request
 // to server api
-export const setCompletion = async (e, status) => {
+export const setCompletion = async (e, status, reloadTasks, ...params) => {
 	try {
 		e.stopPropagation();
 		let statusData;
@@ -51,7 +51,7 @@ export const setCompletion = async (e, status) => {
 			data: { completed: statusData },
 		});
 
-		getTasks();
+		if (reloadTasks instanceof Function) return reloadTasks(...params);
 	} catch (e) {
 		console.log(e);
 	}
@@ -60,7 +60,8 @@ export const setCompletion = async (e, status) => {
 export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 	try {
 		const url = `http://localhost:4500/api/v1/tasks`;
-		if (!setMessage instanceof Function) return;
+		if (!setMessage instanceof Function)
+			throw new Error('The last parameter must be function.');
 		setMessage(() => 'Loading...');
 		const res = await axios({
 			method: 'post',
@@ -89,6 +90,7 @@ export const getTask = async (setData, setStatus, taskID) => {
 				setData(() => data.data.task),
 				setStatus(() => data.data.completed),
 			];
+		throw new Error('The first and second parameters must be functions.');
 	} catch (e) {
 		console.log(e);
 	}

@@ -55,7 +55,9 @@ const Tasks = () => {
 							<div key={_id} id={_id} onClick={redirect}>
 								<button
 									className='completion-btn'
-									onClick={(e) => setCompletion(e, completed)}
+									onClick={(e) =>
+										setCompletion(e, completed, getTasks, setTasksData)
+									}
 								>
 									<BiTask />
 								</button>

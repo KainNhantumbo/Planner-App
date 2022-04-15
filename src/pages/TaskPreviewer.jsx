@@ -4,24 +4,15 @@ import axios from 'axios';
 import { Container } from '../styles/taskPreviewer';
 import {  BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
+import { getTask } from '../services/tasks-services';
 
 const TaskPreviewer = () => {
 	const [status, setStatus] = useState('Completed');
 	const [task, setTask] = useState('');
 
+	// gets url id parameter as taskID
+	// from urlParams object
 	const { id: taskID } = useParams();
-
-	// gets a single task by id, if present
-	const getTask = async () => {
-		try {
-			const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
-			const { data } = await axios({ url });
-			setStatus(() => data.data.completed);
-			setTask(() => data.data.task);
-		} catch (e) {
-			console.log(e);
-		}
-	};
 
   // shows the status of task, if it's false or true
 	const handleStatus = () => {
@@ -31,7 +22,7 @@ const TaskPreviewer = () => {
 
   // loads the page with designed task
 	useEffect(() => {
-		getTask();
+		getTask(setTask, setStatus, taskID);
 	}, []);
 
 	// redirects to edit and add tasks page

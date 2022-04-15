@@ -16,6 +16,7 @@ export const TasksContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
+	margin-bottom: 20px;
 
 	.task-container {
 		display: flex;

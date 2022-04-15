@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors } from './themes';
 
 export const GlobalStyles = createGlobalStyle`
   * {    
@@ -19,5 +18,17 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
     background-color: black;
     background: rgb(${({theme})=> theme.backgroundColor});
+  }
+
+  ::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    width: 5px;
+    background: rgb(${({theme})=> theme.backgroundColor});
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background: rgba(${({theme})=> theme.textColor}, .5);
   }
 `;

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ContactsContainer } from '../styles/contacts';
 import { BiCollection } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
-
-const url = 'http://localhost:4500/api/v1/contacts';
+import { fechdata } from '../services/contacts-services';
 
 const Contacts = () => {
 	const onClickHandler = (e) => {
@@ -17,14 +15,7 @@ const Contacts = () => {
 	const [contactsDB, setContactsDB] = useState([]);
 
 	// fetch data from server api
-	const fechdata = async () => {
-		try {
-			const { data } = await axios.get(url);
-			setContactsDB(() => data);
-		} catch (err) {
-			console.log(err);
-		}
-	};
+	fechdata(setContactsDB)
 
 	useEffect(() => {
 		fechdata();

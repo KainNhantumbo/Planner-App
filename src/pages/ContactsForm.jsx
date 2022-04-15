@@ -13,9 +13,8 @@ import {
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { fetchContact, patchData, postData } from '../services/contacts-services';
 
-const url = 'http://localhost:4500/api/v1/contacts';
 
 const ContactsForm = () => {
 	// input fields state values
@@ -30,10 +29,6 @@ const ContactsForm = () => {
 	// params object
 	const params = useParams();
 	const hrefID = params.id;
-
-	// fetch data from server api
-	const [id, setId] = useState([]);
-	console.log(id);
 
 	// if :id parameter object exists, setup the fields
 	const [message, setMessage] = useState('Save Contact');
@@ -50,40 +45,12 @@ const ContactsForm = () => {
 	};
 
 	// fetch contact data from server api
-	const fechdata = async () => {
-		try {
-			if (hrefID === ':id') return;
-			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
-			const { data } = await axios.get(url);
-			setId(() => data);
-			setDefaultInputValues(data);
-		} catch (err) {
-			console.log(err);
-		}
-	};
 
 	useEffect(() => {
-		fechdata();
+		fetchContact(hrefID, setDefaultInputValues);
 	}, []);
 
-	// sends a patch request to server api
-	const patchData = async (updatedObj) => {
-		try {
-			const patch_url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
-			await axios({ method: 'patch', url: patch_url, data: updatedObj });
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	// sends a post request to server api
-	const postData = async (newContact) => {
-		try {
-			await axios({ method: 'post', url: url, data: newContact });
-		} catch (err) {
-			console.log(err);
-		}
-	};
+	
 
 	// resets form value fields
 	const resetForm = (e) => {
@@ -110,7 +77,7 @@ const ContactsForm = () => {
 			adress,
 		};
 		if (message === 'Update') {
-			patchData(newContact);
+			patchData(hrefID, newContact);
 		} else {
 			if (name === '') return;
 			postData(newContact);

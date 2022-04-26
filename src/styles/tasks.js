@@ -22,6 +22,7 @@ export const TasksContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		gap: 15px;
+		padding: 0 8px;
 
 		div {
 			position: relative;

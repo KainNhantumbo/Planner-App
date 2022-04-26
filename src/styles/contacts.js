@@ -32,6 +32,11 @@ export const ContactsContainer = styled.section`
 		cursor: pointer;
 		gap: 0.5em;
 
+		:hover {
+			box-shadow: 0 0 10px 1px rgb(${({ theme }) => theme.shadows});
+			transition: 200ms ease;
+		}
+
 		div {
 			position: absolute;
 			left: 1.2px;

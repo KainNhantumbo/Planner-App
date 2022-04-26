@@ -15,7 +15,7 @@ const Contacts = () => {
 	const [contactsDB, setContactsDB] = useState([]);
 
 	// fetch data from server api
-	fechdata(setContactsDB)
+	fechdata(setContactsDB);
 
 	useEffect(() => {
 		fechdata();
@@ -43,14 +43,14 @@ const Contacts = () => {
 	const searchContacts = (e) => {
 		setSearchData(() => e.target.value);
 		const searchedContacts = contactsDB.filter((element) => {
-			if (!element.name.toLowerCase().indexOf(searchData)) return element;
-			if (!element.surname.toLowerCase().indexOf(searchData)) return element;
-			if (!element.email.toLowerCase().indexOf(searchData)) return element;
-			if (!element.adress.toLowerCase().indexOf(searchData)) return element;
-			if (!element.website.toLowerCase().indexOf(searchData)) return element;
-			if (!element.celular.toString().toLowerCase().indexOf(searchData))
+			if (element.name.toLowerCase().includes(searchData)) return element;
+			if (element.surname.toLowerCase().includes(searchData)) return element;
+			if (element.email.toLowerCase().includes(searchData)) return element;
+			if (element.adress.toLowerCase().includes(searchData)) return element;
+			if (element.website.toLowerCase().includes(searchData)) return element;
+			if (element.celular.toString().toLowerCase().includes(searchData))
 				return element;
-			if (!element.phone.toString().toLowerCase().indexOf(searchData))
+			if (element.phone.toString().toLowerCase().includes(searchData))
 				return element;
 		});
 		console.log(searchedContacts);

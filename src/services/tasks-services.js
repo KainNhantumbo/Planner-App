@@ -25,8 +25,7 @@ export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 		const url = `http://localhost:4500/api/v1/tasks/${e.target.parentNode.id}`;
 		await axios({ method: 'delete', url: url });
 		if (reloadTasks instanceof Function) return reloadTasks(...reloadParams);
-			throw new Error('The second parameter must be function.');
-
+		throw new Error('The second parameter must be function.');
 	} catch (e) {
 		console.log(e);
 	}
@@ -61,6 +60,7 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 };
 
 export const saveTask = async (taskInputValue, statusInput, setMessage) => {
+	let error = false;
 	try {
 		const url = `http://localhost:4500/api/v1/tasks`;
 		if (!setMessage instanceof Function)
@@ -77,11 +77,16 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 		} else {
 			setMessage(() => 'Save failed');
 		}
-		console.log(res.status);
 
 		setTimeout(() => setMessage(() => 'Save'), 2000);
 	} catch (e) {
 		console.log(e);
+		error = true;
+	} finally {
+		if (error) {
+			setMessage(() => 'Failed');
+		}
+		setTimeout(() => setMessage(() => 'Save'), 3000);
 	}
 };
 
@@ -96,8 +101,8 @@ export const getTask = async (setData, setStatus, taskID) => {
 				setStatus(() => data.data.completed),
 			];
 		throw new Error('The first and second parameters must be functions.');
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 };
 

@@ -13,18 +13,31 @@ import {
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchContact, patchData, postData } from '../services/contacts-services';
-
+import {
+	fetchContact,
+	patchData,
+	postData,
+} from '../services/contacts-services';
 
 const ContactsForm = () => {
 	// input fields state values
-	const [name, setName] = useState('');
-	const [surname, setSurname] = useState('');
-	const [phone, setPhone] = useState('');
-	const [celular, setCelular] = useState('');
-	const [email, setEmail] = useState('');
-	const [website, setWebsite] = useState('');
-	const [adress, setAdress] = useState('');
+	const [formData, setFormData] = useState({
+		name: '',
+		surname: '',
+		phone: '',
+		celular: '',
+		email: '',
+		website: '',
+		adress: '',
+	});
+
+	// populates formData values
+	const formDataPicker = (e) => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
 	// navigation
 	const navigate = useNavigate();
@@ -35,14 +48,11 @@ const ContactsForm = () => {
 
 	// if :id parameter object exists, setup the fields
 	const [message, setMessage] = useState('Save Contact');
+	const [defaultValues, setDefaultValues] = useState({});
+	const [btnState, setBtnState] = useState({});
 	const setDefaultInputValues = (data) => {
-		setName(() => data.name);
-		setSurname(() => data.surname);
-		setPhone(() => data.phone);
-		setCelular(() => data.celular);
-		setEmail(() => data.email);
-		setWebsite(() => data.website);
-		setAdress(() => data.adress);
+		setDefaultValues(data);
+		setBtnState({ display: 'none' });
 		setMessage(() => 'Update');
 	};
 
@@ -52,37 +62,20 @@ const ContactsForm = () => {
 		fetchContact(hrefID, setDefaultInputValues);
 	}, []);
 
-	
-
 	// resets form value fields
 	const resetForm = (e) => {
 		e.preventDefault();
-		setName(() => '');
-		setSurname(() => '');
-		setPhone(() => '');
-		setCelular(() => '');
-		setEmail(() => '');
-		setWebsite(() => '');
-		setAdress(() => '');
+		e.target.reset();
 	};
 
 	// saves a new contact, if id exists, it makes a update
 	const saveContact = (e) => {
 		e.preventDefault();
-		const newContact = {
-			name,
-			surname,
-			phone,
-			celular,
-			email,
-			website,
-			adress,
-		};
 		if (message === 'Update') {
-			patchData(hrefID, newContact);
+			patchData(hrefID, formData);
 		} else {
-			if (!name) return;
-			postData(newContact);
+			if (!formData.name) return;
+			postData(formData);
 		}
 		navigate('/contacts');
 	};
@@ -90,57 +83,57 @@ const ContactsForm = () => {
 	return (
 		<FormContainer>
 			<TitleBars icon={<BiUserPlus />} title={'Add Contact'} />
-			<form>
+			<form onSubmit={resetForm}>
 				<label htmlFor='name'>{<BiUser />}Name</label>
 				<input
 					type='text'
 					name='name'
-					defaultValue={name}
-					onChange={(e) => setName(() => e.target.value)}
+					defaultValue={defaultValues.name}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='surname'>{<BiUser />}Surname</label>
 				<input
 					type='text'
 					name='surname'
-					defaultValue={surname}
-					onChange={(e) => setSurname(() => e.target.value)}
+					defaultValue={defaultValues.surname}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='phone'>{<BiPhone />}Phone Number</label>
 				<input
 					type='number'
 					name='phone'
-					defaultValue={phone}
-					onChange={(e) => setPhone(() => e.target.value)}
+					defaultValue={defaultValues.phone}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='celular'>{<BiMobile />}Mobile Number</label>
 				<input
 					type='number'
 					name='celular'
-					defaultValue={celular}
-					onChange={(e) => setCelular(() => e.target.value)}
+					defaultValue={defaultValues.celular}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='email'>{<BiMessage />}Email</label>
 				<input
 					type='email'
 					name='email'
-					defaultValue={email}
-					onChange={(e) => setEmail(() => e.target.value)}
+					defaultValue={defaultValues.email}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='website'>{<BiPlanet />}Website</label>
 				<input
 					type='text'
 					name='website'
-					defaultValue={website}
-					onChange={(e) => setWebsite(() => e.target.value)}
+					defaultValue={defaultValues.website}
+					onChange={formDataPicker}
 				/>
 				<label htmlFor='adress'>{<BiMap />}Adress</label>
 				<input
 					type='text'
 					name='adress'
-					defaultValue={adress}
-					onChange={(e) => setAdress(() => e.target.value)}
+					defaultValue={defaultValues.adress}
+					onChange={formDataPicker}
 				/>
-				<button onClick={resetForm}>
+				<button type='submit' style={btnState}>
 					<span>{<BiSync />}Reset Values</span>
 				</button>
 				<button onClick={saveContact}>

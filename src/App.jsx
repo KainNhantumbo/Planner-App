@@ -10,6 +10,7 @@ import {
 	BiSpreadsheet,
 	BiSun,
 	BiMoon,
+	BiLogOut,
 } from 'react-icons/bi';
 import { HeaderContainer } from './styles/header';
 import Contacts from './pages/Contacts';
@@ -90,21 +91,27 @@ function App() {
 					<nav className='navbar' style={{ display: menuStatus }}>
 						<ul>
 							<li>
+								<BiSpreadsheet />
 								<Link to='/'>
-									<BiSpreadsheet />
 									<span>Tasks</span>
 								</Link>
 							</li>
 							<li>
+								<BiPhone />
 								<Link to='/contacts'>
-									<BiPhone />
 									<span>Contacts</span>
 								</Link>
 							</li>
 							<li>
+								<BiCog />
 								<Link to=''>
-									<BiCog />
-									<span>Preferences</span>
+									<span>Settings</span>
+								</Link>
+							</li>
+							<li>
+								<BiLogOut />
+								<Link to=''>
+									<span>LogOut</span>
 								</Link>
 							</li>
 						</ul>

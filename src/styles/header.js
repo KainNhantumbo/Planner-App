@@ -44,6 +44,7 @@ export const HeaderContainer = styled.section`
 			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
 			outline: none;
 			color: rgba(${({ theme }) => theme.primaryColor}, 0.8);
+			cursor: pointer;
 
 			:hover {
 				color: rgb(${({ theme }) => theme.darkColor});
@@ -78,69 +79,50 @@ export const HeaderContainer = styled.section`
 	.navbar {
 		@keyframes identifier {
 			from {
-				transform: translate(0, -3em);
-				opacity: 0;
+				transform: translate(-40px, 0);
 			}
 			to {
 				transform: translate(0, 0);
-				opacity: 1;
 			}
 		}
 		animation: identifier 500ms ease forwards;
 		transition: 500ms ease;
 		background-color: rgba(${({ theme }) => theme.secondaryColor}, 0.3);
 		backdrop-filter: blur(10px);
-		padding: 1em;
-
-		@media screen and (min-width: 810px) {
-			max-width: 200px;
-			position: fixed;
-			padding: 0 50px;
-			height: 100vh;
-			background-color: rgb(${({ theme }) => theme.backgroundColor});
-			box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
-		}
+		max-width: 200px;
+		position: fixed;
+		height: 100vh;
+		background-color: rgb(${({ theme }) => theme.backgroundColor});
+		box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
 
 		ul {
 			display: flex;
-			justify-content: center;
-			align-content: center;
-			text-align: center;
+			justify-content: flex-start;
 			flex-direction: column;
-			padding: 0 5px;
-
-			@media screen and (min-width: 810px) {
-				gap: 10px;
-				margin-top: 30px;
-			}
 
 			li {
 				width: 100%;
-				padding: 5px 0;
-				margin: 0 auto;
-				margin-bottom: 8px;
 				font-weight: 500;
 				text-transform: uppercase;
-				border-radius: 5px;
+				position: relative;
+				padding: 20px 10px;
 
-				a {
-					position: relative;
-					width: 100%;
-					span {
-						padding: 2px 5px;
-						border-radius: 5px;
-						:hover {
-							background: rgba(${({ theme }) => theme.shadows}, 0.5);
-						}
-					}
+				:hover {
+					background: rgba(${({ theme }) => theme.shadows}, 0.5);
+				}
 
-					svg {
-						width: 20px;
-						height: 20px;
-						position: absolute;
-						left: -1.8em;
-						top: 2px;
-					}
+				svg {
+					width: 26px;
+					height: 26px;
+					position: absolute;
+					left: 15px;
+					top: 15px;
+				}
+
+				span {
+					padding-left: 40px;
+					padding-right: 15px;
+					border-radius: 5px;
 				}
 			}
 		}

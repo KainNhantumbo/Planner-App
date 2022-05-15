@@ -31,7 +31,8 @@ export const Container = styled.article`
 				border-radius: 10px;
 				gap: 5px;
 				padding: 8px 10px;
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
+				background: rgb(${({ theme }) => theme.whiteColor});
+				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 
 				span {
 					font-weight: 500;
@@ -56,9 +57,10 @@ export const Container = styled.article`
 			padding: 8px 25px;
 			border-radius: 5px;
 			font-weight: 500;
-			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 			color: rgb(${({ theme }) => theme.textColor});
 			position: relative;
+			background: rgb(${({ theme }) => theme.whiteColor});
 			
 			:hover {
 				background: rgba(${({ theme }) => theme.secondaryColor}, .2);

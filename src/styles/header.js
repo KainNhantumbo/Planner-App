@@ -6,8 +6,8 @@ export const HeaderContainer = styled.section`
 	top: 0;
 	width: 100%;
 	z-index: 50;
-	background: rgb(${({ theme }) => theme.backgroundColor});
-	box-shadow: 0 0 8px rgb(${({ theme }) => theme.shadows});
+	background: rgb(${({ theme }) => theme.whiteColor});
+	box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 
 	.logoSection {
 		font-size: 1.6rem;

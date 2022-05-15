@@ -90,30 +90,30 @@ function App() {
 					</div>
 					<nav className='navbar' style={{ display: menuStatus }}>
 						<ul>
-							<li>
-								<BiSpreadsheet />
-								<Link to='/'>
+							<Link to='/' onClick={menuShow}>
+								<li>
+									<BiSpreadsheet />
 									<span>Tasks</span>
-								</Link>
-							</li>
-							<li>
-								<BiPhone />
-								<Link to='/contacts'>
+								</li>
+							</Link>
+							<Link to='/contacts' onClick={menuShow}>
+								<li>
+									<BiPhone />
 									<span>Contacts</span>
-								</Link>
-							</li>
-							<li>
-								<BiCog />
-								<Link to=''>
+								</li>
+							</Link>
+							<Link to='' onClick={menuShow}>
+								<li>
+									<BiCog />
 									<span>Settings</span>
-								</Link>
-							</li>
-							<li>
-								<BiLogOut />
-								<Link to=''>
+								</li>
+							</Link>
+							<Link to='' onClick={menuShow}>
+								<li>
+									<BiLogOut />
 									<span>LogOut</span>
-								</Link>
-							</li>
+								</li>
+							</Link>
 						</ul>
 					</nav>
 				</HeaderContainer>

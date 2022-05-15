@@ -31,9 +31,9 @@ export const ContactsContainer = styled.section`
 		padding: 5px;
 		cursor: pointer;
 		gap: 0.5em;
-
+		background: rgb(${({ theme }) => theme.whiteColor});
 		:hover {
-			box-shadow: 0 0 10px 1px rgb(${({ theme }) => theme.shadows});
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 			transition: 200ms ease;
 		}
 

@@ -7,17 +7,6 @@ export const SearchContainer = styled.div`
 	position: relative;
 
 	.addBtn {
-		@keyframes btnMontion {
-			from {
-				transform: scale(1);
-				opacity: 0.2;
-			}
-			to {
-				transform: scale(1.5);
-				opacity: 0.25;
-			}
-		}
-
 		position: absolute;
 		bottom: -2px;
 		right: 0.5em;
@@ -28,22 +17,13 @@ export const SearchContainer = styled.div`
 		background: none;
 		border-radius: 5px;
 		padding: 1px 5px;
-		box-shadow: 0 0 5px rgba(${({ theme }) => theme.primaryColor}, 0.3);
+		box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 		outline: none;
 		color: rgba(${({ theme }) => theme.textColor}, 0.8);
-		background: rgb(${({ theme }) => theme.whiteColor});
+		background: rgb(${({ theme }) => theme.inner});
 		display: grid;
 		place-content: center;
 		z-index: 55;
-
-		::before {
-			content: '';
-			background-color: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
-			width: 40px;
-			height: 32px;
-			animation: btnMontion 1200ms ease infinite;
-			border-radius: 5px;
-		}
 
 		:hover {
 			color: rgba(${({ theme }) => theme.darkColor}, 0.3);
@@ -73,7 +53,7 @@ export const SearchContainer = styled.div`
 			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
 			color: rgb(${({ theme }) => theme.textColor});
 			padding-left: 28px;
-			background: rgb(${({ theme }) => theme.backgroundColor});
+			background: rgb(${({ theme }) => theme.inner});
 
 			:focus {
 				box-shadow: 0 0 5px rgba(${({ theme }) => theme.secondaryColor}, 0.9);

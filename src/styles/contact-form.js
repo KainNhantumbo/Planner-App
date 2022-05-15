@@ -51,25 +51,24 @@ export const FormContainer = styled.section`
 			border-style: none;
 			border-radius: 5px;
 			background: rgba(${({ theme }) => theme.backgroundColor});
-			box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
+			box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 			padding: 5px;
 			color: rgb(${({ theme }) => theme.textColor});
 			font-weight: 500;
-			margin-bottom: 5px;
+			margin-bottom: 10px;
+			background: rgb(${({ theme }) => theme.whiteColor});
 			padding: 8px 0;
+			cursor: pointer;
 
 			:hover {
 				transform: scale(1.02);
+				color: rgb(${({ theme }) => theme.secondaryColor});
 				transition: all 200ms ease-out;
 			}
 
 			span {
-				padding-left: 1em;
+				padding-left: 20px;
 				position: relative;
-
-				:hover {
-					color: rgb(${({ theme }) => theme.secondaryColor});
-				}
 
 				svg {
 					position: absolute;

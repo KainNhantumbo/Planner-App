@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
 import { Container } from '../styles/taskPreviewer';
 import {  BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getTask } from '../services/tasks-services';
 
 const TaskPreviewer = () => {
@@ -12,6 +12,9 @@ const TaskPreviewer = () => {
 	// gets url id parameter as taskID
 	// from urlParams object
 	const { id: taskID } = useParams();
+
+	// navigation
+	const navigate = useNavigate();
 
   // shows the status of task, if it's false or true
 	const handleStatus = () => {
@@ -25,10 +28,10 @@ const TaskPreviewer = () => {
 	}, []);
 
 	// redirects to edit and add tasks page
-	const redirectToEdit = () => window.location.assign(`/add/${taskID}`);
+	const redirectToEdit = () => navigate(`/add/${taskID}`);
 
 	// redirects to tasks page
-	const redirectToTasks = () => window.location.assign('/');
+	const redirectToTasks = () => navigate('/');
 
 	return (
 		<Container>

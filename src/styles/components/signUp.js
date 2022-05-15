@@ -10,7 +10,6 @@ export const Container = styled.div`
 	left: 0;
 	background: rgba(${({ theme }) => theme.background});
 	backdrop-filter: blur(100px);
-
 	display: flex;
 	flex-direction: column;
 	gap: 20px;

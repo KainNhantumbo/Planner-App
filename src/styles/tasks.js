@@ -28,11 +28,12 @@ export const TasksContainer = styled.div`
 			position: relative;
 			display: flex;
 			border-radius: 5px;
-			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 			padding: 15px 8px;
 			cursor: pointer;
 			gap: 0.5em;
 			position: relative;
+			background: rgb(${({ theme }) => theme.whiteColor});
 
 			:hover {
 				box-shadow: 0 0 10px 1px rgb(${({ theme }) => theme.shadows});

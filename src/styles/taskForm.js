@@ -39,7 +39,7 @@ export const FormContainer = styled.article`
 		input {
 			border-style: none;
 			color: rgb(${({ theme }) => theme.textColor});
-			background: rgb(${({ theme }) => theme.whiteColor});
+			background: rgb(${({ theme }) => theme.inner});
 			box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
 			border-radius: 5px;
 			padding: 8px 10px;
@@ -56,7 +56,7 @@ export const FormContainer = styled.article`
 			input[type='checkbox'] {
 				position: absolute;
 				top: -5px;
-				right: 95px;
+				right: 85px;
 				width: 45px;
 				height: 10px;
 				appearance: none;
@@ -70,7 +70,7 @@ export const FormContainer = styled.article`
 				margin-right: 0.2em;
 
 				:checked {
-					background: rgba(${({ theme }) => theme.textColor});
+					background: rgba(${({ theme }) => theme.inner});
 				}
 
 				::after {
@@ -82,14 +82,14 @@ export const FormContainer = styled.article`
 					border-radius: 50%;
 					top: -1px;
 					left: 0;
-					background: rgba(${({ theme }) => theme.secondaryColor});
-					box-shadow: 0 0 5px rgba(${({ theme }) => theme.primaryColor});
+					background: rgba(${({ theme }) => theme.inner});
+					box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 					transition: all 0.2s ease;
 				}
 
 				:checked::after {
 					transform: scale(1.1) translateX(25px);
-					background: rgba(${({ theme }) => theme.primaryColor});
+					background: rgba(${({ theme }) => theme.secondaryColor});
 				}
 			}
 		}
@@ -108,9 +108,11 @@ export const FormContainer = styled.article`
 			padding: 8px 25px;
 			border-radius: 5px;
 			font-weight: 500;
-			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 			color: rgb(${({ theme }) => theme.textColor});
 			position: relative;
+			background: rgb(${({ theme }) => theme.whiteColor});
+
 
 			:hover {
 				background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);

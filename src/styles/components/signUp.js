@@ -86,7 +86,7 @@ export const Container = styled.div`
 				border-style: none;
 				color: rgb(${({ theme }) => theme.textColor});
 				background: rgb(${({ theme }) => theme.inner});
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
+				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 				border-radius: 5px;
 				padding: 8px 10px;
 				outline: none;
@@ -119,25 +119,13 @@ export const Container = styled.div`
 				font-weight: 500;
 				margin-bottom: 5px;
 				padding: 8px 0;
+				cursor: pointer;
 
 				:hover {
 					transform: scale(1.02);
 					color: rgb(${({ theme }) => theme.secondaryColor});
 					background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
 					transition: all 200ms ease-out;
-				}
-
-				span {
-					padding-left: 1em;
-					position: relative;
-
-					svg {
-						position: absolute;
-						width: 20px;
-						height: 20px;
-						top: 2px;
-						left: -10px;
-					}
 				}
 			}
 		}

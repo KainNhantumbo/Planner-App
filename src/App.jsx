@@ -110,7 +110,7 @@ function App() {
 						</ul>
 					</nav>
 				</HeaderContainer>
-				<SignUp/>
+				<SignIn/>
 				<AppRoutes />
 			</ThemeProvider>
 		</>

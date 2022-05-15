@@ -13,14 +13,21 @@ export const Container = styled.div`
 
 	display: flex;
 	flex-direction: column;
-	gap: 70px;
+	gap: 40px;
+
+	p,
+	label,
+	h3 {
+		font-weight: 500;
+	}
 
 	header {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		flex-flow: column nowrap;
 		position: relative;
 		margin: 0 auto;
-		margin-top: 20px;
 		gap: 10px;
 
 		span {
@@ -43,48 +50,38 @@ export const Container = styled.div`
 		p {
 			color: rgb(${({ theme }) => theme.textColor});
 			text-align: center;
-		}
-
-		button {
-			position: fixed;
-			top: 15px;
-			right: 30px;
-
-			padding: 4px 5px;
-			border-style: none;
-			border: none;
-			border-radius: 5px;
-			font-weight: 500;
-			box-shadow: inset 0 0 5px rgba(${({ theme }) => theme.shadows});
-
-			:hover {
-				background-color: rgb(${({ theme }) => theme.secondaryColor});
-				transition: all 200ms ease;
-			}
-
-			span {
-				position: relative;
-				font-size: 12pt;
-				padding: 8px 8px 56px 20px;
-
-				svg {
-					width: 25px;
-					height: 25px;
-					position: absolute;
-					top: 6px;
-					left: -2px;
-				}
-			}
+			line-height: 1.4rem;
 		}
 	}
 
-	main {
+	article {
 		width: 100%;
 		max-width: 350px;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
+
+		button {
+			border: none;
+			border-style: none;
+			border-radius: 5px;
+			background: rgba(${({ theme }) => theme.whiteColor});
+			box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
+			padding: 5px;
+			color: rgb(${({ theme }) => theme.textColor});
+			font-weight: 500;
+			margin: 0 auto;
+			padding: 8px 0;
+			cursor: pointer;
+
+			:hover {
+				transform: scale(1.02);
+				color: rgb(${({ theme }) => theme.secondaryColor});
+				background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
+				transition: all 200ms ease-out;
+			}
+		}
 
 		form {
 			display: flex;
@@ -109,52 +106,23 @@ export const Container = styled.div`
 			input {
 				border-style: none;
 				color: rgb(${({ theme }) => theme.textColor});
-				background: rgb(${({ theme }) => theme.whiteColor});
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
+				background: rgb(${({ theme }) => theme.inner});
+				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 				border-radius: 5px;
+				margin-bottom: 8px;
 				padding: 8px 10px;
 				outline: none;
 			}
 
 			.errorMessage {
 				color: red;
-				font-size: .9rem;
+				font-size: 0.9rem;
 				margin: 5px 0;
 			}
 
 			button {
-				border: none;
-				border-style: none;
-				border-radius: 5px;
-				background: rgba(${({ theme }) => theme.backgroundColor});
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
-				padding: 5px;
-				color: rgb(${({ theme }) => theme.textColor});
-				font-weight: 500;
-				margin-bottom: 5px;
-				padding: 8px 0;
-
-				:hover {
-					transform: scale(1.02);
-					transition: all 200ms ease-out;
-				}
-
-				span {
-					padding-left: 1em;
-					position: relative;
-
-					:hover {
-						color: rgb(${({ theme }) => theme.secondaryColor});
-					}
-
-					svg {
-						position: absolute;
-						width: 20px;
-						height: 20px;
-						top: 2px;
-						left: -10px;
-					}
-				}
+				max-width: 70%;
+				width: 200px;
 			}
 		}
 
@@ -168,22 +136,7 @@ export const Container = styled.div`
 			}
 
 			button {
-				border: none;
-				border-style: none;
-				border-radius: 5px;
-				background: rgba(${({ theme }) => theme.backgroundColor});
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
-				padding: 5px;
-				color: rgb(${({ theme }) => theme.textColor});
-				font-weight: 500;
-				margin-bottom: 5px;
-				padding: 8px 0;
-
-				:hover {
-					transform: scale(1.02);
-					transition: all 200ms ease-out;
-          color: rgb(${({ theme }) => theme.secondaryColor});
-				}
+				width: 100%;
 			}
 		}
 	}
@@ -194,7 +147,7 @@ export const Container = styled.div`
 		position: fixed;
 		bottom: 20px;
 		text-align: center;
-    font-weight: 500;
+		font-weight: 500;
 		color: rgb(${({ theme }) => theme.textColor});
 	}
 `;

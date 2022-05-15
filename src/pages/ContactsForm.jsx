@@ -47,7 +47,7 @@ const ContactsForm = () => {
 	const hrefID = params.id;
 
 	// if :id parameter object exists, setup the fields
-	const [message, setMessage] = useState('Save Contact');
+	const [message, setMessage] = useState('Save');
 	const [defaultValues, setDefaultValues] = useState({});
 	const [btnState, setBtnState] = useState({});
 	const setDefaultInputValues = (data) => {
@@ -133,14 +133,16 @@ const ContactsForm = () => {
 					defaultValue={defaultValues.adress}
 					onChange={formDataPicker}
 				/>
-				<button type='submit' style={btnState}>
-					<span>{<BiSync />}Reset Values</span>
-				</button>
-				<button onClick={saveContact}>
-					<span>
-						{<BiSave />} {message}
-					</span>
-				</button>
+				<div className='action-buttons'>
+					<button type='submit' style={btnState}>
+						{<BiSync />}
+						<span>Reset</span>
+					</button>
+					<button onClick={saveContact}>
+						{<BiSave />}
+						<span>{message}</span>
+					</button>
+				</div>
 			</form>
 		</FormContainer>
 	);

@@ -61,6 +61,7 @@ export const Container = styled.section`
 			color: rgb(${({ theme }) => theme.textColor});
 			position: relative;
 			background: rgb(${({ theme }) => theme.whiteColor});
+			width: 100%;
 
 			:hover {
 				background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);

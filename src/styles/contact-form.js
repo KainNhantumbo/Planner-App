@@ -46,38 +46,45 @@ export const FormContainer = styled.section`
 			outline: none;
 		}
 
+		.action-buttons {
+		display: flex;
+		justify-content: flex-start;
+		padding: 20px 0px;
+		gap: 12px;
+
 		button {
 			border: none;
 			border-style: none;
+			background: none;
+			padding: 8px 25px;
 			border-radius: 5px;
-			background: rgba(${({ theme }) => theme.backgroundColor});
-			box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
-			padding: 5px;
-			color: rgb(${({ theme }) => theme.textColor});
 			font-weight: 500;
-			margin-bottom: 10px;
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
+			color: rgb(${({ theme }) => theme.textColor});
+			position: relative;
 			background: rgb(${({ theme }) => theme.whiteColor});
-			padding: 8px 0;
-			cursor: pointer;
-
+			width: 100%;
+			max-width: 50%;
+			margin: 0 auto;
 			:hover {
-				transform: scale(1.02);
-				color: rgb(${({ theme }) => theme.secondaryColor});
+				background: rgba(${({ theme }) => theme.secondaryColor}, .2);
 				transition: all 200ms ease-out;
 			}
-
+			
 			span {
 				padding-left: 20px;
-				position: relative;
-
-				svg {
-					position: absolute;
-					width: 20px;
-					height: 20px;
-					top: 2px;
-					left: -10px;
-				}
 			}
+
+			svg {
+				color: rgb(${({ theme }) => theme.primaryColor});
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				left: 15px;
+				top: 7px;
+			}
+
 		}
+	}
 	}
 `;

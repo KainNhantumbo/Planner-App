@@ -63,7 +63,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Phone = () =>
-		!id ? null : (
+		!id.phone ? null : (
 			<li key={'phone'}>
 				<span>Phone</span>
 				<div>{id.phone}</div>
@@ -71,7 +71,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Celular = () =>
-		!id ? null : (
+		!id.celular ? null : (
 			<li key={'celular'}>
 				<span>Celular</span>
 				<div>{id.celular}</div>
@@ -79,7 +79,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Email = () =>
-		!id ? null : (
+		!id.email ? null : (
 			<li key={'email'}>
 				<span>E-mail</span>
 				<div>{id.email}</div>
@@ -87,7 +87,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Website = () =>
-		!id ? null : (
+		!id.website ? null : (
 			<li key={'website'}>
 				<span>Website</span>
 				<div>{id.website}</div>
@@ -95,7 +95,7 @@ const ContactPreviewer = () => {
 		);
 
 	const Adress = () =>
-		!id ? null : (
+		!id.adress ? null : (
 			<li key={'adress'}>
 				<span>Adress</span>
 				<div>{id.adress}</div>

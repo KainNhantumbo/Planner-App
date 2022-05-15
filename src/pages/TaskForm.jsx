@@ -77,7 +77,7 @@ const TaskForm = () => {
 				</button>
 				<button onClick={discardTask}>
 					<BiLeftArrowAlt />
-					<span>Get Back</span>
+					<span>Back</span>
 				</button>
 			</div>
 		</FormContainer>

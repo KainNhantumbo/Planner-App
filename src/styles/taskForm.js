@@ -112,6 +112,7 @@ export const FormContainer = styled.article`
 			color: rgb(${({ theme }) => theme.textColor});
 			position: relative;
 			background: rgb(${({ theme }) => theme.whiteColor});
+			width: 100%;
 
 
 			:hover {

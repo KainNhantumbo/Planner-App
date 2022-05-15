@@ -33,6 +33,7 @@ export const Container = styled.article`
 				padding: 8px 10px;
 				background: rgb(${({ theme }) => theme.whiteColor});
 				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
+				word-wrap: break-word;
 
 				span {
 					font-weight: 500;
@@ -61,7 +62,7 @@ export const Container = styled.article`
 			color: rgb(${({ theme }) => theme.textColor});
 			position: relative;
 			background: rgb(${({ theme }) => theme.whiteColor});
-			
+			width: 100%;
 			:hover {
 				background: rgba(${({ theme }) => theme.secondaryColor}, .2);
 				transition: all 200ms ease-out;

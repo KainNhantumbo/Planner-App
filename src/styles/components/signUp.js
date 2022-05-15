@@ -14,8 +14,16 @@ export const Container = styled.div`
 	flex-direction: column;
 	gap: 20px;
 
+	p,
+	label,
+	h3 {
+		font-weight: 500;
+	}
+
 	header {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		flex-flow: column nowrap;
 		position: relative;
 		margin: 0 auto;
@@ -41,10 +49,11 @@ export const Container = styled.div`
 		p {
 			color: rgb(${({ theme }) => theme.textColor});
 			text-align: center;
+			line-height: 1.4rem;
 		}
 	}
 
-	main {
+	article {
 		width: 100%;
 		max-width: 350px;
 		margin: 0 auto;
@@ -76,7 +85,7 @@ export const Container = styled.div`
 			input {
 				border-style: none;
 				color: rgb(${({ theme }) => theme.textColor});
-				background: rgb(${({ theme }) => theme.whiteColor});
+				background: rgb(${({ theme }) => theme.inner});
 				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
 				border-radius: 5px;
 				padding: 8px 10px;
@@ -97,32 +106,14 @@ export const Container = styled.div`
 				@media screen and (max-width: 350px) {
 					flex-direction: column;
 				}
-
-				button {
-					border: none;
-					border-style: none;
-					border-radius: 5px;
-					background: rgba(${({ theme }) => theme.backgroundColor});
-					box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
-					padding: 5px;
-					color: rgb(${({ theme }) => theme.textColor});
-					font-weight: 500;
-					margin-bottom: 5px;
-					padding: 8px 0;
-
-					:hover {
-						transform: scale(1.02);
-						transition: all 200ms ease-out;
-						color: rgb(${({ theme }) => theme.secondaryColor});
-					}
-				}
 			}
+
 			button {
 				border: none;
 				border-style: none;
 				border-radius: 5px;
-				background: rgba(${({ theme }) => theme.backgroundColor});
-				box-shadow: 0 0 5px rgba(${({ theme }) => theme.shadows});
+				background: rgba(${({ theme }) => theme.whiteColor});
+				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
 				padding: 5px;
 				color: rgb(${({ theme }) => theme.textColor});
 				font-weight: 500;
@@ -131,8 +122,9 @@ export const Container = styled.div`
 
 				:hover {
 					transform: scale(1.02);
-					transition: all 200ms ease-out;
 					color: rgb(${({ theme }) => theme.secondaryColor});
+					background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
+					transition: all 200ms ease-out;
 				}
 
 				span {

@@ -5,11 +5,16 @@ import { MdAccountCircle } from 'react-icons/md';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
 import { fechdata } from '../services/contacts-services';
+import { useNavigate } from 'react-router-dom';
 
 const Contacts = () => {
+	// navigation
+	const navigate = useNavigate();
+
+	// redirects to contact previewer
 	const onClickHandler = (e) => {
 		const id = e.target.id;
-		window.location.assign(`/contacts/previewer/${id}`);
+		navigate(`/contacts/previewer/${id}`);
 	};
 
 	const [contactsDB, setContactsDB] = useState([]);
@@ -21,7 +26,7 @@ const Contacts = () => {
 		fechdata();
 	}, []);
 
-	// return each contact html structure
+	// returns each contact html structure
 	const contactElements = (contact) => {
 		return (
 			<div
@@ -41,20 +46,20 @@ const Contacts = () => {
 	const [searchData, setSearchData] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const searchContacts = (e) => {
-		setSearchData(() => e.target.value);
-		const searchedContacts = contactsDB.filter((element) => {
-			if (element.name.toLowerCase().includes(searchData)) return element;
-			if (element.surname.toLowerCase().includes(searchData)) return element;
-			if (element.email.toLowerCase().includes(searchData)) return element;
-			if (element.adress.toLowerCase().includes(searchData)) return element;
-			if (element.website.toLowerCase().includes(searchData)) return element;
-			if (element.celular.toString().toLowerCase().includes(searchData))
-				return element;
-			if (element.phone.toString().toLowerCase().includes(searchData))
-				return element;
-		});
-		console.log(searchedContacts);
-		setSearchResults(() => searchedContacts);
+		// setSearchData(() => e.target.value);
+		// const searchedContacts = contactsDB.filter((element) => {
+		// 	if (element.name.toLowerCase().includes(searchData)) return element;
+		// 	if (element.surname.toLowerCase().includes(searchData)) return element;
+		// 	if (element.email.toLowerCase().includes(searchData)) return element;
+		// 	if (element.adress.toLowerCase().includes(searchData)) return element;
+		// 	if (element.website.toLowerCase().includes(searchData)) return element;
+		// 	if (element.celular.toString().toLowerCase().includes(searchData))
+		// 		return element;
+		// 	if (element.phone.toString().toLowerCase().includes(searchData))
+		// 		return element;
+		// });
+		// console.log(searchedContacts);
+		// setSearchResults(() => searchedContacts);
 	};
 
 	return (

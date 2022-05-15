@@ -1,11 +1,12 @@
 import { BiPlus, BiSearch } from "react-icons/bi";
 import { SearchContainer } from "../styles/components/search";
+import { Link } from "react-router-dom";
 
 const Search = ({searchEvent, btnURL, searchPlaceholder  }) => {
 	return (
 		<SearchContainer>
 			<button className='addBtn'>
-				<a href={btnURL}>{<BiPlus />}</a>
+				<Link to={btnURL}>{<BiPlus />}</Link>
 			</button>
 			<section>
 				{<BiSearch className='searchIcon' />}

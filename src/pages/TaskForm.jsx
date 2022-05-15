@@ -7,7 +7,7 @@ import {
 	BiSave,
 	BiStats,
 } from 'react-icons/bi';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { saveTask, getTask, taskPatcher } from '../services/tasks-services';
 
@@ -18,6 +18,9 @@ const TaskForm = () => {
 
 	// takes id parameter
 	const { id: taskID } = useParams();
+
+	// navigation
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (taskID !== ':id') {
@@ -33,7 +36,7 @@ const TaskForm = () => {
 		} else {
 			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}
-		window.location.assign('/');
+		navigate('/');
 	};
 
 	// discards changes and goes back to previous page

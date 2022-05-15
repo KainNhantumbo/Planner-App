@@ -1,10 +1,11 @@
 import axios from 'axios';
+const server = `http://localhost:4500/api/v1`;
 
 // get all tasks from the server api and
 // applies a default sorting
 export const getTasks = async (setData) => {
 	try {
-		const url = `http://localhost:4500/api/v1/tasks`;
+		const url = `${server}/tasks`;
 		const { data } = await axios({ method: 'get', url: url });
 
 		// sorts data by tasks
@@ -22,10 +23,10 @@ export const getTasks = async (setData) => {
 export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 	try {
 		e.stopPropagation();
-		const url = `http://localhost:4500/api/v1/tasks/${e.target.parentNode.id}`;
+		const url = `${server}/tasks/${e.target.parentNode.id}`;
 		await axios({ method: 'delete', url: url });
 		if (reloadTasks instanceof Function) return reloadTasks(...reloadParams);
-		throw new Error('The second parameter must be function.');
+		throw new Error('The second argument must be function.');
 	} catch (e) {
 		console.log(e);
 	}
@@ -38,7 +39,7 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 		e.stopPropagation();
 		let statusData;
 		const taskID = e.target.parentNode.id;
-		const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
+		const url = `${server}/tasks/${taskID}`;
 
 		if (status === true) {
 			statusData = false;
@@ -53,7 +54,7 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 		});
 
 		if (reloadTasks instanceof Function) return reloadTasks(...params);
-		throw new Error('The third parameter must be function.');
+		throw new Error('The third argument must be function.');
 	} catch (e) {
 		console.log(e);
 	}
@@ -62,9 +63,9 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 	let error = false;
 	try {
-		const url = `http://localhost:4500/api/v1/tasks`;
+		const url = `${server}/tasks`;
 		if (!setMessage instanceof Function)
-			throw new Error('The last parameter must be function.');
+			throw new Error('The last argument must be function.');
 		setMessage(() => 'Loading...');
 		const res = await axios({
 			method: 'post',
@@ -93,14 +94,14 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 // gets a single task by id, if present
 export const getTask = async (setData, setStatus, taskID) => {
 	try {
-		const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
+		const url = `${server}/tasks/${taskID}`;
 		const { data } = await axios({ url });
 		if (setData instanceof Function)
 			return [
 				setData(() => data.data.task),
 				setStatus(() => data.data.completed),
 			];
-		throw new Error('The first and second parameters must be functions.');
+		throw new Error('The first and second arguments must be functions.');
 	} catch (err) {
 		console.log(err);
 	}
@@ -113,9 +114,9 @@ export const taskPatcher = async (
 	taskID
 ) => {
 	try {
-		const url = `http://localhost:4500/api/v1/tasks/${taskID}`;
+		const url = `${server}/tasks/${taskID}`;
 		if (!setMessage instanceof Function)
-			throw new Error('Parameter 1 is not a function');
+			throw new Error('argument 1 is not a function');
 		setMessage(() => 'Loading...');
 		const res = await axios({
 			method: 'patch',

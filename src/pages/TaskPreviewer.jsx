@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
-import axios from 'axios';
 import { Container } from '../styles/taskPreviewer';
 import {  BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';

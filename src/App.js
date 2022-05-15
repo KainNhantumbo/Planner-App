@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { GlobalStyles } from './styles/globalstyles';
 import {
 	BiPaperPlane,
@@ -90,28 +90,22 @@ function App() {
 					<nav className='navbar' style={{ display: menuStatus }}>
 						<ul>
 							<li>
-								<a href='/'>
+								<Link to='/'>
 									<BiSpreadsheet />
 									<span>Tasks</span>
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href='/contacts'>
+								<Link to='/contacts'>
 									<BiPhone />
 									<span>Contacts</span>
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href=''>
-									<BiAlarm />
-									<span>Reminders</span>
-								</a>
-							</li>
-							<li>
-								<a href=''>
+								<Link to=''>
 									<BiCog />
 									<span>Preferences</span>
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</nav>

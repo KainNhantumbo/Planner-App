@@ -8,8 +8,12 @@ import {
 	deleteTask,
 	setCompletion,
 } from '../services/tasks-services';
+import { useNavigate } from 'react-router-dom';
 
 const Tasks = () => {
+	// navigation
+	const navigate = useNavigate();
+
 	const [tasksData, setTasksData] = useState([]);
 
 	useEffect(() => {
@@ -19,7 +23,7 @@ const Tasks = () => {
 	// redirects to task previewer page within the selected task
 	const redirect = (e) => {
 		e.stopPropagation();
-		window.location.assign(`/taskpreviewer/${e.target.id}`);
+		navigate(`/taskpreviewer/${e.target.id}`);
 	};
 
 	// return a peace of text based on task length

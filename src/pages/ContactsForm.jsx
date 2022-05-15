@@ -12,7 +12,7 @@ import {
 	BiMessage,
 } from 'react-icons/bi';
 import TitleBars from '../components/TitleBars';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchContact, patchData, postData } from '../services/contacts-services';
 
 
@@ -25,6 +25,9 @@ const ContactsForm = () => {
 	const [email, setEmail] = useState('');
 	const [website, setWebsite] = useState('');
 	const [adress, setAdress] = useState('');
+
+	// navigation
+	const navigate = useNavigate();
 
 	// params object
 	const params = useParams();
@@ -40,7 +43,6 @@ const ContactsForm = () => {
 		setEmail(() => data.email);
 		setWebsite(() => data.website);
 		setAdress(() => data.adress);
-
 		setMessage(() => 'Update');
 	};
 
@@ -79,10 +81,10 @@ const ContactsForm = () => {
 		if (message === 'Update') {
 			patchData(hrefID, newContact);
 		} else {
-			if (name === '') return;
+			if (!name) return;
 			postData(newContact);
 		}
-		window.location.assign('/contacts');
+		navigate('/contacts');
 	};
 
 	return (

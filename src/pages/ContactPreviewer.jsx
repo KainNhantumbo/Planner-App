@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Container } from '../styles/contactPreviewer';
 import { BiGlasses, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
@@ -10,13 +10,17 @@ const ContactPreviewer = () => {
 	const params = useParams();
 	const hrefID = params.id;
 
+	// navigation
+	const navigate = useNavigate();
+
 	// contact as id
 	const [id, setId] = useState([]);
 
 	// fetch contact data from server api
 	const fechdata = async () => {
 		try {
-			const url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
+			const server = `http://localhost:4500/api/v1`;
+			const url = `${server}/contacts/${hrefID}`;
 			const { data } = await axios.get(url);
 			setId(() => data);
 		} catch (err) {
@@ -31,7 +35,8 @@ const ContactPreviewer = () => {
 	// sends a delete request
 	const deleteData = async () => {
 		try {
-			const delete_url = `http://localhost:4500/api/v1/contacts/${hrefID}`;
+			const server = `http://localhost:4500/api/v1`;
+			const delete_url = `${server}/contacts/${hrefID}`;
 			await axios({ method: 'delete', url: delete_url, data: hrefID });
 		} catch (err) {
 			console.log(err);
@@ -41,12 +46,12 @@ const ContactPreviewer = () => {
 	// delete contact
 	const deleteContact = () => {
 		deleteData();
-		window.location.assign('/contacts');
+		navigate('/contacts');
 	};
 
 	// send to edit page
 	const sendToEdit = () => {
-		window.location.assign(`/contacts/add/${hrefID}`);
+		navigate(`/contacts/add/${hrefID}`);
 	};
 
 	const Name = () =>

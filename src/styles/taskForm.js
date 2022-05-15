@@ -52,11 +52,12 @@ export const FormContainer = styled.article`
 			margin-top: 28px;
 			gap: 15px;
 			position: relative;
+			width: 100%;
 
 			input[type='checkbox'] {
 				position: absolute;
 				top: -5px;
-				right: 85px;
+				right: 30px;
 				width: 45px;
 				height: 10px;
 				appearance: none;

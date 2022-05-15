@@ -3,12 +3,27 @@ import { BiPaperPlane } from 'react-icons/bi';
 import { Container } from '../styles/components/signUp';
 
 const SignUp = () => {
-	const [password, setPassword] = useState('');
-	const [confirmEmail, setConfirmEmail] = useState('');
-	const [email, setEmail] = useState('');
 	const [passwordError, setPasswordError] = useState('');
-	const [name, setName] = useState('');
-	const [surname, setSurname] = useState('');
+
+	// object to store form data
+	const [formData, setFormData] = useState({
+		name: '',
+		surname: '',
+		password: '',
+		confirm_password: '',
+		email: '',
+	});
+
+	// populates formData
+	const formDataPicker = (e) => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[e.target.name]: e.target.value,
+		}));
+	};
+
+	// handles form data
+	const formDataHandler = (e) => {};
 
 	return (
 		<Container>
@@ -22,23 +37,49 @@ const SignUp = () => {
 			<main>
 				<h4>Signup in Planner</h4>
 
-				<form>
+				<form onSubmit={formDataHandler}>
 					<label htmlFor='name'>Name</label>
-					<input type='text' name='name' id='name' />
+					<input
+						type='text'
+						name='name'
+						id='name'
+						required
+						onChange={formDataPicker}
+					/>
 
 					<label htmlFor='surname'>Surname</label>
-					<input type='text' name='surname' id='surname' />
+					<input
+						type='text'
+						name='surname'
+						id='surname'
+						required
+						onChange={formDataPicker}
+					/>
 
 					<label htmlFor='email'>E-mail</label>
-					<input type='email' name='email' id='email' />
+					<input
+						type='email'
+						name='email'
+						id='email'
+						required
+						onChange={formDataPicker}
+					/>
 
 					<label htmlFor='password'>Password</label>
-					<input type='password' name='password' id='password' />
+					<input
+						type='password'
+						name='password'
+						id='password'
+						required
+						onChange={formDataPicker}
+					/>
 					<label htmlFor='confirm-password'>Confirm password</label>
 					<input
 						type='password'
 						name='confirm_password'
+						required
 						id='confirm-password'
+						onChange={formDataPicker}
 					/>
 
 					<span className='errorMessage'>{passwordError}</span>

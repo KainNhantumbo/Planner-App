@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GlobalStyles } from './styles/globalstyles';
 import {
 	BiPaperPlane,
 	BiCategory,
 	BiCog,
 	BiPhone,
-	BiAlarm,
 	BiSpreadsheet,
 	BiSun,
 	BiMoon,
 	BiLogOut,
 } from 'react-icons/bi';
-import { HeaderContainer } from './styles/header';
-import Contacts from './pages/Contacts';
-import ContactsForm from './pages/ContactsForm';
-import ContactPreviewer from './pages/ContactPreviewer';
+import AppRoutes from './routes/AppRoutes';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import Tasks from './pages/Tasks';
-import TaskPreviewer from './pages/TaskPreviewer';
-import TaskForm from './pages/TaskForm';
+import { HeaderContainer } from './styles/header';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/themes';
 
@@ -78,7 +72,6 @@ function App() {
 		<>
 			<ThemeProvider theme={colors}>
 				<GlobalStyles />
-
 				<HeaderContainer>
 					<div className='logoSection'>
 						<BiPaperPlane className='logo' />
@@ -117,19 +110,7 @@ function App() {
 						</ul>
 					</nav>
 				</HeaderContainer>
-
-				{/* routes */}
-				<Routes>
-					<Route path='/' element={<Tasks />} />
-					<Route path='/taskpreviewer/:id' element={<TaskPreviewer />} />
-					<Route path='/add/:id' element={<TaskForm />} />
-					<Route path='/contacts' element={<Contacts />} />
-					<Route path='/contacts/add/:id' element={<ContactsForm />} />
-					<Route
-						path='/contacts/previewer/:id'
-						element={<ContactPreviewer />}
-					/>
-				</Routes>
+				<AppRoutes />
 			</ThemeProvider>
 		</>
 	);

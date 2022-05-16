@@ -79,7 +79,7 @@ const ContactsForm = () => {
 		}
 		navigate('/contacts');
 	};
-
+	
 	return (
 		<FormContainer>
 			<TitleBars icon={<BiUserPlus />} title={'Add Contact'} />
@@ -90,6 +90,7 @@ const ContactsForm = () => {
 					name='name'
 					defaultValue={defaultValues.name}
 					onChange={formDataPicker}
+					required
 				/>
 				<label htmlFor='surname'>{<BiUser />}Surname</label>
 				<input

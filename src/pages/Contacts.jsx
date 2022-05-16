@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { ContactsContainer } from '../styles/contacts';
-import { BiCollection } from 'react-icons/bi';
+import { BiCollection, BiWind } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
 import { fechdata } from '../services/contacts-services';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 const Contacts = () => {
+	// loading status
+	const [loadingText, setLoadingText] = useState('Sem contactos.');
+	const [loadingIcon, setLoadingIcon] = useState(<BiWind />);
+
 	// navigation
 	const navigate = useNavigate();
 
@@ -72,6 +77,10 @@ const Contacts = () => {
 					searchPlaceholder={'Search contacts'}
 				/>
 			</div>
+
+			{contactsDB.length < 1 ? (
+				<Loading text={loadingText} icon={loadingIcon} />
+			) : null}
 
 			{searchResults.length === 0
 				? contactsDB.map(contactElements)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
-import { BiTask, BiTrash } from 'react-icons/bi';
+import { BiTask, BiTrash, BiWind } from 'react-icons/bi';
 import { TasksContainer } from '../styles/tasks';
 import {
 	getTasks,
@@ -9,10 +9,15 @@ import {
 	setCompletion,
 } from '../services/tasks-services';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 const Tasks = () => {
 	// navigation
 	const navigate = useNavigate();
+
+	// loading status
+	const [loadingText, setLoadingText] = useState('Sem tarefas salvas.');
+	const [loadingIcon, setLoadingIcon] = useState(<BiWind />);
 
 	const [tasksData, setTasksData] = useState([]);
 
@@ -53,6 +58,9 @@ const Tasks = () => {
 				<div>
 					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} />
 				</div>
+				{tasksData.length < 1 ? (
+					<Loading text={loadingText} icon={loadingIcon} />
+				) : null}
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {
 						return (

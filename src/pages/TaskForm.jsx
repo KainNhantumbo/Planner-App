@@ -40,7 +40,7 @@ const TaskForm = () => {
 	};
 
 	// discards changes and goes back to previous page
-	const discardTask = () => window.history.back();
+	const discardTask = () => navigate('/');
 
 	return (
 		<FormContainer>

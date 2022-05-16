@@ -52,11 +52,11 @@ const TaskPreviewer = () => {
 			<div className='action-buttons'>
 				<button onClick={redirectToEdit}>
 					<BiEdit />
-					<span>Edit Task</span>
+					<span>Edit</span>
 				</button>
 				<button onClick={redirectToTasks}>
 					<BiLeftArrowAlt />
-					<span>Get Back</span>
+					<span>Back</span>
 				</button>
 			</div>
 		</Container>

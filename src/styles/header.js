@@ -109,6 +109,10 @@ export const HeaderContainer = styled.section`
 
 				:hover {
 					background: rgba(${({ theme }) => theme.shadows}, 0.5);
+
+					svg {
+						color: rgb(${({ theme }) => theme.secondaryColor});
+					}
 				}
 
 				svg {

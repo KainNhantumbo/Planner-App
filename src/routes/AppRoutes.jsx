@@ -7,18 +7,61 @@ import TaskPreviewer from '../pages/TaskPreviewer';
 import TaskForm from '../pages/TaskForm';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const AppRoutes = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<SignIn />} />
 			<Route path='/signup' element={<SignUp />} />
-			<Route path='/tasks' element={<Tasks />} />
-			<Route path='/taskpreviewer/:id' element={<TaskPreviewer />} />
-			<Route path='/add/:id' element={<TaskForm />} />
-			<Route path='/contacts' element={<Contacts />} />
-			<Route path='/contacts/add/:id' element={<ContactsForm />} />
-			<Route path='/contacts/previewer/:id' element={<ContactPreviewer />} />
+			<Route
+				path='/tasks'
+				element={
+					<ProtectedRoutes>
+						<Tasks />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/taskpreviewer/:id'
+				element={
+					<ProtectedRoutes>
+						<TaskPreviewer />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/add/:id'
+				element={
+					<ProtectedRoutes>
+						<TaskForm />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/contacts'
+				element={
+					<ProtectedRoutes>
+						<Contacts />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/contacts/add/:id'
+				element={
+					<ProtectedRoutes>
+						<ContactsForm />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/contacts/previewer/:id'
+				element={
+					<ProtectedRoutes>
+						<ContactPreviewer />
+					</ProtectedRoutes>
+				}
+			/>
 		</Routes>
 	);
 };

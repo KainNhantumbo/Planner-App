@@ -108,7 +108,7 @@ export const Container = styled.div`
 				}
 			}
 
-			button {
+			button, a {
 				border: none;
 				border-style: none;
 				border-radius: 5px;
@@ -127,6 +127,11 @@ export const Container = styled.div`
 					background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
 					transition: all 200ms ease-out;
 				}
+			}
+
+			a {
+				text-align: center;
+				padding: 10px;
 			}
 		}
 	}

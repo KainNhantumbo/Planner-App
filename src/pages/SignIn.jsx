@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BiEnvelope, BiLock, BiPaperPlane } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
 	const [password, setPassword] = useState('');
@@ -46,7 +47,9 @@ const SignIn = () => {
 					<button type='submit'>Sign In</button>
 				</form>
 				<div>
-					<button>Create a new account</button>
+					<Link to={'/signup'}>
+						<button>Create a new account</button>
+					</Link>
 				</div>
 			</article>
 			<footer>&copy; 2022 Nava Planner</footer>

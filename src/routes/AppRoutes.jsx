@@ -5,11 +5,15 @@ import ContactsForm from '../pages/ContactsForm';
 import ContactPreviewer from '../pages/ContactPreviewer';
 import TaskPreviewer from '../pages/TaskPreviewer';
 import TaskForm from '../pages/TaskForm';
+import SignUp from '../pages/SignUp';
+import SignIn from '../pages/SignIn';
 
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<Tasks />} />
+			<Route path='/' element={<SignIn />} />
+			<Route path='/signup' element={<SignUp />} />
+			<Route path='/tasks' element={<Tasks />} />
 			<Route path='/taskpreviewer/:id' element={<TaskPreviewer />} />
 			<Route path='/add/:id' element={<TaskForm />} />
 			<Route path='/contacts' element={<Contacts />} />

@@ -8,6 +8,7 @@ import {
 	BiUserCheck,
 } from 'react-icons/bi';
 import { Container } from '../styles/components/signUp';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 	const [passwordError, setPasswordError] = useState('');
@@ -109,7 +110,7 @@ const SignUp = () => {
 					<span className='errorMessage'>{passwordError}</span>
 
 					<button type='submit'>Get started!</button>
-					<button>I already have account</button>
+					<Link to={'/'}>I already have account</Link>
 				</form>
 			</article>
 			<footer>&copy; 2022 Nava Planner</footer>

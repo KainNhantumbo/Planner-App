@@ -12,8 +12,6 @@ import {
 	BiLogOut,
 } from 'react-icons/bi';
 import AppRoutes from './routes/AppRoutes';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
 import { HeaderContainer } from './styles/header';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/themes';
@@ -83,7 +81,7 @@ function App() {
 					</div>
 					<nav className='navbar' style={{ display: menuStatus }}>
 						<ul>
-							<Link to='/' onClick={menuShow}>
+							<Link to='/tasks' onClick={menuShow}>
 								<li>
 									<BiSpreadsheet />
 									<span>Tasks</span>
@@ -101,7 +99,7 @@ function App() {
 									<span>Settings</span>
 								</li>
 							</Link>
-							<Link to='' onClick={menuShow}>
+							<Link to='login' onClick={menuShow}>
 								<li>
 									<BiLogOut />
 									<span>LogOut</span>

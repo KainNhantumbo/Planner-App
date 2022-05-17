@@ -130,13 +130,11 @@ export const Container = styled.div`
 			display: flex;
 			flex-direction: row;
 			gap: 10px;
-
-			@media screen and (max-width: 350px) {
-				flex-direction: column;
-			}
+			justify-content: center;
 
 			button {
 				width: 100%;
+				padding: 10px 50px;
 			}
 		}
 	}

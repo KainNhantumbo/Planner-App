@@ -1,18 +1,17 @@
 import axios from 'axios';
 const server = `http://localhost:4500/api/v1`;
+const token = JSON.parse(localStorage.getItem('access-token'));
 
-// get all tasks from the server api and
-// applies a default sorting
+// get all tasks from the server
 export const getTasks = async (setData) => {
 	try {
 		const url = `${server}/tasks`;
-		const { data } = await axios({ method: 'get', url: url });
-
-		// sorts data by tasks
-		data.data.sort((a, b) => {
-			if (a.task > b.task) return true;
-			return -1;
+		const { data } = await axios({
+			method: 'get',
+			url: url,
+			headers: { authorization: `Bearer ${token}` },
 		});
+
 		if (setData instanceof Function) return setData(() => data.data);
 	} catch (e) {
 		console.log(e);

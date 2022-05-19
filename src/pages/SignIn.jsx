@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BiEnvelope, BiLock, BiPaperPlane } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { authUser } from '../services/auth';
 
 const SignIn = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -18,40 +18,6 @@ const SignIn = () => {
 		}));
 	};
 
-	// logs the user to application
-	const server = `http://localhost:4500/api/v1`;
-	const authUser = (e) => {
-		e.preventDefault();
-		// verifies the password length
-		if (userData.password.length < 6) {
-			setErrorMessage('Password must have at least 6 characters.');
-			setTimeout(() => {
-				setErrorMessage('');
-			}, 3000);
-			return;
-		}
-		// sends a post request to the server to get the token
-		axios({
-			method: 'post',
-			data: userData,
-			url: `${server}/auth/login`,
-		})
-			.then((response) => {
-				// saves the token to localstorage
-				localStorage.setItem('token', JSON.stringify(response.data.token));
-				// navigates to app root
-				navigate('/');
-			})
-			.catch((err) => console.log(err))
-			.finally(() => {
-				// if error, sets a error message to user
-				setErrorMessage('Password or e-mail is incorrect.');
-				setTimeout(() => {
-					setErrorMessage('');
-				}, 3000);
-			});
-	};
-
 	return (
 		<Container>
 			<header>
@@ -64,7 +30,7 @@ const SignIn = () => {
 			</header>
 			<article>
 				<h3> Get started!</h3>
-				<form onSubmit={authUser}>
+				<form onSubmit={(e) => authUser(e, userData, navigate, setErrorMessage)}>
 					<label htmlFor='email'>
 						<BiEnvelope />
 						<span>E-mail</span>

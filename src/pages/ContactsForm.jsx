@@ -44,7 +44,6 @@ const ContactsForm = () => {
 
 	// params object
 	const params = useParams();
-	const hrefID = params.id;
 
 	// if :id parameter object exists, setup the fields
 	const [message, setMessage] = useState('Save');
@@ -57,9 +56,8 @@ const ContactsForm = () => {
 	};
 
 	// fetch contact data from server api
-
 	useEffect(() => {
-		fetchContact(hrefID, setDefaultInputValues);
+		fetchContact(params.id, setDefaultInputValues);
 	}, []);
 
 	// resets form value fields
@@ -72,14 +70,40 @@ const ContactsForm = () => {
 	const saveContact = (e) => {
 		e.preventDefault();
 		if (message === 'Update') {
-			patchData(hrefID, formData);
+			let { name, email, adress, surname, phone, celular, website } =
+			defaultValues;
+			let arr = [];
+			for (let [key, value] of Object.entries(formData)) {
+				if (value !== '') {
+					arr.push({ [key]: value });
+				}
+			}
+			// atual data to be sent
+			let dataToPatch = {
+				name,
+				email,
+				adress,
+				surname,
+				email,
+				phone,
+				celular,
+				website,
+				...arr.reduce((prev, currrent) => {
+					return {
+						...prev,
+						...currrent,
+					};
+				}, {}),
+			};
+			// sends data to server
+			patchData(params.id, dataToPatch);
 		} else {
 			if (!formData.name) return;
 			postData(formData);
 		}
 		navigate('/contacts');
 	};
-	
+
 	return (
 		<FormContainer>
 			<TitleBars icon={<BiUserPlus />} title={'Add Contact'} />

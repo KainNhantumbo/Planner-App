@@ -67,6 +67,7 @@ function App() {
 	// ======================================== //
 	// log out user
 	const logoutUser = () => {
+		// removes the token on localstorage
 		localStorage.removeItem('token');
 		menuShow();
 	};
@@ -86,7 +87,7 @@ function App() {
 					</div>
 					<nav className='navbar' style={{ display: menuStatus }}>
 						<ul>
-							<Link to='/tasks' onClick={menuShow}>
+							<Link to='/' onClick={menuShow}>
 								<li>
 									<BiSpreadsheet />
 									<span>Tasks</span>

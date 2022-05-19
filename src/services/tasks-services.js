@@ -22,8 +22,13 @@ export const getTasks = async (setData) => {
 export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 	try {
 		e.stopPropagation();
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const url = `${server}/tasks/${e.target.parentNode.id}`;
-		await axios({ method: 'delete', url: url });
+		await axios({
+			method: 'delete',
+			url: url,
+			headers: { authorization: `Bearer ${accessToken}` },
+		});
 		if (reloadTasks instanceof Function) return reloadTasks(...reloadParams);
 		throw new Error('The second argument must be function.');
 	} catch (e) {
@@ -36,6 +41,7 @@ export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 export const setCompletion = async (e, status, reloadTasks, ...params) => {
 	try {
 		e.stopPropagation();
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		let statusData;
 		const taskID = e.target.parentNode.id;
 		const url = `${server}/tasks/${taskID}`;
@@ -45,11 +51,12 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 		} else {
 			statusData = true;
 		}
-
+		// sends a patch request to server
 		await axios({
 			method: 'patch',
 			url: url,
 			data: { completed: statusData },
+			headers: { authorization: `Bearer ${accessToken}` },
 		});
 
 		if (reloadTasks instanceof Function) return reloadTasks(...params);
@@ -62,6 +69,7 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 	let error = false;
 	try {
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const url = `${server}/tasks`;
 		if (!setMessage instanceof Function)
 			throw new Error('The last argument must be function.');
@@ -70,14 +78,12 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 			method: 'post',
 			url: url,
 			data: { task: taskInputValue, completed: statusInput },
+			headers: { authorization: `Bearer ${accessToken}` },
 		});
 
 		if (res.status === 201) {
 			setMessage(() => 'Saved');
-		} else {
-			setMessage(() => 'Save failed');
 		}
-
 		setTimeout(() => setMessage(() => 'Save'), 2000);
 	} catch (e) {
 		console.log(e);
@@ -93,8 +99,12 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 // gets a single task by id, if present
 export const getTask = async (setData, setStatus, taskID) => {
 	try {
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const url = `${server}/tasks/${taskID}`;
-		const { data } = await axios({ url });
+		const { data } = await axios({
+			url,
+			headers: { authorization: `Bearer ${accessToken}` },
+		});
 		if (setData instanceof Function)
 			return [
 				setData(() => data.data.task),
@@ -113,20 +123,22 @@ export const taskPatcher = async (
 	taskID
 ) => {
 	try {
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const url = `${server}/tasks/${taskID}`;
+		// tests if setMessage is parameter is a function
 		if (!setMessage instanceof Function)
 			throw new Error('argument 1 is not a function');
+
 		setMessage(() => 'Loading...');
 		const res = await axios({
 			method: 'patch',
 			url: url,
 			data: { task: taskInputValue, completed: statusInput },
+			headers: { authorization: `Bearer ${accessToken}` },
 		});
 
 		if (res.status === 202) {
 			setMessage(() => 'Updated');
-		} else {
-			setMessage(() => 'Update failed');
 		}
 		setTimeout(() => setMessage(() => 'Update'), 2000);
 	} catch (e) {

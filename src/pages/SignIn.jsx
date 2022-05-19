@@ -1,12 +1,53 @@
 import React, { useState } from 'react';
 import { BiEnvelope, BiLock, BiPaperPlane } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignIn = () => {
-	const [password, setPassword] = useState('');
-	const [email, setEmail] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
+	const [userData, setUserData] = useState({ email: '', password: '' });
+	// navigation
+	const navigate = useNavigate();
+
+	// populates the userData object
+	const populateUserData = (e) => {
+		setUserData((prevData) => ({
+			...prevData,
+			[e.target.name]: e.target.value,
+		}));
+	};
+
+	// logs the user to application
+	const server = `http://localhost:4500/api/v1`;
+	const authUser = (e) => {
+		e.preventDefault();
+		// verifies the password length
+		if (userData.password.length < 6) {
+			setErrorMessage('Password must have at least 6 characters.');
+			setTimeout(() => {
+				setErrorMessage('');
+			}, 3000);
+			return;
+		}
+
+		axios({
+			method: 'post',
+			data: userData,
+			url: `${server}/auth/login`,
+		})
+			.then((response) => {
+				localStorage.setItem('token', JSON.stringify(response.data.token));
+				navigate('/');
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setErrorMessage('Password or e-mail is incorrect.');
+				setTimeout(() => {
+					setErrorMessage('');
+				}, 3000);
+			});
+	};
 
 	return (
 		<Container>
@@ -20,7 +61,7 @@ const SignIn = () => {
 			</header>
 			<article>
 				<h3> Get started!</h3>
-				<form>
+				<form onSubmit={authUser}>
 					<label htmlFor='email'>
 						<BiEnvelope />
 						<span>E-mail</span>
@@ -30,6 +71,7 @@ const SignIn = () => {
 						required
 						name='email'
 						id='email'
+						onChange={populateUserData}
 						placeholder='Type you email here...'
 					/>
 					<label htmlFor='password'>
@@ -41,13 +83,14 @@ const SignIn = () => {
 						required
 						name='password'
 						id='password'
+						onChange={populateUserData}
 						placeholder='Type your password here...'
 					/>
 					<span className='errorMessage'>{errorMessage}</span>
 					<button type='submit'>Sign In</button>
 				</form>
 				<div>
-					<Link to={'/signup'}>
+					<Link to={'/register'}>
 						<button>Create a new account</button>
 					</Link>
 				</div>

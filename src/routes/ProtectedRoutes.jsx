@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 const ProtectedRoutes = ({ children }) => {
 	const user = JSON.parse(localStorage.getItem('token'));
 	if (!user || user === undefined) {
-		return <Navigate to={'/'} />;
+		return <Navigate to={'/login'} />;
 	}
 	return children;
 };

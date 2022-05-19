@@ -1,15 +1,15 @@
 import axios from 'axios';
 const server = `http://localhost:4500/api/v1`;
-const token = JSON.parse(localStorage.getItem('access-token'));
 
 // get all tasks from the server
 export const getTasks = async (setData) => {
 	try {
+		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const url = `${server}/tasks`;
 		const { data } = await axios({
 			method: 'get',
 			url: url,
-			headers: { authorization: `Bearer ${token}` },
+			headers: { authorization: `Bearer ${accessToken}` },
 		});
 
 		if (setData instanceof Function) return setData(() => data.data);

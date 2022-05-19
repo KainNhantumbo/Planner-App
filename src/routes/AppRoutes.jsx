@@ -12,10 +12,10 @@ import ProtectedRoutes from './ProtectedRoutes';
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<SignIn />} />
-			<Route path='/signup' element={<SignUp />} />
+			<Route path='/login' element={<SignIn />} />
+			<Route path='/register' element={<SignUp />} />
 			<Route
-				path='/tasks'
+				path='/'
 				element={
 					<ProtectedRoutes>
 						<Tasks />

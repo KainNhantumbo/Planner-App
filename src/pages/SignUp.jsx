@@ -8,10 +8,13 @@ import {
 	BiUserCheck,
 } from 'react-icons/bi';
 import { Container } from '../styles/components/signUp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 	const [passwordError, setPasswordError] = useState('');
+
+	// navigation
+	const navigate = useNavigate();
 
 	// object to store form data
 	const [formData, setFormData] = useState({
@@ -110,7 +113,7 @@ const SignUp = () => {
 					<span className='errorMessage'>{passwordError}</span>
 
 					<button type='submit'>Get started!</button>
-					<Link to={'/'}>I already have account</Link>
+					<Link to={'/login'}>I already have account</Link>
 				</form>
 			</article>
 			<footer>&copy; 2022 Nava Planner</footer>

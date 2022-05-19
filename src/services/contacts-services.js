@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 // server url
 const server = `http://localhost:4500/api/v1`;
 

@@ -21,14 +21,13 @@ const Contacts = () => {
 		const id = e.target.id;
 		navigate(`/contacts/previewer/${id}`);
 	};
-
+	
+	// stores contacts data
 	const [contactsDB, setContactsDB] = useState([]);
 
 	// fetch data from server api
-	fechdata(setContactsDB);
-
 	useEffect(() => {
-		fechdata();
+		fechdata(setContactsDB);
 	}, []);
 
 	// returns each contact html structure

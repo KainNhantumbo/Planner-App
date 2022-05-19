@@ -9,7 +9,7 @@ import {
 } from 'react-icons/bi';
 import { Container } from '../styles/components/signUp';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { registerUser } from '../services/auth';
 
 const SignUp = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -34,48 +34,6 @@ const SignUp = () => {
 		}));
 	};
 
-	// handles form data
-	const server = `http://localhost:4500/api/v1`;
-	const formDataHandler = (e) => {
-		e.preventDefault();
-		if (formData.password.length < 6) {
-			setErrorMessage('Password must have at least 6 characters.');
-			setTimeout(() => {
-				setErrorMessage('');
-			}, 3000);
-			return;
-		}
-		// checks if the password and password_confirm are equal
-		if (formData.password !== formData.confirm_password) {
-			setErrorMessage('Paswords must match.');
-			setTimeout(() => {
-				setErrorMessage('');
-			}, 3000);
-			return;
-		}
-		// sends a post request to the server to register user
-		// and get the token
-		axios({
-			method: 'post',
-			data: formData,
-			url: `${server}/auth/register`,
-		})
-			.then((response) => {
-				// saves the token to localstorage
-				localStorage.setItem('token', JSON.stringify(response.data.token));
-				// navigates to app root
-				navigate('/');
-			})
-			.catch((err) => console.log(err))
-			.finally(() => {
-				// if error, sets a error message to user
-				setErrorMessage('There was an error, please try again.');
-				setTimeout(() => {
-					setErrorMessage('');
-				}, 3000);
-			});
-	};
-
 	return (
 		<Container>
 			<header>
@@ -90,7 +48,9 @@ const SignUp = () => {
 					<strong>Signup in Planner</strong>
 				</h3>
 
-				<form onSubmit={formDataHandler}>
+				<form
+					onSubmit={(e) => registerUser(e, formData, navigate, setErrorMessage)}
+				>
 					<label htmlFor='name'>
 						<BiUser />
 						<span>Name</span>

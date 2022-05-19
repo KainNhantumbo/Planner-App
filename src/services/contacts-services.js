@@ -24,14 +24,14 @@ export const fetchContact = async (urlID, setData) => {
 	try {
 		if (urlID === ':id') return;
 		const accessToken = JSON.parse(localStorage.getItem('token'));
-		console.log(accessToken);
 		const url = `${server}/contacts/${urlID}`;
 		const { data } = await axios({
 			method: 'get',
 			url: url,
 			headers: { authorization: `Bearer ${accessToken}` },
 		});
-		if (setData instanceof Function) return setData(data);
+
+		if (setData instanceof Function) return setData(data.data);
 	} catch (err) {
 		console.log(err);
 	}
@@ -64,6 +64,26 @@ export const postData = async (newContact) => {
 			data: newContact,
 			headers: { authorization: `Bearer ${accessToken}` },
 		});
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+// sends a contact delete request
+export const deleteContact = async (params, navigate) => {
+	try {
+		// verifies if navigate becomes from useNavigate()
+		if (navigate instanceof Function === false)
+			throw new Error('The second argumant must be a navigation function');
+
+		const accessToken = JSON.parse(localStorage.getItem('token'));
+		const delete_url = `${server}/contacts/${params.id}`;
+		await axios({
+			method: 'delete',
+			url: delete_url,
+			headers: { authorization: `Bearer ${accessToken}` },
+		});
+		navigate('/contacts');
 	} catch (err) {
 		console.log(err);
 	}

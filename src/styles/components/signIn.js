@@ -107,7 +107,7 @@ export const Container = styled.div`
 				border-style: none;
 				color: rgb(${({ theme }) => theme.textColor});
 				background: rgb(${({ theme }) => theme.inner});
-				box-shadow: 0 0 10px rgba(${({ theme }) => theme.shadows});
+				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 				border-radius: 5px;
 				margin-bottom: 8px;
 				padding: 8px 10px;

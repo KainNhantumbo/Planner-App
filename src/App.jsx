@@ -65,6 +65,11 @@ function App() {
 		return setMenuStatus(() => 'none');
 	};
 	// ======================================== //
+	// log out user
+	const logoutUser = () => {
+		localStorage.removeItem('token');
+		menuShow();
+	};
 
 	return (
 		<>
@@ -99,7 +104,7 @@ function App() {
 									<span>Settings</span>
 								</li>
 							</Link>
-							<Link to='login' onClick={menuShow}>
+							<Link to='login' onClick={logoutUser}>
 								<li>
 									<BiLogOut />
 									<span>LogOut</span>

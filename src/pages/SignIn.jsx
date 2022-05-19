@@ -30,18 +30,21 @@ const SignIn = () => {
 			}, 3000);
 			return;
 		}
-
+		// sends a post request to the server to get the token
 		axios({
 			method: 'post',
 			data: userData,
 			url: `${server}/auth/login`,
 		})
 			.then((response) => {
+				// saves the token to localstorage
 				localStorage.setItem('token', JSON.stringify(response.data.token));
+				// navigates to app root
 				navigate('/');
 			})
 			.catch((err) => console.log(err))
 			.finally(() => {
+				// if error, sets a error message to user
 				setErrorMessage('Password or e-mail is incorrect.');
 				setTimeout(() => {
 					setErrorMessage('');

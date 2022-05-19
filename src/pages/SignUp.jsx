@@ -9,9 +9,10 @@ import {
 } from 'react-icons/bi';
 import { Container } from '../styles/components/signUp';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
-	const [passwordError, setPasswordError] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 
 	// navigation
 	const navigate = useNavigate();
@@ -34,7 +35,46 @@ const SignUp = () => {
 	};
 
 	// handles form data
-	const formDataHandler = (e) => {};
+	const server = `http://localhost:4500/api/v1`;
+	const formDataHandler = (e) => {
+		e.preventDefault();
+		if (formData.password.length < 6) {
+			setErrorMessage('Password must have at least 6 characters.');
+			setTimeout(() => {
+				setErrorMessage('');
+			}, 3000);
+			return;
+		}
+		// checks if the password and password_confirm are equal
+		if (formData.password !== formData.confirm_password) {
+			setErrorMessage('Paswords must match.');
+			setTimeout(() => {
+				setErrorMessage('');
+			}, 3000);
+			return;
+		}
+		// sends a post request to the server to register user
+		// and get the token
+		axios({
+			method: 'post',
+			data: formData,
+			url: `${server}/auth/register`,
+		})
+			.then((response) => {
+				// saves the token to localstorage
+				localStorage.setItem('token', JSON.stringify(response.data.token));
+				// navigates to app root
+				navigate('/');
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				// if error, sets a error message to user
+				setErrorMessage('There was an error, please try again.');
+				setTimeout(() => {
+					setErrorMessage('');
+				}, 3000);
+			});
+	};
 
 	return (
 		<Container>
@@ -110,7 +150,7 @@ const SignUp = () => {
 						onChange={formDataPicker}
 					/>
 
-					<span className='errorMessage'>{passwordError}</span>
+					<span className='errorMessage'>{errorMessage}</span>
 
 					<button type='submit'>Get started!</button>
 					<Link to={'/login'}>I already have account</Link>

@@ -99,7 +99,7 @@ function App() {
 									<span>Contacts</span>
 								</li>
 							</Link>
-							<Link to='' onClick={menuShow}>
+							<Link to='/settings' onClick={menuShow}>
 								<li>
 									<BiCog />
 									<span>Settings</span>

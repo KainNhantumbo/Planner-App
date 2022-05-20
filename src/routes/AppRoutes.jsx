@@ -7,6 +7,7 @@ import TaskPreviewer from '../pages/TaskPreviewer';
 import TaskForm from '../pages/TaskForm';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
+import Settings from '../pages/Settings';
 import ProtectedRoutes from './ProtectedRoutes';
 
 const AppRoutes = () => {
@@ -59,6 +60,14 @@ const AppRoutes = () => {
 				element={
 					<ProtectedRoutes>
 						<ContactPreviewer />
+					</ProtectedRoutes>
+				}
+			/>
+			<Route
+				path='/settings'
+				element={
+					<ProtectedRoutes>
+						<Settings />
 					</ProtectedRoutes>
 				}
 			/>

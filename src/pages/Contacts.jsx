@@ -7,6 +7,7 @@ import Search from '../components/Search';
 import { fechdata } from '../services/contacts-services';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
+import { searchContacts } from '../services/contacts-services';
 
 const Contacts = () => {
 	// loading status
@@ -21,7 +22,7 @@ const Contacts = () => {
 		const id = e.target.id;
 		navigate(`/contacts/previewer/${id}`);
 	};
-	
+
 	// stores contacts data
 	const [contactsDB, setContactsDB] = useState([]);
 
@@ -47,31 +48,12 @@ const Contacts = () => {
 		);
 	};
 
-	const [searchData, setSearchData] = useState('');
-	const [searchResults, setSearchResults] = useState([]);
-	const searchContacts = (e) => {
-		// setSearchData(() => e.target.value);
-		// const searchedContacts = contactsDB.filter((element) => {
-		// 	if (element.name.toLowerCase().includes(searchData)) return element;
-		// 	if (element.surname.toLowerCase().includes(searchData)) return element;
-		// 	if (element.email.toLowerCase().includes(searchData)) return element;
-		// 	if (element.adress.toLowerCase().includes(searchData)) return element;
-		// 	if (element.website.toLowerCase().includes(searchData)) return element;
-		// 	if (element.celular.toString().toLowerCase().includes(searchData))
-		// 		return element;
-		// 	if (element.phone.toString().toLowerCase().includes(searchData))
-		// 		return element;
-		// });
-		// console.log(searchedContacts);
-		// setSearchResults(() => searchedContacts);
-	};
-
 	return (
 		<ContactsContainer>
 			<TitleBars icon={<BiCollection />} title={'Contacts'} />
 			<div>
 				<Search
-					searchEvent={searchContacts}
+					searchEvent={(e) => searchContacts(e, setContactsDB)}
 					btnURL={'/contacts/add/:id'}
 					searchPlaceholder={'Search contacts'}
 				/>
@@ -81,9 +63,8 @@ const Contacts = () => {
 				<Loading text={loadingText} icon={loadingIcon} />
 			) : null}
 
-			{searchResults.length === 0
-				? contactsDB.map(contactElements)
-				: searchResults.map(contactElements)}
+			{/* render contacts list */}
+			{contactsDB.map(contactElements)}
 		</ContactsContainer>
 	);
 };

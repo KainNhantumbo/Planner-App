@@ -74,7 +74,7 @@ export const deleteContact = async (params, navigate) => {
 	try {
 		// verifies if navigate becomes from useNavigate()
 		if (navigate instanceof Function === false)
-			throw new Error('The second argumant must be a navigation function');
+			throw new Error('The second argument must be a navigation function');
 
 		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const delete_url = `${server}/contacts/${params.id}`;
@@ -87,4 +87,24 @@ export const deleteContact = async (params, navigate) => {
 	} catch (err) {
 		console.log(err);
 	}
+};
+
+// searchs contacts
+export const searchContacts = (e, setContactsDB) => {
+	const content = e.target.value;
+	// verifies if contactsDB is a state function
+	if (setContactsDB instanceof Function === false)
+		throw new Error('The second argument must be a updateState function');
+	const accessToken = JSON.parse(localStorage.getItem('token'));
+	// makes a search request to the server
+	axios({
+		method: 'get',
+		url: `${server}/contacts?search=${content}`,
+		headers: { authorization: `Bearer ${accessToken}` },
+	})
+		.then((response) => {
+			// updates the state with received data
+			setContactsDB(response.data.data);
+		})
+		.catch((err) => console.log(err));
 };

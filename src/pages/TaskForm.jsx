@@ -32,7 +32,9 @@ const TaskForm = () => {
 	// saves the task
 	const taskHandler = () => {
 		if (taskID === ':id') {
-			return saveTask(taskInputValue, statusInput, setMessage);
+			saveTask(taskInputValue, statusInput, setMessage);
+			navigate('/');
+			return
 		} else {
 			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}

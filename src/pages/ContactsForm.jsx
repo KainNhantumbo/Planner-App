@@ -71,7 +71,7 @@ const ContactsForm = () => {
 		e.preventDefault();
 		if (message === 'Update') {
 			let { name, email, adress, surname, phone, celular, website } =
-			defaultValues;
+				defaultValues;
 			let arr = [];
 			for (let [key, value] of Object.entries(formData)) {
 				if (value !== '') {
@@ -88,10 +88,12 @@ const ContactsForm = () => {
 				phone,
 				celular,
 				website,
-				...arr.reduce((prev, currrent) => {
+				// reduces all objects into one and passes
+				// its proprieties and values
+				...arr.reduce((prev, actual) => {
 					return {
 						...prev,
-						...currrent,
+						...actual,
 					};
 				}, {}),
 			};

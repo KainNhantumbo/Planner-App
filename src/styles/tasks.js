@@ -20,7 +20,7 @@ export const TasksContainer = styled.div`
 
 	.task-container {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		gap: 15px;
 		padding: 0 8px;
 

@@ -146,4 +146,22 @@ export const taskPatcher = async (
 	}
 };
 
-
+// makes a search tasks request
+export const searchTasks = (e, setTasksData) => {
+	const content = e.target.value;
+	// verifies if setTasksTasksData is a state function
+	if (setTasksData instanceof Function === false)
+		throw new Error('The second argument must be a updateState function');
+	const accessToken = JSON.parse(localStorage.getItem('token'));
+	// makes a search request to the server
+	axios({
+		method: 'get',
+		url: `${server}/tasks?search=${content}`,
+		headers: { authorization: `Bearer ${accessToken}` },
+	})
+		.then((response) => {
+			// updates the state with received data
+			setTasksData(response.data.data);
+		})
+		.catch((err) => console.log(err));
+};

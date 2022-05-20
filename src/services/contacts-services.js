@@ -92,7 +92,7 @@ export const deleteContact = async (params, navigate) => {
 // makes a search contacts request
 export const searchContacts = (e, setContactsDB) => {
 	const content = e.target.value;
-	// verifies if contactsDB is a state function
+	// verifies if setContactsDB is a state function
 	if (setContactsDB instanceof Function === false)
 		throw new Error('The second argument must be a updateState function');
 	const accessToken = JSON.parse(localStorage.getItem('token'));

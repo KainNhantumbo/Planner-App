@@ -10,6 +10,7 @@ import {
 } from '../services/tasks-services';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
+import { searchTasks } from '../services/tasks-services';
 
 const Tasks = () => {
 	// navigation
@@ -52,7 +53,7 @@ const Tasks = () => {
 			<TitleBars title={'Tasks'} icon={<BiTask />} />
 			<section>
 				<div>
-					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} />
+					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} searchEvent={e=> searchTasks(e, setTasksData)} />
 				</div>
 				{tasksData.length < 1 ? (
 					<Loading text={'Sem tarefas salvas.'} icon={<BiWind />} />

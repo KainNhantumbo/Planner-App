@@ -89,7 +89,7 @@ export const deleteContact = async (params, navigate) => {
 	}
 };
 
-// searchs contacts
+// makes a search contacts request
 export const searchContacts = (e, setContactsDB) => {
 	const content = e.target.value;
 	// verifies if contactsDB is a state function

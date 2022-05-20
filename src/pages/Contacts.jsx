@@ -10,11 +10,7 @@ import Loading from '../components/Loading';
 import { searchContacts } from '../services/contacts-services';
 
 const Contacts = () => {
-	// loading status
-	const [loadingText, setLoadingText] = useState('Sem contactos.');
-	const [loadingIcon, setLoadingIcon] = useState(<BiWind />);
-
-	// navigation
+	// navigation function
 	const navigate = useNavigate();
 
 	// redirects to contact previewer
@@ -60,7 +56,7 @@ const Contacts = () => {
 			</div>
 
 			{contactsDB.length < 1 ? (
-				<Loading text={loadingText} icon={loadingIcon} />
+				<Loading text={'Sem contactos.'} icon={<BiWind />} />
 			) : null}
 
 			{/* render contacts list */}

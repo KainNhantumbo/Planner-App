@@ -14,13 +14,9 @@ import Loading from '../components/Loading';
 const Tasks = () => {
 	// navigation
 	const navigate = useNavigate();
-
-	// loading status
-	const [loadingText, setLoadingText] = useState('Sem tarefas salvas.');
-	const [loadingIcon, setLoadingIcon] = useState(<BiWind />);
-
+	// stores tasks data
 	const [tasksData, setTasksData] = useState([]);
-
+	// gets data form the server on every render
 	useEffect(() => {
 		getTasks(setTasksData);
 	}, []);
@@ -59,7 +55,7 @@ const Tasks = () => {
 					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} />
 				</div>
 				{tasksData.length < 1 ? (
-					<Loading text={loadingText} icon={loadingIcon} />
+					<Loading text={'Sem tarefas salvas.'} icon={<BiWind />} />
 				) : null}
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {

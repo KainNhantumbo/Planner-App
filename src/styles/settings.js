@@ -52,6 +52,7 @@ export const SettingsContainer = styled.section`
 		span {
 			position: relative;
 			padding-left: 20px;
+			pointer-events: none;
 			svg {
 				color: rgb(${({ theme }) => theme.primaryColor});
 				width: 20px;

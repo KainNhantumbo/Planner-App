@@ -34,7 +34,7 @@ export const authUser = (e, userData, navigate, setErrorMessage) => {
 		.catch((err) => console.log(err))
 		.finally(() => {
 			// if error, sets a error message to user
-			setErrorMessage('Password or e-mail is incorrect.');
+			setErrorMessage('Password or e-mail is incorrect. Try again.');
 			setTimeout(() => {
 				setErrorMessage('');
 			}, 3000);

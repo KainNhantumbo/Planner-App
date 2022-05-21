@@ -36,7 +36,7 @@ export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 	}
 };
 
-// sets completion status and makes a patch request
+// sets task completion status and makes a patch request
 // to server api
 export const setCompletion = async (e, status, reloadTasks, ...params) => {
 	try {

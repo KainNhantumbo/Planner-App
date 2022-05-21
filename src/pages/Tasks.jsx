@@ -56,7 +56,7 @@ const Tasks = () => {
 					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} searchEvent={e=> searchTasks(e, setTasksData)} />
 				</div>
 				{tasksData.length < 1 ? (
-					<Loading text={'Sem tarefas salvas.'} icon={<BiWind />} />
+					<Loading text={'Sem tarefas para mostrar.'} icon={<BiWind />} />
 				) : null}
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {

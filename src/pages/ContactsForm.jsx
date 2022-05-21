@@ -81,7 +81,6 @@ const ContactsForm = () => {
 			// atual data to be sent
 			let dataToPatch = {
 				name,
-				email,
 				adress,
 				surname,
 				email,

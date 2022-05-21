@@ -5,7 +5,7 @@ const server_url = `${server}/users`;
 
 // gets user info
 export const getUserInfo = (setData) => {
-	if (!setData instanceof Function)
+	if (setData instanceof Function === false)
 		throw new Error('Argument must be a updateState function.');
 	const accessToken = JSON.parse(localStorage.getItem('token'));
 	// makes a get request to server
@@ -15,14 +15,14 @@ export const getUserInfo = (setData) => {
 		headers: { authorization: `Bearer ${accessToken}` },
 	})
 		.then((response) => {
-			setData(response.data.data);
+			setData(response.data);
 		})
 		.catch((err) => console.log(err));
 };
 
 // deletes the user account
 export const deleteUser = (navigate) => {
-	if (!navigate instanceof Function)
+	if (navigate instanceof Function === false)
 		throw new Error('Argument must be a navigation function.');
 	const accessToken = JSON.parse(localStorage.getItem('token'));
 	axios({

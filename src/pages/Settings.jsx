@@ -1,6 +1,13 @@
 import { SettingsContainer } from '../styles/settings';
 import TitleBars from '../components/TitleBars';
-import { BiCog, BiInfoCircle, BiTrash, BiUser } from 'react-icons/bi';
+import {
+	BiCog,
+	BiInfoCircle,
+	BiPaperPlane,
+	BiTrash,
+	BiUser,
+} from 'react-icons/bi';
+import { DiMitlicence, FaCode, FaCopyright, FaGithub, GiMite, GrLicense } from 'react-icons/all';
 import React, { useState, useEffect } from 'react';
 import { deleteUser, getUserInfo } from '../services/Users';
 
@@ -51,21 +58,38 @@ const Settings = () => {
 					</h3>
 					<section>
 						<div>
-							<span>Developer: Kain Nhantumbo</span>
+							<span>
+								<BiPaperPlane />
+								<i>Planner App</i> V0.0.8 (beta)
+							</span>
 						</div>
 						<div>
 							<span>
-								Github:{' '}
-								<a href='https://github.com/KainNhantumbo' rel='noreferrer'>
+								<FaCode />
+								<i>Developer:</i> Kain Nhantumbo
+							</span>
+						</div>
+						<div>
+							<span>
+								<FaGithub />
+								<i>Github:</i>{' '}
+								<a
+									href='https://github.com/KainNhantumbo'
+									rel='noreferrer'
+									target={'_blank'}
+								>
 									github.com/KainNhantumbo
 								</a>
 							</span>
 						</div>
 						<div>
-							<span>Copyright &copy; 2022 Kain Nhantumbo</span>
+							<span>
+								<FaCopyright />
+								Copyright &copy; 2022 Kain Nhantumbo
+							</span>
 						</div>
 						<div>
-							<span>Licensed under MIT</span>
+							<span><GiMite/> Licensed under MIT</span>
 						</div>
 					</section>
 				</section>

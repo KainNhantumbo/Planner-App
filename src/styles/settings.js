@@ -108,9 +108,23 @@ export const SettingsContainer = styled.section`
 		}
 
 		.about {
+
 			div {
 				span {
-					padding-left: 12px;
+					padding-left: 20px;
+					position: relative;
+					i {
+						color: rgb(${({ theme }) => theme.primaryColor});
+					}
+
+					svg {
+						color: rgb(${({ theme }) => theme.secondaryColor});
+						width: 16px;
+						height: 16px;
+						position: absolute;
+						top: 3px;
+						left: -2px;
+					}
 				}
 			}
 		}

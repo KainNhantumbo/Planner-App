@@ -8,7 +8,7 @@ export const TitleContainer = styled.div`
 
 	span {
 		position: relative;
-		padding: 0 1.2em;
+		padding-left: 25px;
 		font-weight: 500;
 		color: rgb(${({ theme }) => theme.textColor});
 

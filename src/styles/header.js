@@ -77,24 +77,26 @@ export const HeaderContainer = styled.section`
 	}
 
 	.navbar {
-		@keyframes identifier {
-			from {
-				transform: translate(-40px, 0);
-			}
-			to {
-				transform: translate(0, 0);
-			}
-		}
-		animation: identifier 500ms ease forwards;
-		transition: 500ms ease;
-		background: rgba(${({ theme }) => theme.backgorundColor}, 0.3);
-		backdrop-filter: blur(10px);
-		max-width: 200px;
+		width: 100%;
 		position: fixed;
 		height: 100vh;
-		box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
 
 		ul {
+			@keyframes identifier {
+				from {
+					transform: translate(-40px, 0);
+				}
+				to {
+					transform: translate(0, 0);
+				}
+			}
+			animation: identifier 500ms ease forwards;
+			transition: 500ms ease;
+			background: rgba(${({ theme }) => theme.backgorundColor}, 0.3);
+			height: 100vh;
+			backdrop-filter: blur(10px);
+			max-width: fit-content;
+			box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;

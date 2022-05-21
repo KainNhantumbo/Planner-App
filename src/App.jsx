@@ -83,7 +83,15 @@ function App() {
 							<BiCategory />
 						</button>
 					</div>
-					<nav className='navbar' style={{ display: menuStatus }}>
+					<nav
+						className='navbar'
+						style={{ display: menuStatus }}
+						onClick={(e) => {
+							if (e.target.tagName === 'NAV') {
+								menuShow();
+							}
+						}}
+					>
 						<ul>
 							<Link to='/' onClick={menuShow}>
 								<li>

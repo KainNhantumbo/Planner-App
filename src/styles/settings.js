@@ -10,11 +10,87 @@ export const SettingsContainer = styled.section`
 		}
 	}
 	animation: enterAnime 300ms ease-out forwards;
-	padding: 0.5em;
+
 	margin: 0 auto;
 	width: 100%;
 	max-width: 350px;
 	position: relative;
+
+	h3 {
+		position: relative;
+		line-height: 1.6rem;
+		font-weight: 500;
+		padding-left: 20px;
+
+		svg {
+			position: absolute;
+			top: 5px;
+			left: 0;
+			color: rgb(${({ theme }) => theme.primaryColor});
+		}
+	}
+
+	button {
+		border: none;
+		border-style: none;
+		background: none;
+		padding: 8px 25px;
+		border-radius: 5px;
+		font-weight: 500;
+		box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
+		color: rgb(${({ theme }) => theme.textColor});
+		background: rgb(${({ theme }) => theme.whiteColor});
+		width: 100%;
+		margin-top: 10px;
+		cursor: pointer;
+
+		:hover {
+			box-shadow: 0 0 12px rgba(${({ theme }) => theme.shadows}, 0.8);
+			transition: all 200ms ease-out;
+		}
+
+		span {
+			position: relative;
+			padding-left: 20px;
+			svg {
+				color: rgb(${({ theme }) => theme.primaryColor});
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				left: -5px;
+				top: 0px;
+			}
+		}
+	}
+
+	.modal-container {
+		position: absolute;
+		z-index: 2000;
+		width: 100%;
+		height: 100%;
+		background: rgba(${({ theme }) => theme.backgorundColor}, 0.3);
+		backdrop-filter: blur(10px);
+		display: grid;
+		place-content: center;
+		place-items: center;
+
+		.advice {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			padding: 30px 10px;
+			box-shadow: 0 0 12px rgb(${({ theme }) => theme.shadows});
+			background: rgb(${({ theme }) => theme.whiteColor});
+			border-radius: 5px;
+			width: 90%;
+
+			.actions {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 5px;
+			}
+		}
+	}
 
 	.page {
 		display: flex;
@@ -22,64 +98,19 @@ export const SettingsContainer = styled.section`
 		gap: 20px;
 		justify-content: flex-start;
 
-		h3 {
-			position: relative;
-			line-height: 1.6rem;
-			font-weight: 500;
-			padding-left: 20px;
-
-			svg {
-				position: absolute;
-				top: 5px;
-				left: 0;
-				color: rgb(${({ theme }) => theme.primaryColor});
-			}
-		}
-
-		button {
-			border: none;
-			border-style: none;
-			background: none;
-			padding: 8px 25px;
-			border-radius: 5px;
-			font-weight: 500;
-			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
-			color: rgb(${({ theme }) => theme.textColor});
-			background: rgb(${({ theme }) => theme.whiteColor});
-			width: 100%;
-			margin-top: 10px;
-			cursor: pointer;
-
-			:hover {
-				box-shadow: 0 0 12px rgba(${({ theme }) => theme.shadows}, 0.8);
-				transition: all 200ms ease-out;
-
-				span,
-				svg {
-					color: red;
-				}
-			}
-
-			span {
-				position: relative;
-				padding-left: 20px;
-				svg {
-					color: rgb(${({ theme }) => theme.primaryColor});
-					width: 20px;
-					height: 20px;
-					position: absolute;
-					left: -5px;
-					top: 0px;
-				}
-			}
-		}
-
 		.user-info,
 		.about {
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
 			padding: 0 8px;
+
+			button:hover {
+				span,
+				svg {
+					color: red;
+				}
+			}
 
 			section {
 				position: relative;
@@ -108,7 +139,6 @@ export const SettingsContainer = styled.section`
 		}
 
 		.about {
-
 			div {
 				span {
 					padding-left: 20px;

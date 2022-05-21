@@ -1,25 +1,58 @@
 import { SettingsContainer } from '../styles/settings';
 import TitleBars from '../components/TitleBars';
 import {
+	BiArrowBack,
 	BiCog,
 	BiInfoCircle,
 	BiPaperPlane,
+	BiTagAlt,
 	BiTrash,
+	BiTrashAlt,
 	BiUser,
 } from 'react-icons/bi';
-import { FaCode, FaCopyright, FaGithub, GiMite } from 'react-icons/all';
+import {
+	FaCode,
+	FaCopyright,
+	FaGithub,
+	FaTrash,
+	GiMite,
+} from 'react-icons/all';
 import { useState, useEffect } from 'react';
 import { deleteUser, getUserInfo } from '../services/Users';
 
+
 const Settings = () => {
 	const [userData, setUserData] = useState([]);
-	
+
 	useEffect(() => {
 		getUserInfo(setUserData);
 	}, []);
 	return (
 		<SettingsContainer>
 			<TitleBars title={'Settings'} icon={<BiCog />} />
+			{/* modal */}
+			<section className='modal-container'>
+				<div className='advice'>
+					<h3>
+						<BiTrash /> <span>Do you really want to delete your account?</span>
+					</h3>
+					<div className='actions'>
+						<button>
+							<span>
+								<BiTrashAlt />
+								Yes, delete.
+							</span>
+						</button>
+						<button>
+							<span>
+								<BiArrowBack />
+								No, cancel.
+							</span>
+						</button>
+					</div>
+				</div>
+			</section>
+			{/* page content */}
 			<article className='page'>
 				<section className='user-info'>
 					<h3>

@@ -46,12 +46,10 @@ function App() {
 	const modeSwitcher = () => {
 		if (colors === lightTheme) {
 			setIconMode({ icon: <BiMoon />, name: 'moon' });
-			setMenuStatus(() => 'none');
 			setColors(() => darkTheme);
 			localStorage.setItem('theme', JSON.stringify('moon'));
 		} else {
 			setIconMode({ icon: <BiSun />, name: 'sun' });
-			setMenuStatus(() => 'none');
 			localStorage.setItem('theme', JSON.stringify('sun'));
 			setColors(() => lightTheme);
 		}

@@ -87,14 +87,12 @@ export const HeaderContainer = styled.section`
 		}
 		animation: identifier 500ms ease forwards;
 		transition: 500ms ease;
-		background-color: rgba(${({ theme }) => theme.secondaryColor}, 0.3);
+		background: rgba(${({ theme }) => theme.backgorundColor}, 0.3);
 		backdrop-filter: blur(10px);
 		max-width: 200px;
 		position: fixed;
 		height: 100vh;
-		background-color: rgb(${({ theme }) => theme.backgroundColor});
 		box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
-		border-top: 1px solid rgba(${({ theme }) => theme.shadows}, 0.5);
 
 		ul {
 			display: flex;

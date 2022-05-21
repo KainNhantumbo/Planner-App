@@ -13,10 +13,7 @@ import { deleteUser, getUserInfo } from '../services/Users';
 
 const Settings = () => {
 	const [userData, setUserData] = useState([]);
-	const { user } = userData;
-
-	const user_info = console.log(user);
-
+	
 	useEffect(() => {
 		getUserInfo(setUserData);
 	}, []);
@@ -31,19 +28,21 @@ const Settings = () => {
 					<section>
 						<div className='info'>
 							<span>Name:</span>
-							<span>user</span>
+							<span>
+								{userData.user?.map((user) => user.name + ' ' + user.surname)}
+							</span>
 						</div>
 						<div className='info'>
 							<span>E-mail:</span>
-							<span>user</span>
+							<span>{userData.user?.map((user) => user.email)}</span>
 						</div>
 						<div className='info'>
 							<span>Tasks saved:</span>
-							<span>user</span>
+							<span>{userData.tasks_saved}</span>
 						</div>
 						<div className='info'>
 							<span>Contacts saved:</span>
-							<span>user</span>
+							<span>{userData.contacts_saved}</span>
 						</div>
 						<div>
 							<button>

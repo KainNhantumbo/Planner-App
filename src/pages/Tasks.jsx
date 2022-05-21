@@ -50,13 +50,17 @@ const Tasks = () => {
 
 	return (
 		<TasksContainer>
-			<TitleBars title={'Tasks'} icon={<BiTask />} />
+			<TitleBars title={'Tasks'} icon={<BiTask />} amount={tasksData.length} />
 			<section>
 				<div>
-					<Search btnURL={'/add/:id'} searchPlaceholder={'Search tasks'} searchEvent={e=> searchTasks(e, setTasksData)} />
+					<Search
+						btnURL={'/add/:id'}
+						searchPlaceholder={'Search tasks'}
+						searchEvent={(e) => searchTasks(e, setTasksData)}
+					/>
 				</div>
 				{tasksData.length < 1 ? (
-					<Loading text={'Sem tarefas para mostrar.'} icon={<BiWind />} />
+					<Loading text={'No tasks to show.'} icon={<BiWind />} />
 				) : null}
 				<div className='task-container'>
 					{tasksData.map(({ _id, task, completed }) => {

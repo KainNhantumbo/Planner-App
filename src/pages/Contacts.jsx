@@ -46,7 +46,11 @@ const Contacts = () => {
 
 	return (
 		<ContactsContainer>
-			<TitleBars icon={<BiCollection />} title={'Contacts'} />
+			<TitleBars
+				icon={<BiCollection />}
+				title={'Contacts'}
+				amount={contactsDB.length}
+			/>
 			<div>
 				<Search
 					searchEvent={(e) => searchContacts(e, setContactsDB)}
@@ -56,7 +60,7 @@ const Contacts = () => {
 			</div>
 
 			{contactsDB.length < 1 ? (
-				<Loading text={'Sem contactos.'} icon={<BiWind />} />
+				<Loading text={'No contacts to show.'} icon={<BiWind />} />
 			) : null}
 
 			{/* render contacts list */}

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const TitleContainer = styled.div`
 	margin: 12px 0;
 	padding: 0 0.5em;
+	display: flex;
+	justify-content: space-between;
 
 	span {
 		position: relative;

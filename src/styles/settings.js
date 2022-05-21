@@ -48,9 +48,9 @@ export const SettingsContainer = styled.section`
 			background: rgb(${({ theme }) => theme.whiteColor});
 			width: 100%;
 			margin-top: 10px;
+			cursor: pointer;
 
 			:hover {
-				background: rgba(${({ theme }) => theme.secondaryColor}, 0.2);
 				box-shadow: 0 0 12px rgba(${({ theme }) => theme.shadows}, 0.8);
 				transition: all 200ms ease-out;
 

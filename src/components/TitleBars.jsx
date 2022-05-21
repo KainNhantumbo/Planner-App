@@ -1,12 +1,13 @@
-import { TitleContainer } from "../styles/components/titleBars";
+import { TitleContainer } from '../styles/components/titleBars';
 
-const TitleBars = ({icon, title}) => {
+const TitleBars = ({ icon, title, amount = null }) => {
 	return (
 		<TitleContainer>
 			<span>
 				{icon}
 				{title}
 			</span>
+			{amount ? <span>{amount} Items</span> : null}
 		</TitleContainer>
 	);
 };

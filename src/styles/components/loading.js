@@ -26,9 +26,9 @@ export const LoadingContainer = styled.section`
 		}
 
 		h3 {
-			line-height: 5rem;
+			line-height: 4rem;
 			font-weight: 500;
-			font-size: 1.6rem;
+			font-size: 1.2rem;
 			color: rgb(${({ theme }) => theme.textColor});
 		}
 	}

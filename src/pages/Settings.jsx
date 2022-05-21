@@ -7,14 +7,16 @@ import {
 	BiTrash,
 	BiUser,
 } from 'react-icons/bi';
-import { DiMitlicence, FaCode, FaCopyright, FaGithub, GiMite, GrLicense } from 'react-icons/all';
-import React, { useState, useEffect } from 'react';
+import { FaCode, FaCopyright, FaGithub, GiMite } from 'react-icons/all';
+import { useState, useEffect } from 'react';
 import { deleteUser, getUserInfo } from '../services/Users';
 
 const Settings = () => {
 	const [userData, setUserData] = useState([]);
 	const { user } = userData;
+
 	const user_info = console.log(user);
+
 	useEffect(() => {
 		getUserInfo(setUserData);
 	}, []);
@@ -89,7 +91,9 @@ const Settings = () => {
 							</span>
 						</div>
 						<div>
-							<span><GiMite/> Licensed under MIT</span>
+							<span>
+								<GiMite /> Licensed under MIT
+							</span>
 						</div>
 					</section>
 				</section>

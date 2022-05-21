@@ -94,6 +94,7 @@ export const HeaderContainer = styled.section`
 		height: 100vh;
 		background-color: rgb(${({ theme }) => theme.backgroundColor});
 		box-shadow: 0 5px 5px rgb(${({ theme }) => theme.shadows});
+		border-top: 1px solid rgba(${({ theme }) => theme.shadows}, 0.5);
 
 		ul {
 			display: flex;

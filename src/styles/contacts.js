@@ -39,13 +39,13 @@ export const ContactsContainer = styled.section`
 
 		div {
 			position: absolute;
-			left: 1.2px;
-			top: 5px;
+			left: 0;
+			top: 8px;
 			pointer-events: none;
 
 			svg {
-				width: 32px;
-				height: 32px;
+				width: 28px;
+				height: 28px;
 			}
 		}
 

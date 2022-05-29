@@ -141,7 +141,6 @@ export const Container = styled.div`
 
 	footer {
 		width: 100%;
-		margin: 0 auto;
 		position: fixed;
 		bottom: 20px;
 		text-align: center;

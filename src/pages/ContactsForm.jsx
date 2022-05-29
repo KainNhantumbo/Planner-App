@@ -20,7 +20,8 @@ import {
 } from '../services/contacts-services';
 
 const ContactsForm = () => {
-	// input fields state values
+	const navigate = useNavigate();
+	const params = useParams();
 	const [formData, setFormData] = useState({
 		name: '',
 		surname: '',
@@ -39,18 +40,16 @@ const ContactsForm = () => {
 		}));
 	};
 
-	// navigation
-	const navigate = useNavigate();
-
-	// params object
-	const params = useParams();
-
 	// if :id parameter object exists, setup the fields
 	const [message, setMessage] = useState('Save');
-	const [defaultValues, setDefaultValues] = useState({});
 	const [btnState, setBtnState] = useState({});
 	const setDefaultInputValues = (data) => {
-		setDefaultValues(data);
+		delete data.updatedAt;
+		delete data.createdAt;
+		delete data.createdBy;
+		delete data._id;
+		delete data.__v;
+		setFormData(data);
 		setBtnState({ display: 'none' });
 		setMessage(() => 'Update');
 	};
@@ -69,37 +68,10 @@ const ContactsForm = () => {
 	// saves a new contact, if id exists, it makes a update
 	const saveContact = (e) => {
 		e.preventDefault();
+		if (!formData.name) return;
 		if (message === 'Update') {
-			let { name, email, adress, surname, phone, celular, website } =
-				defaultValues;
-			let arr = [];
-			for (let [key, value] of Object.entries(formData)) {
-				if (value !== '') {
-					arr.push({ [key]: value });
-				}
-			}
-			// atual data to be sent
-			let dataToPatch = {
-				name,
-				adress,
-				surname,
-				email,
-				phone,
-				celular,
-				website,
-				// reduces all objects into one and passes
-				// its proprieties and values
-				...arr.reduce((prev, actual) => {
-					return {
-						...prev,
-						...actual,
-					};
-				}, {}),
-			};
-			// sends data to server
-			patchData(params.id, dataToPatch);
+			patchData(params.id, formData);
 		} else {
-			if (!formData.name) return;
 			postData(formData);
 		}
 		navigate('/contacts');
@@ -113,7 +85,7 @@ const ContactsForm = () => {
 				<input
 					type='text'
 					name='name'
-					defaultValue={defaultValues.name}
+					value={formData.name}
 					onChange={formDataPicker}
 					required
 				/>
@@ -121,42 +93,42 @@ const ContactsForm = () => {
 				<input
 					type='text'
 					name='surname'
-					defaultValue={defaultValues.surname}
+					value={formData.surname}
 					onChange={formDataPicker}
 				/>
 				<label htmlFor='phone'>{<BiPhone />}Phone Number</label>
 				<input
 					type='number'
 					name='phone'
-					defaultValue={defaultValues.phone}
+					value={formData.phone}
 					onChange={formDataPicker}
 				/>
 				<label htmlFor='celular'>{<BiMobile />}Mobile Number</label>
 				<input
 					type='number'
 					name='celular'
-					defaultValue={defaultValues.celular}
+					value={formData.celular}
 					onChange={formDataPicker}
 				/>
 				<label htmlFor='email'>{<BiMessage />}Email</label>
 				<input
 					type='email'
 					name='email'
-					defaultValue={defaultValues.email}
+					value={formData.email}
 					onChange={formDataPicker}
 				/>
 				<label htmlFor='website'>{<BiPlanet />}Website</label>
 				<input
 					type='text'
 					name='website'
-					defaultValue={defaultValues.website}
+					value={formData.website}
 					onChange={formDataPicker}
 				/>
 				<label htmlFor='adress'>{<BiMap />}Adress</label>
 				<input
 					type='text'
 					name='adress'
-					defaultValue={defaultValues.adress}
+					value={formData.adress}
 					onChange={formDataPicker}
 				/>
 				<div className='action-buttons'>

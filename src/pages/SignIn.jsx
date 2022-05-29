@@ -64,7 +64,7 @@ const SignIn = () => {
 					</Link>
 				</div>
 			</article>
-			<footer>&copy; 2022 Nava Planner</footer>
+			<footer>&copy; 2022 Nava Planner - All rights reserved.</footer>
 		</Container>
 	);
 };

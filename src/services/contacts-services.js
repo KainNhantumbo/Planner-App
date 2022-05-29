@@ -12,8 +12,7 @@ export const fechdata = async (setData) => {
 			url: url,
 			headers: { authorization: `Bearer ${accessToken}` },
 		});
-
-		if (setData instanceof Function) return setData(() => data.data);
+		if (setData instanceof Function === true) return setData(() => data.data);
 	} catch (err) {
 		console.log(err);
 	}
@@ -30,14 +29,12 @@ export const fetchContact = async (urlID, setData) => {
 			url: url,
 			headers: { authorization: `Bearer ${accessToken}` },
 		});
-
-		if (setData instanceof Function) return setData(data.data);
+		if (setData instanceof Function === true) return setData(data.data);
 	} catch (err) {
 		console.log(err);
 	}
 };
 
-// sends a patch request to server api
 export const patchData = async (urlID, updatedObj) => {
 	try {
 		const accessToken = JSON.parse(localStorage.getItem('token'));
@@ -49,7 +46,7 @@ export const patchData = async (urlID, updatedObj) => {
 			headers: { authorization: `Bearer ${accessToken}` },
 		});
 	} catch (err) {
-		console.log(err);
+		console.log(err.response.data.errors.message);
 	}
 };
 
@@ -72,10 +69,8 @@ export const postData = async (newContact) => {
 // sends a contact delete request
 export const deleteContact = async (params, navigate) => {
 	try {
-		// verifies if navigate becomes from useNavigate()
 		if (navigate instanceof Function === false)
 			throw new Error('The second argument must be a navigation function');
-
 		const accessToken = JSON.parse(localStorage.getItem('token'));
 		const delete_url = `${server}/contacts/${params.id}`;
 		await axios({
@@ -92,11 +87,9 @@ export const deleteContact = async (params, navigate) => {
 // makes a search contacts request
 export const searchContacts = (e, setContactsDB) => {
 	const content = e.target.value;
-	// verifies if setContactsDB is a state function
 	if (setContactsDB instanceof Function === false)
 		throw new Error('The second argument must be a updateState function');
 	const accessToken = JSON.parse(localStorage.getItem('token'));
-	// makes a search request to the server
 	axios({
 		method: 'get',
 		url: `${server}/contacts?search=${content}`,

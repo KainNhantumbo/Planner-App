@@ -42,16 +42,17 @@ export const TasksContainer = styled.div`
 
 			span {
 				font-weight: 500;
-				margin: auto 0;
-				margin-left: 28px;
+				margin: auto 28px;
 				pointer-events: none;
+				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
+				line-height: 1.4rem;
 			}
 
 			.completion-btn {
 				position: absolute;
-				top: 13px;
+				top: 15px;
 				left: 8px;
 				width: 20px;
 				height: 22px;
@@ -68,7 +69,7 @@ export const TasksContainer = styled.div`
 
 			button {
 				position: absolute;
-				top: 8px;
+				top: 11px;
 				right: 5px;
 				width: 30px;
 				height: 30px;

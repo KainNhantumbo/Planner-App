@@ -1,5 +1,7 @@
+# Nava Planner App
+This is a bookmark app that allows the user to store contacts and tasks. It is on final stage of the core development, the first stable version is coming soon.
 ## Scripts for testing
-Make sure you have installed **Node.js (v16.0.3 or later recommended) and also comes with npm**.\
+Make sure you have installed **Node.js (v16.14.0 or later recommended) and also comes with npm**.\
 In the project directory, you can run in terminal:
 
 ```bash

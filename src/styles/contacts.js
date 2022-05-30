@@ -52,10 +52,11 @@ export const ContactsContainer = styled.section`
 		section {
 			padding: 8px;
 			pointer-events: none;
-
+			overflow: hidden;
+			text-overflow: ellipsis;
 			span {
 				padding-left: 2em;
-				word-wrap: break-word;
+				white-space: nowrap;
 				color: rgb(${({ theme }) => theme.textColor});
 				pointer-events: none;
 			}

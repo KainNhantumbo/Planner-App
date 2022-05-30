@@ -10,17 +10,13 @@ import Loading from '../components/Loading';
 import { searchContacts } from '../services/contacts-services';
 
 const Contacts = () => {
-	// navigation function
 	const navigate = useNavigate();
-
-	// redirects to contact previewer
+	// stores contacts data
+	const [contactsDB, setContactsDB] = useState([]);
 	const onClickHandler = (e) => {
 		const id = e.target.id;
 		navigate(`/contacts/previewer/${id}`);
 	};
-
-	// stores contacts data
-	const [contactsDB, setContactsDB] = useState([]);
 
 	// fetch data from server api
 	useEffect(() => {

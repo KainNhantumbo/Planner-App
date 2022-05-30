@@ -81,7 +81,12 @@ const Settings = () => {
 								<BiIdCard />
 								<span>Name:</span>
 							</h3>
-							<span className='data'>
+							<span
+								title={userData.user?.map(
+									(user) => user.name + ' ' + user.surname
+								)}
+								className='data'
+							>
 								{userData.user?.map((user) => user.name + ' ' + user.surname)}
 							</span>
 						</div>
@@ -90,7 +95,10 @@ const Settings = () => {
 								<BiEnvelope />
 								<span>E-mail:</span>
 							</h3>
-							<span className='data'>
+							<span
+								title={userData.user?.map((user) => user.email)}
+								className='data'
+							>
 								{userData.user?.map((user) => user.email)}
 							</span>
 						</div>
@@ -131,19 +139,20 @@ const Settings = () => {
 						<div className='info'>
 							<h3>
 								<FaCode />
-								<span>Developer: Kain Nhantumbo</span>
+								<span title='Kain Nhantumbo'>Developer: Kain Nhantumbo</span>
 							</h3>
 						</div>
 						<div className='info'>
 							<h3>
 								<FaGithub />
-								<span>
-									Github: {' '}
+								<span title='github.com/KainNhantumbo'>
+									Github:
 									<a
 										href='https://github.com/KainNhantumbo'
 										rel='noreferrer'
 										target={'_blank'}
 									>
+										{' '}
 										github.com/KainNhantumbo
 									</a>
 								</span>
@@ -152,7 +161,9 @@ const Settings = () => {
 						<div className='info'>
 							<h3>
 								<FaCopyright />
-								<span>Copyright &copy; 2022 Kain Nhantumbo</span>
+								<span title='Copyright &copy; 2022 Kain Nhantumbo'>
+									Copyright &copy; 2022 Kain Nhantumbo
+								</span>
 							</h3>
 						</div>
 						<div className='info'>

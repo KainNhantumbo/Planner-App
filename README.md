@@ -1,5 +1,18 @@
 # Nava Planner App
-This is a bookmark app that allows the user to store contacts and tasks. It is on final stage of the core development, the first stable version is coming soon.
+This is a bookmark web application developed with React.JS that allows users to create accounts and start to store contacts and tasks. It is now on final stage of the client and api development, so the first stable and deployed version is coming soon.
+
+### Here are some screenshots
+![](/src/assets/captures/capture00.jpeg)
+![](/src/assets/captures/capture01.jpeg)
+![](/src/assets/captures/capture02.jpeg)
+![](/src/assets/captures/capture03.jpeg)
+![](/src/assets/captures/capture04.jpeg)
+## Features
+- Light and dark modes (preferences saved on localstorage).
+- Creating accounts and store user data.
+- Data is stored on mongo database.
+- All application data flow is based on http calls with the api.
+
 ## Scripts for testing
 Make sure you have installed **Node.js (v16.14.0 or later recommended) and also comes with npm**.\
 In the project directory, you can run in terminal:

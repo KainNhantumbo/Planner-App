@@ -2,19 +2,23 @@ import { SettingsContainer } from '../styles/settings';
 import TitleBars from '../components/TitleBars';
 import {
 	BiArrowBack,
+	BiBookBookmark,
 	BiCog,
+	BiEnvelope,
+	BiIdCard,
 	BiInfoCircle,
 	BiPaperPlane,
-	BiTagAlt,
+	BiTask,
 	BiTrash,
 	BiTrashAlt,
 	BiUser,
+	BiUserCircle,
 } from 'react-icons/bi';
 import {
+	BsListTask,
 	FaCode,
 	FaCopyright,
 	FaGithub,
-	FaTrash,
 	GiMite,
 } from 'react-icons/all';
 import { useState, useEffect } from 'react';
@@ -40,14 +44,13 @@ const Settings = () => {
 				<section className='modal-container'>
 					<div className='advice'>
 						<h3>
-							<BiTrash />{' '}
+							<BiTrash />
 							<span>Do you really want to delete your account?</span>
 						</h3>
 						<div className='actions'>
 							<button
 								onClick={(e) => {
 									setModalState(false);
-									// deletes a user
 									deleteUser(navigate);
 								}}
 							>
@@ -74,22 +77,36 @@ const Settings = () => {
 					</h3>
 					<section>
 						<div className='info'>
-							<span>Name:</span>
-							<span>
+							<h3>
+								<BiIdCard />
+								<span>Name:</span>
+							</h3>
+							<span className='data'>
 								{userData.user?.map((user) => user.name + ' ' + user.surname)}
 							</span>
 						</div>
 						<div className='info'>
-							<span>E-mail:</span>
-							<span>{userData.user?.map((user) => user.email)}</span>
+							<h3>
+								<BiEnvelope />
+								<span>E-mail:</span>
+							</h3>
+							<span className='data'>
+								{userData.user?.map((user) => user.email)}
+							</span>
 						</div>
 						<div className='info'>
-							<span>Tasks saved:</span>
-							<span>{userData.tasks_saved}</span>
+							<h3>
+								<BiTask />
+								<span>Tasks saved:</span>
+							</h3>
+							<span className='data'>{userData.tasks_saved}</span>
 						</div>
 						<div className='info'>
-							<span>Contacts saved:</span>
-							<span>{userData.contacts_saved}</span>
+							<h3>
+								<BiBookBookmark />
+								<span>Contacts saved:</span>
+							</h3>
+							<span className='data'>{userData.contacts_saved}</span>
 						</div>
 						<div>
 							<button onClick={(e) => setModalState(true)}>
@@ -105,41 +122,44 @@ const Settings = () => {
 						<BiInfoCircle /> <span>About</span>
 					</h3>
 					<section>
-						<div>
-							<span>
+						<div className='info'>
+							<h3>
 								<BiPaperPlane />
-								<i>Planner App</i> V0.0.8 (beta)
-							</span>
+								Planner App V0.0.9 (beta)
+							</h3>
 						</div>
-						<div>
-							<span>
+						<div className='info'>
+							<h3>
 								<FaCode />
-								<i>Developer:</i> Kain Nhantumbo
-							</span>
+								<span>Developer: Kain Nhantumbo</span>
+							</h3>
 						</div>
-						<div>
-							<span>
+						<div className='info'>
+							<h3>
 								<FaGithub />
-								<i>Github:</i>{' '}
-								<a
-									href='https://github.com/KainNhantumbo'
-									rel='noreferrer'
-									target={'_blank'}
-								>
-									github.com/KainNhantumbo
-								</a>
-							</span>
+								<span>
+									Github: {' '}
+									<a
+										href='https://github.com/KainNhantumbo'
+										rel='noreferrer'
+										target={'_blank'}
+									>
+										github.com/KainNhantumbo
+									</a>
+								</span>
+							</h3>
 						</div>
-						<div>
-							<span>
+						<div className='info'>
+							<h3>
 								<FaCopyright />
-								Copyright &copy; 2022 Kain Nhantumbo
-							</span>
+								<span>Copyright &copy; 2022 Kain Nhantumbo</span>
+							</h3>
 						</div>
-						<div>
-							<span>
-								<GiMite /> Licensed under MIT
-							</span>
+						<div className='info'>
+							<h3>
+								<GiMite />
+								<span>Licensed under MIT</span>
+							</h3>
 						</div>
 					</section>
 				</section>

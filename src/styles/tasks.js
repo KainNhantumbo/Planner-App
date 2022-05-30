@@ -45,6 +45,8 @@ export const TasksContainer = styled.div`
 				margin: auto 0;
 				margin-left: 28px;
 				pointer-events: none;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 
 			.completion-btn {

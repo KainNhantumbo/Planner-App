@@ -121,7 +121,7 @@ export const SettingsContainer = styled.section`
 				border-radius: 5px;
 				box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 				padding: 10px;
-				gap: 12px;
+				gap: 5px;
 				position: relative;
 				background: rgb(${({ theme }) => theme.whiteColor});
 
@@ -133,29 +133,34 @@ export const SettingsContainer = styled.section`
 				.info {
 					display: flex;
 					justify-content: space-between;
-					gap: 5px;
+					gap: 20px;
 					flex-direction: row;
+
+					h3 {
+						white-space: nowrap;
+						svg {
+							color: rgb(${({ theme }) => theme.secondaryColor});
+						}
+					}
+
+					.data {
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						line-height: 1.4rem;
+					}
 				}
 			}
 		}
 
 		.about {
-			div {
-				span {
-					padding-left: 20px;
-					position: relative;
-					i {
-						color: rgb(${({ theme }) => theme.primaryColor});
-					}
+			.info {
+				line-height: 1.4rem;
 
-					svg {
-						color: rgb(${({ theme }) => theme.secondaryColor});
-						width: 16px;
-						height: 16px;
-						position: absolute;
-						top: 3px;
-						left: -2px;
-					}
+				h3, span {
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
 				}
 			}
 		}

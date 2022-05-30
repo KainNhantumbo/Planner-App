@@ -60,7 +60,7 @@ const ContactsForm = () => {
 	}, []);
 
 	// resets form value fields
-	const resetForm = (e) => {
+const resetForm = (e) => {
 		e.preventDefault();
 		e.target.reset();
 	};

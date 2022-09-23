@@ -12,10 +12,6 @@ import {
 	BiTrash,
 	BiTrashAlt,
 	BiUser,
-	BiUserCircle,
-} from 'react-icons/bi';
-import {
-	BsListTask,
 	FaCode,
 	FaCopyright,
 	FaGithub,
@@ -26,9 +22,7 @@ import { deleteUser, getUserInfo } from '../services/Users';
 import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
-	// navigation function
 	const navigate = useNavigate();
-	// stores user information
 	const [userData, setUserData] = useState([]);
 	// stores modal states
 	const [modalState, setModalState] = useState(false);

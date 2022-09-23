@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import TitleBars from '../components/TitleBars';
+import Search from '../components/Search';
+import Loading from '../components/Loading';
+import { useEffect, useState } from 'react';
 import { ContactsContainer } from '../styles/contacts';
 import { BiCollection, BiWind } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
-import TitleBars from '../components/TitleBars';
-import Search from '../components/Search';
 import { fechdata } from '../services/contacts-services';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../components/Loading';
 import { searchContacts } from '../services/contacts-services';
 
 const Contacts = () => {
@@ -18,27 +18,9 @@ const Contacts = () => {
 		navigate(`/contacts/previewer/${id}`);
 	};
 
-	// fetch data from server api
 	useEffect(() => {
 		fechdata(setContactsDB);
 	}, []);
-
-	// returns each contact html structure
-	const contactElements = (contact) => {
-		return (
-			<div
-				key={contact._id}
-				id={contact._id}
-				className='contact-section'
-				onClick={onClickHandler}
-			>
-				<div>{!contact.image ? <MdAccountCircle /> : contact.image}</div>
-				<section>
-					<span>{contact.name + ' ' + contact.surname}</span>
-				</section>
-			</div>
-		);
-	};
 
 	return (
 		<ContactsContainer>
@@ -60,7 +42,19 @@ const Contacts = () => {
 			) : null}
 
 			{/* render contacts list */}
-			{contactsDB.map(contactElements)}
+			{contactsDB.map((contact) => (
+				<div
+					key={contact._id}
+					id={contact._id}
+					className='contact-section'
+					onClick={onClickHandler}
+				>
+					<div>{contact.image ? contact.image : <MdAccountCircle />}</div>
+					<section>
+						<span>{contact.name + ' ' + contact.surname}</span>
+					</section>
+				</div>
+			))}
 		</ContactsContainer>
 	);
 };

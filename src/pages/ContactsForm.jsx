@@ -54,13 +54,12 @@ const ContactsForm = () => {
 		setMessage(() => 'Update');
 	};
 
-	// fetch contact data from server api
 	useEffect(() => {
 		fetchContact(params.id, setDefaultInputValues);
 	}, []);
 
 	// resets form value fields
-const resetForm = (e) => {
+	const resetForm = (e) => {
 		e.preventDefault();
 		e.target.reset();
 	};

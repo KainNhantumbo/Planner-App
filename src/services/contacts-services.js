@@ -67,12 +67,12 @@ export const postData = async (newContact) => {
 };
 
 // sends a contact delete request
-export const deleteContact = async (params, navigate) => {
+export const deleteContact = async (contactId, navigate) => {
 	try {
 		if (navigate instanceof Function === false)
 			throw new Error('The second argument must be a navigation function');
 		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const delete_url = `${server}/contacts/${params.id}`;
+		const delete_url = `${server}/contacts/${contactId}`;
 		await axios({
 			method: 'delete',
 			url: delete_url,

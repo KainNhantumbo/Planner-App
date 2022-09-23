@@ -42,6 +42,13 @@ export const Container = styled.article`
 					border-radius: 5px;
 				}
 			}
+
+			.website {
+				div {
+					line-height: 1.4rem;
+					color: rgb(${({ theme }) => theme.primaryColor});
+				}
+			}
 		}
 	}
 

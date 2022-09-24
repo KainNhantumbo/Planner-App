@@ -1,37 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import TitleBars from '../components/TitleBars';
 import { Container } from '../styles/taskPreviewer';
-import {  BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
+import { useState, useEffect } from 'react';
+import { BiEdit, BiLeftArrowAlt, BiTask } from 'react-icons/bi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTask } from '../services/tasks-services';
 
 const TaskPreviewer = () => {
-	const [status, setStatus] = useState('Completed');
-	const [task, setTask] = useState('');
-
-	// gets url id parameter as taskID
-	// from urlParams object
-	const { id: taskID } = useParams();
-
-	// navigation
 	const navigate = useNavigate();
+	const [task, setTask] = useState('');
+	const { id: taskID } = useParams();
+	const [status, setStatus] = useState(false);
 
-  // shows the status of task, if it's false or true
-	const handleStatus = () => {
-		if (status === true) return 'Completed';
-		return 'Uncompleted';
-	};
-
-  // loads the page with designed task
 	useEffect(() => {
 		getTask(setTask, setStatus, taskID);
 	}, []);
-
-	// redirects to edit and add tasks page
-	const redirectToEdit = () => navigate(`/add/${taskID}`);
-
-	// redirects to tasks page
-	const redirectToTasks = () => navigate('/');
 
 	return (
 		<Container>
@@ -40,21 +22,20 @@ const TaskPreviewer = () => {
 				<ul>
 					<li>
 						<span>Task</span>
-						<div></div>
-						{task}
+						<div>{task}</div>
 					</li>
 					<li>
 						<span>Status</span>
-						<div>{handleStatus()}</div>
+						<div>{status ? 'Completed' : 'Uncompleted'}</div>
 					</li>
 				</ul>
 			</section>
 			<div className='action-buttons'>
-				<button onClick={redirectToEdit}>
+				<button onClick={() => navigate(`/add/${taskID}`)}>
 					<BiEdit />
 					<span>Edit</span>
 				</button>
-				<button onClick={redirectToTasks}>
+				<button onClick={() => navigate('/')}>
 					<BiLeftArrowAlt />
 					<span>Back</span>
 				</button>

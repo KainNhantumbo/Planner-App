@@ -35,10 +35,14 @@ export const Container = styled.section`
 				background: rgb(${({ theme }) => theme.whiteColor});
 
 				span {
-					font-weight: 500;
+					font-weight: 600;
 					padding: 5px;
 					background: rgba(${({ theme }) => theme.secondaryColor}, 0.3);
 					border-radius: 5px;
+				}
+
+				div {
+					line-height: 1.6rem;
 				}
 			}
 		}

@@ -1,5 +1,4 @@
-import axios from 'axios';
-const server = `http://localhost:4500/api/v1/auth`;
+import apiClient from "../api/axios";
 
 // authenticates the user
 export const authUser = (e, userData, navigate, setErrorMessage) => {
@@ -11,7 +10,6 @@ export const authUser = (e, userData, navigate, setErrorMessage) => {
 	if (setErrorMessage instanceof Function === false)
 		throw new Error('The fourth argument must be a setMessage state function');
 
-	// verifies the password length
 	if (userData.password.length < 6) {
 		setErrorMessage('Password must have at least 6 characters.');
 		setTimeout(() => {
@@ -19,21 +17,18 @@ export const authUser = (e, userData, navigate, setErrorMessage) => {
 		}, 3000);
 		return;
 	}
-	// sends a post request to the server to get the token
-	axios({
+
+	apiClient({
 		method: 'post',
 		data: userData,
-		url: `${server}/login`,
+		url: '/auth/login',
 	})
 		.then((response) => {
-			// saves the token to localstorage
-			localStorage.setItem('token', JSON.stringify(response.data.token));
-			// navigates to app root
+			localStorage.setItem('user_token', JSON.stringify(response.data.token));
 			navigate('/');
 		})
 		.catch((err) => console.log(err))
 		.finally(() => {
-			// if error, sets a error message to user
 			setErrorMessage('Password or e-mail is incorrect. Try again.');
 			setTimeout(() => {
 				setErrorMessage('');
@@ -50,7 +45,7 @@ export const registerUser = (e, formData, navigate, setErrorMessage) => {
 	// verifies if setMessage is a state function
 	if (setErrorMessage instanceof Function === false)
 		throw new Error('The fourth argument must be a setMessage state function');
-	// verifies the password length
+
 	if (formData.password.length < 6) {
 		setErrorMessage('Password must have at least 6 characters.');
 		setTimeout(() => {
@@ -66,22 +61,18 @@ export const registerUser = (e, formData, navigate, setErrorMessage) => {
 		}, 3000);
 		return;
 	}
-	// sends a post request to the server to register user
-	// and get the token
-	axios({
+
+	apiClient({
 		method: 'post',
 		data: formData,
-		url: `${server}/register`,
+		url: '/auth/register',
 	})
 		.then((response) => {
-			// saves the token to localstorage
-			localStorage.setItem('token', JSON.stringify(response.data.token));
-			// navigates to app root
+			localStorage.setItem('user_token', JSON.stringify(response.data.token));
 			navigate('/');
 		})
 		.catch((err) => console.log(err))
 		.finally(() => {
-			// if error, sets a error message to user
 			setErrorMessage('There was an error, please try again.');
 			setTimeout(() => {
 				setErrorMessage('');

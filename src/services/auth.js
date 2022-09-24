@@ -3,13 +3,10 @@ import apiClient from "../api/axios";
 // authenticates the user
 export const authUser = (e, userData, navigate, setErrorMessage) => {
 	e.preventDefault();
-	// verifies if navigate becomes from useNavigate()
 	if (navigate instanceof Function === false)
 		throw new Error('The third argumant must be a navigate function.');
-	// verifies if setMessage is a state function
 	if (setErrorMessage instanceof Function === false)
 		throw new Error('The fourth argument must be a setMessage state function');
-
 	if (userData.password.length < 6) {
 		setErrorMessage('Password must have at least 6 characters.');
 		setTimeout(() => {
@@ -17,7 +14,6 @@ export const authUser = (e, userData, navigate, setErrorMessage) => {
 		}, 3000);
 		return;
 	}
-
 	apiClient({
 		method: 'post',
 		data: userData,
@@ -39,13 +35,10 @@ export const authUser = (e, userData, navigate, setErrorMessage) => {
 // registers a new user
 export const registerUser = (e, formData, navigate, setErrorMessage) => {
 	e.preventDefault();
-	// verifies if navigate becomes from useNavigate()
 	if (navigate instanceof Function === false)
 		throw new Error('The third argumant must be a navigate function.');
-	// verifies if setMessage is a state function
 	if (setErrorMessage instanceof Function === false)
 		throw new Error('The fourth argument must be a setMessage state function');
-
 	if (formData.password.length < 6) {
 		setErrorMessage('Password must have at least 6 characters.');
 		setTimeout(() => {
@@ -53,7 +46,6 @@ export const registerUser = (e, formData, navigate, setErrorMessage) => {
 		}, 3000);
 		return;
 	}
-	// checks if the password and password_confirm are equal
 	if (formData.password !== formData.confirm_password) {
 		setErrorMessage('Paswords must match.');
 		setTimeout(() => {

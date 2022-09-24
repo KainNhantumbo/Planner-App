@@ -27,7 +27,7 @@ const Tasks = () => {
 
 	// sets completed task styles
 	const setTaskAppearence = (status) => {
-		if (status === true)
+		if (status)
 			return {
 				textDecoration: 'line-through',
 				fontStyle: 'italic',
@@ -43,6 +43,7 @@ const Tasks = () => {
 				<div>
 					<Search
 						btnURL={'/add/:id'}
+						title={'Add new task'}
 						searchPlaceholder={'Search tasks'}
 						searchEvent={(e) => searchTasks(e, setTasksData)}
 					/>
@@ -51,28 +52,26 @@ const Tasks = () => {
 					<Loading text={'No tasks to show.'} icon={<BiWind />} />
 				) : null}
 				<div className='task-container'>
-					{tasksData.map(({ _id, task, completed }) => {
-						return (
-							<div key={_id} id={_id} onClick={redirect}>
-								<button
-									className='completion-btn'
-									onClick={(e) =>
-										setCompletion(e, completed, getTasks, setTasksData)
-									}
-								>
-									<BiTask />
-								</button>
+					{tasksData.map(({ _id, task, completed }) => (
+						<div key={_id} id={_id} onClick={redirect}>
+							<button
+								className='completion-btn'
+								onClick={(e) =>
+									setCompletion(e, completed, getTasks, setTasksData)
+								}
+							>
+								<BiTask />
+							</button>
 
-								<span id='task' style={setTaskAppearence(completed)}>
-									{task}
-								</span>
+							<span id='task' style={setTaskAppearence(completed)}>
+								{task}
+							</span>
 
-								<button onClick={(e) => deleteTask(e, getTasks, setTasksData)}>
-									<BiTrash />
-								</button>
-							</div>
-						);
-					})}
+							<button onClick={(e) => deleteTask(e, getTasks, setTasksData)}>
+								<BiTrash />
+							</button>
+						</div>
+					))}
 				</div>
 			</section>
 		</TasksContainer>

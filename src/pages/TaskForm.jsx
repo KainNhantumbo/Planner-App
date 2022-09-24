@@ -1,5 +1,3 @@
-import { FormContainer } from '../styles/taskForm';
-import TitleBars from '../components/TitleBars';
 import {
 	BiLeftArrowAlt,
 	BiNote,
@@ -7,8 +5,10 @@ import {
 	BiSave,
 	BiStats,
 } from 'react-icons/bi';
+import TitleBars from '../components/TitleBars';
+import { FormContainer as Container } from '../styles/taskForm';
 import { useParams, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { saveTask, getTask, taskPatcher } from '../services/tasks-services';
 
 const TaskForm = () => {
@@ -41,7 +41,7 @@ const TaskForm = () => {
 	const discardTask = () => navigate('/');
 
 	return (
-		<FormContainer>
+		<Container>
 			<TitleBars title={'Add Task'} icon={<BiPlus />} />
 			<section>
 				<label htmlFor='task'>
@@ -78,7 +78,7 @@ const TaskForm = () => {
 					<span>Back</span>
 				</button>
 			</div>
-		</FormContainer>
+		</Container>
 	);
 };
 

@@ -2,18 +2,17 @@ import apiClient from './axios';
 
 /**
  * Makes a connection to the server api
- * @param config object with connection method, url and data (optional)
+ * @param config AxiosRequestConfig<any> | undefined
  * @returns AxiosPromise<any>
  */
 const fetchClient = (config) => {
 	const accessToken = JSON.parse(
 		localStorage.getItem('user_token') || `{"user_token":""}`
 	);
-	const token = `Bearer ${accessToken}`;
 	return apiClient({
 		...config,
 		headers: {
-			authorization: token,
+			authorization: `Bearer ${accessToken}`,
 		},
 	});
 };

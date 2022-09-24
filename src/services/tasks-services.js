@@ -1,17 +1,12 @@
-import axios from 'axios';
-const server = `http://localhost:4500/api/v1`;
+import fetchClient from '../api/fetch';
 
 // get all tasks from the server
 export const getTasks = async (setData) => {
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/tasks`;
-		const { data } = await axios({
+		const { data } = await fetchClient({
 			method: 'get',
-			url: url,
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: '/tasks',
 		});
-
 		if (setData instanceof Function) return setData(() => data.data);
 	} catch (e) {
 		console.log(e);
@@ -20,14 +15,11 @@ export const getTasks = async (setData) => {
 
 // deletes a selected task
 export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
+	e.stopPropagation();
 	try {
-		e.stopPropagation();
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/tasks/${e.target.parentNode.id}`;
-		await axios({
+		await fetchClient({
 			method: 'delete',
-			url: url,
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: `/tasks/${e.target.parentNode.id}`,
 		});
 		if (reloadTasks instanceof Function) return reloadTasks(...reloadParams);
 		throw new Error('The second argument must be function.');
@@ -39,24 +31,13 @@ export const deleteTask = async (e, reloadTasks, ...reloadParams) => {
 // sets task completion status and makes a patch request
 // to server api
 export const setCompletion = async (e, status, reloadTasks, ...params) => {
+	e.stopPropagation();
+	const taskID = e.target.parentNode.id;
 	try {
-		e.stopPropagation();
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		let statusData;
-		const taskID = e.target.parentNode.id;
-		const url = `${server}/tasks/${taskID}`;
-
-		if (status === true) {
-			statusData = false;
-		} else {
-			statusData = true;
-		}
-		// sends a patch request to server
-		await axios({
+		await fetchClient({
 			method: 'patch',
-			url: url,
-			data: { completed: statusData },
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: `/tasks/${taskID}`,
+			data: { completed: !status },
 		});
 
 		if (reloadTasks instanceof Function) return reloadTasks(...params);
@@ -68,44 +49,39 @@ export const setCompletion = async (e, status, reloadTasks, ...params) => {
 
 export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 	let error = false;
+	if (setMessage instanceof Function === false)
+		throw new Error('The last argument must be function.');
+	setMessage(() => 'Loading...');
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/tasks`;
-		if (!setMessage instanceof Function)
-			throw new Error('The last argument must be function.');
-		setMessage(() => 'Loading...');
-		const res = await axios({
+		const response = await fetchClient({
 			method: 'post',
-			url: url,
+			url: '/tasks',
 			data: { task: taskInputValue, completed: statusInput },
-			headers: { authorization: `Bearer ${accessToken}` },
 		});
 
-		if (res.status === 201) {
+		if (response.status === 201) {
 			setMessage(() => 'Saved');
+			setTimeout(() => setMessage(() => 'Save'), 2000);
 		}
-		setTimeout(() => setMessage(() => 'Save'), 2000);
 	} catch (e) {
 		console.log(e);
 		error = true;
 	} finally {
 		if (error) {
 			setMessage(() => 'Failed');
+			setTimeout(() => setMessage(() => 'Save'), 3000);
 		}
-		setTimeout(() => setMessage(() => 'Save'), 3000);
 	}
 };
 
 // gets a single task by id, if present
 export const getTask = async (setData, setStatus, taskID) => {
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/tasks/${taskID}`;
-		const { data } = await axios({
-			url,
-			headers: { authorization: `Bearer ${accessToken}` },
+		const { data } = await fetchClient({
+			method: 'get',
+			url: `/tasks/${taskID}`,
 		});
-		if (setData instanceof Function)
+		if (setData instanceof Function && setStatus instanceof Function)
 			return [
 				setData(() => data.data.task),
 				setStatus(() => data.data.completed),
@@ -122,25 +98,19 @@ export const taskPatcher = async (
 	statusInput,
 	taskID
 ) => {
+	if (!setMessage instanceof Function)
+		throw new Error('argument 1 is not a function');
+	setMessage(() => 'Loading...');
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/tasks/${taskID}`;
-		// tests if setMessage is parameter is a function
-		if (!setMessage instanceof Function)
-			throw new Error('argument 1 is not a function');
-
-		setMessage(() => 'Loading...');
-		const res = await axios({
+		const response = await fetchClient({
 			method: 'patch',
-			url: url,
+			url: `/tasks/${taskID}`,
 			data: { task: taskInputValue, completed: statusInput },
-			headers: { authorization: `Bearer ${accessToken}` },
 		});
-
-		if (res.status === 202) {
+		if (response.status === 202) {
 			setMessage(() => 'Updated');
+			setTimeout(() => setMessage(() => 'Update'), 2000);
 		}
-		setTimeout(() => setMessage(() => 'Update'), 2000);
 	} catch (e) {
 		console.log(e);
 	}
@@ -148,19 +118,15 @@ export const taskPatcher = async (
 
 // makes a search tasks request
 export const searchTasks = (e, setTasksData) => {
-	const content = e.target.value;
-	// verifies if setTasksTasksData is a state function
+	const query = e.target.value;
 	if (setTasksData instanceof Function === false)
 		throw new Error('The second argument must be a updateState function');
-	const accessToken = JSON.parse(localStorage.getItem('token'));
-	// makes a search request to the server
-	axios({
+	fetchClient({
 		method: 'get',
-		url: `${server}/tasks?search=${content}`,
+		url: `/tasks?search=${query}`,
 		headers: { authorization: `Bearer ${accessToken}` },
 	})
 		.then((response) => {
-			// updates the state with received data
 			setTasksData(response.data.data);
 		})
 		.catch((err) => console.log(err));

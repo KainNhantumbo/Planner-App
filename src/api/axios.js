@@ -9,6 +9,7 @@ apiClient.defaults.headers.common['Content-Type'] = 'application/json';
 apiClient.interceptors.response.use(undefined, (err) => {
 	if (err.response?.status == 403) {
 		location.assign('/login');
+    console.error(err.response?.message || err)
 	}
 	return Promise.reject(err);
 });

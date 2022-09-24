@@ -9,7 +9,6 @@ const fetchClient = (config) => {
 	const accessToken = JSON.parse(
 		localStorage.getItem('user_token') || `{"user_token":""}`
 	);
-  console.log(accessToken);
 	const token = `Bearer ${accessToken}`;
 	return apiClient({
 		...config,

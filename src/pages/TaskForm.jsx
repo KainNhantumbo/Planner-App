@@ -15,11 +15,7 @@ const TaskForm = () => {
 	const [message, setMessage] = useState('Save');
 	const [taskInputValue, setTaskInputValue] = useState('');
 	const [statusInput, setStatusInput] = useState(false);
-
-	// takes id parameter
 	const { id: taskID } = useParams();
-
-	// navigation
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,7 +30,7 @@ const TaskForm = () => {
 		if (taskID === ':id') {
 			saveTask(taskInputValue, statusInput, setMessage);
 			navigate('/');
-			return
+			return;
 		} else {
 			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}

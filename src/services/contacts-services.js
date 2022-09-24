@@ -1,16 +1,11 @@
-import axios from 'axios';
-// server url
-const server = `http://localhost:4500/api/v1`;
+import fetchClient from '../api/fetch';
 
 // fetch all contacts request
 export const fechdata = async (setData) => {
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/contacts`;
-		const { data } = await axios({
+		const { data } = await fetchClient({
 			method: 'get',
-			url: url,
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: '/contacts',
 		});
 		if (setData instanceof Function === true) return setData(() => data.data);
 	} catch (err) {
@@ -22,12 +17,9 @@ export const fechdata = async (setData) => {
 export const fetchContact = async (urlID, setData) => {
 	try {
 		if (urlID === ':id') return;
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/contacts/${urlID}`;
-		const { data } = await axios({
+		const { data } = await fetchClient({
 			method: 'get',
-			url: url,
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: `/contacts/${urlID}`,
 		});
 		if (setData instanceof Function === true) return setData(data.data);
 	} catch (err) {
@@ -37,13 +29,10 @@ export const fetchContact = async (urlID, setData) => {
 
 export const patchData = async (urlID, updatedObj) => {
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const patch_url = `${server}/contacts/${urlID}`;
-		await axios({
+		await fetchClient({
 			method: 'patch',
-			url: patch_url,
+			url: `/contacts/${urlID}`,
 			data: updatedObj,
-			headers: { authorization: `Bearer ${accessToken}` },
 		});
 	} catch (err) {
 		console.log(err.response.data.errors.message);
@@ -53,13 +42,10 @@ export const patchData = async (urlID, updatedObj) => {
 // sends a post request to server api
 export const postData = async (newContact) => {
 	try {
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const url = `${server}/contacts`;
-		await axios({
+		await fetchClient({
 			method: 'post',
-			url: url,
+			url: '/contacts',
 			data: newContact,
-			headers: { authorization: `Bearer ${accessToken}` },
 		});
 	} catch (err) {
 		console.log(err);
@@ -71,12 +57,9 @@ export const deleteContact = async (contactId, navigate) => {
 	try {
 		if (navigate instanceof Function === false)
 			throw new Error('The second argument must be a navigation function');
-		const accessToken = JSON.parse(localStorage.getItem('token'));
-		const delete_url = `${server}/contacts/${contactId}`;
-		await axios({
+		await fetchClient({
 			method: 'delete',
-			url: delete_url,
-			headers: { authorization: `Bearer ${accessToken}` },
+			url: `/contacts/${contactId}`,
 		});
 		navigate('/contacts');
 	} catch (err) {
@@ -85,19 +68,18 @@ export const deleteContact = async (contactId, navigate) => {
 };
 
 // makes a search contacts request
-export const searchContacts = (e, setContactsDB) => {
-	const content = e.target.value;
-	if (setContactsDB instanceof Function === false)
+export const searchContacts = (e, setContacts) => {
+	const query = e.target.value;
+	if (setContacts instanceof Function === false)
 		throw new Error('The second argument must be a updateState function');
-	const accessToken = JSON.parse(localStorage.getItem('token'));
-	axios({
+
+	fetchClient({
 		method: 'get',
-		url: `${server}/contacts?search=${content}`,
-		headers: { authorization: `Bearer ${accessToken}` },
+		url: `/contacts?search=${query}`,
 	})
 		.then((response) => {
 			// updates the state with received data
-			setContactsDB(response.data.data);
+			setContacts(response.data.data);
 		})
 		.catch((err) => console.log(err));
 };

@@ -1,80 +1,78 @@
-import { useEffect, useState } from 'react';
 import TitleBars from '../components/TitleBars';
 import Search from '../components/Search';
+import Loading from '../components/Loading';
+import { useNavigate } from 'react-router-dom';
+import { searchTasks } from '../services/tasks-services';
+import { useEffect, useState } from 'react';
 import { BiTask, BiTrash, BiWind } from 'react-icons/bi';
-import { TasksContainer } from '../styles/tasks';
+import { TasksContainer as Container } from '../styles/tasks';
 import {
 	getTasks,
 	deleteTask,
 	setCompletion,
 } from '../services/tasks-services';
-import { useNavigate } from 'react-router-dom';
-import Loading from '../components/Loading';
-import { searchTasks } from '../services/tasks-services';
 
 const Tasks = () => {
 	const navigate = useNavigate();
 	const [tasksData, setTasksData] = useState([]);
-	// gets data form the server on every render
-	useEffect(() => {
-		getTasks(setTasksData);
-	}, []);
 
 	const redirect = (e) => {
 		e.stopPropagation();
 		navigate(`/taskpreviewer/${e.target.id}`);
 	};
-
+	
 	// sets completed task styles
-	const setTaskAppearence = (status) => {
+	const renderStyles = (status) => {
 		if (status)
-			return {
-				textDecoration: 'line-through',
+		return {
+			textDecoration: 'line-through',
 				fontStyle: 'italic',
 				opacity: 0.3,
 			};
-		return {};
-	};
+			return {};
+		};
 
-	return (
-		<TasksContainer>
+		useEffect(() => {
+			getTasks(setTasksData);
+		}, []);
+		
+		return (
+			<Container>
 			<TitleBars title={'Tasks'} icon={<BiTask />} amount={tasksData.length} />
-			<section>
-				<div>
-					<Search
-						btnURL={'/add/:id'}
-						title={'Add new task'}
-						searchPlaceholder={'Search tasks'}
-						searchEvent={(e) => searchTasks(e, setTasksData)}
-					/>
-				</div>
-				{tasksData.length < 1 ? (
-					<Loading text={'No tasks to show.'} icon={<BiWind />} />
-				) : null}
-				<div className='task-container'>
-					{tasksData.map(({ _id, task, completed }) => (
-						<div key={_id} id={_id} onClick={redirect}>
-							<button
-								className='completion-btn'
-								onClick={(e) =>
-									setCompletion(e, completed, getTasks, setTasksData)
-								}
-							>
-								<BiTask />
-							</button>
+			<Search
+				btnURL={'/add/:id'}
+				title={'Add new task'}
+				searchPlaceholder={'Search tasks'}
+				searchEvent={(e) => searchTasks(e, setTasksData)}
+			/>
+			{tasksData.length < 1 && (
+				<Loading text={'No tasks to show.'} icon={<BiWind />} />
+			)}
 
-							<span id='task' style={setTaskAppearence(completed)}>
-								{task}
-							</span>
-
-							<button onClick={(e) => deleteTask(e, getTasks, setTasksData)}>
-								<BiTrash />
-							</button>
-						</div>
-					))}
-				</div>
+			<section className='task-container'>
+				{tasksData.map(({ _id, task, completed }) => (
+					<div key={_id} id={_id} onClick={redirect}>
+						<button
+							className='completion-btn'
+							onClick={(e) =>
+								setCompletion(e, completed, getTasks, setTasksData)
+							}
+						>
+							<BiTask />
+						</button>
+						<span id='task' style={renderStyles(completed)}>
+							{task}
+						</span>
+						<button
+							title='Delete task'
+							onClick={(e) => deleteTask(e, getTasks, setTasksData)}
+						>
+							<BiTrash />
+						</button>
+					</div>
+				))}
 			</section>
-		</TasksContainer>
+		</Container>
 	);
 };
 

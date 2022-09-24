@@ -8,7 +8,7 @@ const Search = ({ searchEvent, btnURL, searchPlaceholder, title }) => (
 			<Link to={btnURL}>{<BiPlus />}</Link>
 		</button>
 		<section>
-			{<BiSearch className='searchIcon' />}
+			<BiSearch className='searchIcon' />
 			<input
 				type='search'
 				name='search'

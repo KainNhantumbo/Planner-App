@@ -41,7 +41,7 @@ export const TasksContainer = styled.div`
 			}
 
 			span {
-				font-weight: 500;
+				font-size: 0.95rem;
 				margin: auto 28px;
 				pointer-events: none;
 				white-space: nowrap;

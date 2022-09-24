@@ -74,7 +74,6 @@ export const saveTask = async (taskInputValue, statusInput, setMessage) => {
 	}
 };
 
-// gets a single task by id, if present
 export const getTask = async (setData, setStatus, taskID) => {
 	try {
 		const { data } = await fetchClient({
@@ -98,7 +97,7 @@ export const taskPatcher = async (
 	statusInput,
 	taskID
 ) => {
-	if (!setMessage instanceof Function)
+	if (setMessage instanceof Function === false)
 		throw new Error('argument 1 is not a function');
 	setMessage(() => 'Loading...');
 	try {
@@ -124,7 +123,6 @@ export const searchTasks = (e, setTasksData) => {
 	fetchClient({
 		method: 'get',
 		url: `/tasks?search=${query}`,
-		headers: { authorization: `Bearer ${accessToken}` },
 	})
 		.then((response) => {
 			setTasksData(response.data.data);

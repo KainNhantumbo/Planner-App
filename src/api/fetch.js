@@ -1,7 +1,7 @@
 import apiClient from './axios';
 
 /**
- * Makes connection to the server api
+ * Makes a connection to the server api
  * @param config object with connection method, url and data (optional)
  * @returns AxiosPromise<any>
  */

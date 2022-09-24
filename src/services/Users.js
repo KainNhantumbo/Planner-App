@@ -1,18 +1,11 @@
-import axios from 'axios';
-// server url
-const server = `http://localhost:4500/api/v1`;
-const server_url = `${server}/users`;
+import fetchClient from '../api/fetch';
 
-// gets user info
 export const getUserInfo = (setData) => {
 	if (setData instanceof Function === false)
 		throw new Error('Argument must be a updateState function.');
-	const accessToken = JSON.parse(localStorage.getItem('token'));
-	// makes a get request to server
-	axios({
+	fetchClient({
 		method: 'get',
-		url: server_url,
-		headers: { authorization: `Bearer ${accessToken}` },
+		url: '/users',
 	})
 		.then((response) => {
 			setData(response.data);
@@ -24,15 +17,13 @@ export const getUserInfo = (setData) => {
 export const deleteUser = (navigate) => {
 	if (navigate instanceof Function === false)
 		throw new Error('Argument must be a navigation function.');
-	const accessToken = JSON.parse(localStorage.getItem('token'));
-	axios({
+	fetchClient({
 		method: 'delete',
-		url: server_url,
-		headers: { authorization: `Bearer ${accessToken}` },
+		url: '/users',
 	})
 		.then((response) => {
 			if (response.status === 200) {
-				localStorage.removeItem('token');
+				localStorage.removeItem('user_token');
 				navigate('/login');
 			}
 		})

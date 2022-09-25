@@ -10,69 +10,67 @@ import SignIn from '../pages/SignIn';
 import Settings from '../pages/Settings';
 import ProtectedRoutes from './ProtectedRoutes';
 
-const AppRoutes = () => {
-	return (
-		<Routes>
-			<Route path='/login' element={<SignIn />} />
-			<Route path='/register' element={<SignUp />} />
-			<Route
-				path='/'
-				element={
-					<ProtectedRoutes>
-						<Tasks />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/taskpreviewer/:id'
-				element={
-					<ProtectedRoutes>
-						<TaskPreviewer />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/add/:id'
-				element={
-					<ProtectedRoutes>
-						<TaskForm />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/contacts'
-				element={
-					<ProtectedRoutes>
-						<Contacts />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/contacts/add/:id'
-				element={
-					<ProtectedRoutes>
-						<ContactsForm />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/contacts/previewer/:id'
-				element={
-					<ProtectedRoutes>
-						<ContactPreviewer />
-					</ProtectedRoutes>
-				}
-			/>
-			<Route
-				path='/settings'
-				element={
-					<ProtectedRoutes>
-						<Settings />
-					</ProtectedRoutes>
-				}
-			/>
-		</Routes>
-	);
-};
+const AppRoutes = () => (
+	<Routes>
+		<Route path='/login' element={<SignIn />} />
+		<Route path='/register' element={<SignUp />} />
+		<Route
+			path='/'
+			element={
+				<ProtectedRoutes>
+					<Tasks />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/taskpreviewer/:id'
+			element={
+				<ProtectedRoutes>
+					<TaskPreviewer />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/add/:id'
+			element={
+				<ProtectedRoutes>
+					<TaskForm />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/contacts'
+			element={
+				<ProtectedRoutes>
+					<Contacts />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/contacts/add/:id'
+			element={
+				<ProtectedRoutes>
+					<ContactsForm />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/contacts/previewer/:id'
+			element={
+				<ProtectedRoutes>
+					<ContactPreviewer />
+				</ProtectedRoutes>
+			}
+		/>
+		<Route
+			path='/settings'
+			element={
+				<ProtectedRoutes>
+					<Settings />
+				</ProtectedRoutes>
+			}
+		/>
+	</Routes>
+);
 
 export default AppRoutes;

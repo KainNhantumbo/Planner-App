@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FormContainer } from '../styles/contact-form';
+import { useState, useEffect } from 'react';
+import { FormContainer as Container } from '../styles/contact-form';
 import {
 	BiUserPlus,
 	BiPhone,
@@ -21,7 +21,7 @@ import {
 
 const ContactsForm = () => {
 	const navigate = useNavigate();
-	const params = useParams();
+	const { id: contactId } = useParams();
 	const [formData, setFormData] = useState({
 		name: '',
 		surname: '',
@@ -32,7 +32,6 @@ const ContactsForm = () => {
 		adress: '',
 	});
 
-	// populates formData values
 	const formDataPicker = (e) => {
 		setFormData((prevFormData) => ({
 			...prevFormData,
@@ -40,7 +39,7 @@ const ContactsForm = () => {
 		}));
 	};
 
-	// if :id parameter object exists, setup the fields
+	// if contactId parameter object exists, setup the fields
 	const [message, setMessage] = useState('Save');
 	const [btnState, setBtnState] = useState({});
 	const setDefaultInputValues = (data) => {
@@ -55,7 +54,7 @@ const ContactsForm = () => {
 	};
 
 	useEffect(() => {
-		fetchContact(params.id, setDefaultInputValues);
+		fetchContact(contactId, setDefaultInputValues);
 	}, []);
 
 	// resets form value fields
@@ -64,12 +63,12 @@ const ContactsForm = () => {
 		e.target.reset();
 	};
 
-	// saves a new contact, if id exists, it makes a update
+	// saves a new contact, if contactId exists, makes an update
 	const saveContact = (e) => {
 		e.preventDefault();
 		if (!formData.name) return;
-		if (message === 'Update') {
-			patchData(params.id, formData);
+		if (message == 'Update') {
+			patchData(contactId, formData);
 		} else {
 			postData(formData);
 		}
@@ -77,7 +76,7 @@ const ContactsForm = () => {
 	};
 
 	return (
-		<FormContainer>
+		<Container>
 			<TitleBars icon={<BiUserPlus />} title={'Add Contact'} />
 			<form onSubmit={resetForm}>
 				<label htmlFor='name'>{<BiUser />}Name</label>
@@ -141,7 +140,7 @@ const ContactsForm = () => {
 					</button>
 				</div>
 			</form>
-		</FormContainer>
+		</Container>
 	);
 };
 

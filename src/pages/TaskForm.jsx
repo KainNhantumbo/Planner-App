@@ -31,14 +31,10 @@ const TaskForm = () => {
 			saveTask(taskInputValue, statusInput, setMessage);
 			navigate('/');
 			return;
-		} else {
-			taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		}
+		taskPatcher(setMessage, taskInputValue, statusInput, taskID);
 		navigate('/');
 	};
-
-	// discards changes and goes back to previous page
-	const discardTask = () => navigate('/');
 
 	return (
 		<Container>
@@ -73,7 +69,7 @@ const TaskForm = () => {
 					<BiSave />
 					<span>{message}</span>
 				</button>
-				<button onClick={discardTask}>
+				<button onClick={() => navigate('/')}>
 					<BiLeftArrowAlt />
 					<span>Back</span>
 				</button>

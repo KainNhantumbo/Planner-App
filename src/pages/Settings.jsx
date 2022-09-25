@@ -1,5 +1,3 @@
-import { SettingsContainer } from '../styles/settings';
-import TitleBars from '../components/TitleBars';
 import {
 	BiArrowBack,
 	BiBookBookmark,
@@ -17,24 +15,26 @@ import {
 	FaGithub,
 	GiMite,
 } from 'react-icons/all';
+import TitleBars from '../components/TitleBars';
 import { useState, useEffect } from 'react';
 import { deleteUser, getUserInfo } from '../services/Users';
+import { SettingsContainer as Container } from '../styles/settings';
 import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
 	const navigate = useNavigate();
 	const [userData, setUserData] = useState([]);
-	// stores modal states
 	const [modalState, setModalState] = useState(false);
 
 	useEffect(() => {
 		getUserInfo(setUserData);
 	}, []);
+
 	return (
-		<SettingsContainer>
+		<Container>
 			<TitleBars title={'Settings'} icon={<BiCog />} />
 			{/* modal */}
-			{modalState ? (
+			{modalState && (
 				<section className='modal-container'>
 					<div className='advice'>
 						<h3>
@@ -62,7 +62,7 @@ const Settings = () => {
 						</div>
 					</div>
 				</section>
-			) : null}
+			)}
 			{/* page content */}
 			<article className='page'>
 				<section className='user-info'>
@@ -169,7 +169,7 @@ const Settings = () => {
 					</section>
 				</section>
 			</article>
-		</SettingsContainer>
+		</Container>
 	);
 };
 

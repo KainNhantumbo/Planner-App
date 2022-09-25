@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BiEnvelope, BiLock, BiPaperPlane } from 'react-icons/bi';
 import { Container } from '../styles/components/signIn';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,10 +7,8 @@ import { authUser } from '../services/auth';
 const SignIn = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [userData, setUserData] = useState({ email: '', password: '' });
-	// navigation
 	const navigate = useNavigate();
 
-	// populates the userData object
 	const populateUserData = (e) => {
 		setUserData((prevData) => ({
 			...prevData,
@@ -64,7 +62,7 @@ const SignIn = () => {
 					</Link>
 				</div>
 			</article>
-			<footer>&copy; 2022 Nava Planner - All rights reserved.</footer>
+			<footer>&copy; 2022 Kain Nhantumbo | Nava Planner.</footer>
 		</Container>
 	);
 };

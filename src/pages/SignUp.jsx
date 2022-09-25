@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
 	BiEnvelope,
 	BiLock,
@@ -7,14 +6,13 @@ import {
 	BiUser,
 	BiUserCheck,
 } from 'react-icons/bi';
+import { useState } from 'react';
 import { Container } from '../styles/components/signUp';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/auth';
 
 const SignUp = () => {
 	const [errorMessage, setErrorMessage] = useState('');
-
-	// navigation
 	const navigate = useNavigate();
 
 	// object to store form data
@@ -109,14 +107,12 @@ const SignUp = () => {
 						id='confirm-password'
 						onChange={formDataPicker}
 					/>
-
 					<span className='errorMessage'>{errorMessage}</span>
-
 					<button type='submit'>Get started!</button>
 					<Link to={'/login'}>I already have account</Link>
 				</form>
 			</article>
-			<footer>&copy; 2022 Nava Planner</footer>
+			<footer>&copy; 2022 Kain Nhantumbo | Nava Planner</footer>
 		</Container>
 	);
 };

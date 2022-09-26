@@ -30,7 +30,7 @@ export default function App() {
 	};
 
 	const [iconMode, setIconMode] = useState({ icon: <BiSun />, name: 'sun' });
-	const [colors, setColors] = useState();
+	const [colors, setColors] = useState(lightTheme);
 
 	// switches between dark and light themes
 	const modeSwitcher = () => {
